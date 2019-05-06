@@ -9,9 +9,9 @@ export const windowResizeAction = ({newX, newY}) => ({
   height: newY
 })
 
-export const moveSliderAction = ({id, newVal}) => ({
+export const moveSliderAction = ({id, value}) => ({
   type: 'SLIDER_MOVE',
   actionId: nextActionId++,
   id,
-  newVal
+  value
 })

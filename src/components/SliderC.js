@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  moveSlider: e => dispatch( moveSliderAction( {id: ownProps.slider.id, newVal: e.target.value} ) )
+  moveSlider: e => dispatch( moveSliderAction( {id: ownProps.slider.id, value: e.target.value} ) )
 })
 
 export default connect(

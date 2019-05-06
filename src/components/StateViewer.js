@@ -1,28 +1,14 @@
 import React from 'react'
-import { Column, Row } from 'simple-flexbox'
 
 const StateViewer = ({actionJSON, stateJSON}) => (
-  <Column
-    horizontal = 'center'
-    vertical = 'center'
-    className = 'StateViewer'
-  >
-    <Row>
-      &nbsp;
-    </Row>
-    <Row>
+  <div className = 'StateViewer'>
+    <p>
       <b>state.lastAction</b>:&nbsp;&nbsp;{actionJSON}
-    </Row>
-    <Row>
-      &nbsp;
-    </Row>
-    <Row>
+    </p>
+    <p>
       <b>state</b>:&nbsp;&nbsp;{stateJSON}
-    </Row>
-    <Row>
-      &nbsp;
-    </Row>
-  </Column>
+    </p>
+  </div>
 )
 
 export default StateViewer

@@ -3,7 +3,7 @@ const slider = (state = {}, action) => {
     case 'SLIDER_MOVE':
       return {
         ...state,
-        value: action.newVal
+        value: action.value
       }
     default:
       return state

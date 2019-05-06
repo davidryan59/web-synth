@@ -1,9 +1,9 @@
 body {
   margin: 0px;
-  background-color: #222;
+  background-color: #444;
   font-family: monospace;
   font-size: 10px;
-  color: #DBA;
+  color: #DDD;
   text-align: center;
 }
 
@@ -11,12 +11,17 @@ body {
   margin: 5px;
   border: 1px #999 solid;
   border-radius: 10px;
-  background: #111;
+  background: #222;
   padding: 7px;
 }
 
 .topline {
   font-size: 12px;
+}
+
+div {
+  margin: 2px;
+  padding: 2px;
 }
 
 canvas {
@@ -26,6 +31,7 @@ canvas {
 }
 
 .StateViewer {
+  background: #331;
   border: 1px #ABF solid;
   border-radius: 7px;
   padding: '5px';

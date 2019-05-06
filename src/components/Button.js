@@ -1,11 +1,13 @@
 import React from 'react'
 
 const Button = ({ id, label }) => (
-  <button
-    id={id}
-  >
-    {label}
-  </button>
+  <div>
+    <button
+      id={id}
+    >
+      {label}
+    </button>
+  </div>
 )
 
 export default Button
