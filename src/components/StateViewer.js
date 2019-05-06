@@ -11,13 +11,13 @@ const StateViewer = ({actionJSON, stateJSON}) => (
       &nbsp;
     </Row>
     <Row>
-      <b>state.present.lastAction</b>:&nbsp;&nbsp;{actionJSON}
+      <b>state.lastAction</b>:&nbsp;&nbsp;{actionJSON}
     </Row>
     <Row>
       &nbsp;
     </Row>
     <Row>
-      <b>state.present</b>:&nbsp;&nbsp;{stateJSON}
+      <b>state</b>:&nbsp;&nbsp;{stateJSON}
     </Row>
     <Row>
       &nbsp;

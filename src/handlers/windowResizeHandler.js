@@ -3,7 +3,7 @@ import { windowResizeAction } from '../actions'
 const minChangePx = 60
 
 const windowResizeHandler = (event, store) => {
-  const windowState = store.getState().present.window
+  const windowState = store.getState().window
   const dispatch = store.dispatch
   
   const newX = event.target.innerWidth

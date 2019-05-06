@@ -1,14 +1,13 @@
 import { combineReducers } from 'redux'
-import undoable from 'redux-undo'
 
-import lastAction from './lastAction'
 import windowReducer from './window'
+import sliders from './sliders'
+import lastAction from './lastAction'
 
-const globalReducer = combineReducers({
+const rootReducer = combineReducers({
   window: windowReducer,
+  sliders,
   lastAction
 })
 
-const globalUndoableReducer = undoable(globalReducer, {limit: 50})
-
-export default globalUndoableReducer
+export default rootReducer

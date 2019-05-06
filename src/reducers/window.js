@@ -1,9 +1,6 @@
-const initialiseWindowState = () => ({
-  width: window.innerWidth,
-  height: window.innerHeight  
-})
+import { getInitialWindowState } from '../initialise'
 
-const windowReducer = (state = initialiseWindowState(), action) => {
+const windowReducer = (state = getInitialWindowState(), action) => {
   if (action.type === 'WINDOW_RESIZE') return {
     width: action.width,
     height: action.height
