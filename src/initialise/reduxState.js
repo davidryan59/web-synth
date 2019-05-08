@@ -2,10 +2,10 @@ export const getInitialSliderState = () => [
   {
     id: 'noteFreq',
     label: 'Note Frequency',
-    min: '20',
-    step: '2',
-    max: '800',
-    value: '320',
+    min: '5',
+    step: '0.1',
+    max: '60',
+    value: '60',
     len: 4,
     unit: 'Hz'
   },
