@@ -1,6 +1,5 @@
 import { windowResizeAction } from '../actions'
-
-const minChangePx = 60
+import { windowSizeChangeDiff } from '../general'
 
 const windowResizeHandler = (event, store) => {
   const windowState = store.getState().window
@@ -17,7 +16,7 @@ const windowResizeHandler = (event, store) => {
   
   // Only dispatch action if change is more than a specific amount,
   // to avoid too many window resize actions
-  if (minChangePx <= diff) dispatch(windowResizeAction({newX, newY}))
+  if (windowSizeChangeDiff <= diff) dispatch(windowResizeAction({width:newX, height:newY}))
 }
 
 export default windowResizeHandler

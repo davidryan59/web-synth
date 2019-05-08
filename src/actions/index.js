@@ -1,17 +1,11 @@
 import { WINDOW_RESIZE, SLIDER_MOVE } from './types'
 
 let nextActionId = 0
-
-export const windowResizeAction = ({newX, newY}) => ({
-  type: WINDOW_RESIZE,
+const actionCreator = ({type, data}) => ({
+  type,
   actionId: nextActionId++,
-  width: newX,
-  height: newY
+  ...data
 })
 
-export const moveSliderAction = ({id, value}) => ({
-  type: SLIDER_MOVE,
-  actionId: nextActionId++,
-  id,
-  value
-})
+export const windowResizeAction = data => actionCreator({type: WINDOW_RESIZE, data})
+export const moveSliderAction = data => actionCreator({type: SLIDER_MOVE, data})

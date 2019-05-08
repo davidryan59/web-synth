@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 
 import DisplayGraph from './DisplayGraph'
+import { windowSizeChangeDiff, windowSizeChangeExtraReduction } from '../general'
 
 const mapStateToProps = (state, ownProps) => ({
-  width: 0.95 * state.window.width,
+  width: state.window.width - windowSizeChangeDiff - windowSizeChangeExtraReduction,
   height: 0.35 * state.window.height
 })
 
