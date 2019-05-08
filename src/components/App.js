@@ -12,11 +12,11 @@ const App = () => (
       View a waveform created using Web Audio API, in both time and frequency domains
       - <i>by David Ryan, 2019</i>
     </div>
-    <DisplayGraphC id='oscilloscope' />
+    <DisplayGraphC id='waveform' />
     <DisplayGraphC id='spectrum' />
     <ButtonC
-      id='startstop'
-      label='Start or stop audio (NOT YET IMPLEMENTED)'
+      id='start'
+      label='Start sound'
     />
     <SlidersC />
     <StateViewerC />
