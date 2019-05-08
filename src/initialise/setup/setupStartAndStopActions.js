@@ -1,4 +1,5 @@
-import setupNodesTemp from './setupNodesTemp'
+import setupNodesSynthGraph from './setupNodesSynthGraph'
+import { setupNodesSynthValues } from './setupNodesSynthValues'
 import audioStart from './audioStart'
 import animateCanvases from './animateCanvases'
 import audioStop from './audioStop'
@@ -6,7 +7,8 @@ import audioStop from './audioStop'
 const setupStartAndStopActions = (objStore, reduxStore) => {
   objStore.fn = {}
   objStore.fn.startSoundAndGraphics = () => {
-    setupNodesTemp(objStore, reduxStore)
+    setupNodesSynthGraph(objStore, reduxStore)
+    setupNodesSynthValues(objStore, reduxStore)
     audioStart(objStore, reduxStore)    
     animateCanvases(objStore, reduxStore)
   };

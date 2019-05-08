@@ -1,6 +1,6 @@
 const r255 = 1/255
 
-const drawCanvasShared = ({ canvasCtx, canvasElt, bufferLength, widthMult, bytesToDraw }) => {
+const drawCanvasShared = ({ canvasCtx, canvasElt, bufferLength, widthMult=1, bytesToDraw }) => {
   canvasCtx.fillStyle = "#000";
   canvasCtx.lineWidth = 1;
   canvasCtx.strokeStyle = "#0F0";

@@ -19,6 +19,7 @@ const Slider = ({ slider, moveSlider }) => (
       max={slider.max}
       value={slider.value}
       onChange={moveSlider}
+      style={{width:'400px'}}
     />
     &nbsp;
     <span

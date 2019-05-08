@@ -1,7 +1,6 @@
 import drawCanvasWaveform from './drawCanvasWaveform'
 import drawCanvasSpectrum from './drawCanvasSpectrum'
 
-console.log('Canvas animation rate')
 const frameDiff = 16
 
 const frameWaveform = Math.floor(0.5 * (frameDiff - 1))

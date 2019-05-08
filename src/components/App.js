@@ -2,6 +2,7 @@ import React from 'react'
 
 import DisplayGraphC from './DisplayGraphC'
 import ButtonC from './ButtonC'
+import PicklistsC from './PicklistsC'
 import SlidersC from './SlidersC'
 import StateViewerC from './StateViewerC'
 
@@ -15,6 +16,7 @@ const App = ({ playButton }) => (
     <DisplayGraphC id='waveform' />
     <DisplayGraphC id='spectrum' />
     <ButtonC button={playButton} />
+    <PicklistsC />
     <SlidersC />
     <StateViewerC />
   </div>
