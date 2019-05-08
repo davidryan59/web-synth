@@ -40,6 +40,7 @@ canvas {
 }
 
 button {
+  margin: 3px;
   background-color: #FEFDFB;
   color: #06B;
   font-weight: bold;

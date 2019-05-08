@@ -5,7 +5,7 @@ import ButtonC from './ButtonC'
 import SlidersC from './SlidersC'
 import StateViewerC from './StateViewerC'
 
-const App = () => (
+const App = ({ playButton }) => (
   <div className='app'>
     <div className='topline'>
       <b>Web Synth</b> -
@@ -14,10 +14,7 @@ const App = () => (
     </div>
     <DisplayGraphC id='waveform' />
     <DisplayGraphC id='spectrum' />
-    <ButtonC
-      id='start'
-      label='Start sound'
-    />
+    <ButtonC button={playButton} />
     <SlidersC />
     <StateViewerC />
   </div>

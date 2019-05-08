@@ -1,2 +1,0 @@
-export const WINDOW_RESIZE = 'WINDOW_RESIZE'
-export const SLIDER_MOVE = 'SLIDER_MOVE'

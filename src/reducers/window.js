@@ -1,5 +1,5 @@
-import { WINDOW_RESIZE } from '../actions/types'
-import { getInitialWindowState } from '../initialise/reduxState'
+import { WINDOW_RESIZE } from '../general'
+import { getInitialWindowState } from '../initialise/setupReduxState'
 
 const windowReducer = (state = getInitialWindowState(), action) => {
   switch (action.type) {

@@ -1,13 +1,12 @@
 import React from 'react'
 
-const Button = ({ id, label }) => (
-  <div>
-    <button
-      id={id}
-    >
-      {label}
-    </button>
-  </div>
+const Button = ({ button, click }) => (
+  <button
+    id={button.id}
+    onClick={click}
+  >
+    {button.isActive ? button.labelActive : button.labelInactive}
+  </button>
 )
 
 export default Button
