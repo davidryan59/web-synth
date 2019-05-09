@@ -8,6 +8,8 @@ export const makeNChars = (label, len) => (''+label).slice(0, len).padStart(len,
 export const windowSizeChangeMinDiff = 20
 // Extra padding to keep canvas sides away from side of window
 export const windowSizeChangeExtraReduction = 35
+// Ratio of window height to canvas height
+export const windowVerticalMult = 0.25
 
 export const waveShapes = ['sine', 'triangle', 'sawtooth', 'square']
 

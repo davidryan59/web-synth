@@ -1,11 +1,11 @@
 import { connect } from 'react-redux'
 
 import DisplayGraph from './DisplayGraph'
-import { windowSizeChangeMinDiff, windowSizeChangeExtraReduction } from '../general'
+import { windowSizeChangeMinDiff, windowSizeChangeExtraReduction, windowVerticalMult } from '../general'
 
 const mapStateToProps = (state, ownProps) => ({
   width: state.window.width - windowSizeChangeMinDiff - windowSizeChangeExtraReduction,
-  height: 0.35 * state.window.height
+  height: windowVerticalMult * state.window.height
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
