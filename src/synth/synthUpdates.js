@@ -16,6 +16,10 @@ export const updateFrequencies = (objStore, state) => {
   if (synthNodes) {
     synthNodes.mainOsc.frequency.value = value
     synthNodes.modOscA.frequency.value = value * multA
+    // Modulator frequencies can easily go
+    // outside -22,050 Hz to 22,050 Hz
+    // which can give a warning.
+    // Currently ignoring this warning.
   }
 }
 
@@ -40,7 +44,12 @@ export const updateMod2WaveShapeA = (objStore, state) => {
 export const updateDistortionDb = (objStore, state) => {
   const value = getSliderValueFromState(state, SYNTH_DISTORTION)
   const synthNodes = objStore.synth.nodes
-  if (synthNodes) synthNodes.limitGain.gain.value = dbToGain(value)
+  if (synthNodes) {
+    const gainPre = dbToGain(value)
+    const gainPost = 1 / gainPre
+    synthNodes.limitGainPre.gain.value = gainPre
+    synthNodes.limitGainPost.gain.value = gainPost
+  }
 }
 
 export const updateModIndexA = (objStore, state) => {
