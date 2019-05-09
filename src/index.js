@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import AppC from './components/AppC'
 import appReducer from './reducers'
 
-import setupObjectStore from './initialise/setupObjectStore'
+import setupObjectStore from './setup/setupObjectStore'
 import windowResizeHandler from './handlers/windowResizeHandler'
 
 // Object store contains general things like audio contexts, page elements, e.g. non-pure objects

@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 
 import Button from './Button'
-import { buttonPressThunk } from '../actions'
+import { getSynthUpdateThunk } from '../actions'
+import { BUTTON_PRESS } from '../constants'
 
 const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  click: e => dispatch( buttonPressThunk({id: ownProps.button.id, isActive: ownProps.button.isActive}) )
+  valueChange: e => dispatch(getSynthUpdateThunk(BUTTON_PRESS, {id: ownProps.button.id, isActive: ownProps.button.isActive}))
 })
 
 export default connect(

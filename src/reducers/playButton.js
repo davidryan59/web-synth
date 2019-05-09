@@ -1,5 +1,5 @@
-import { getInitialPlayButtonState } from '../initialise/setupReduxState'
-import { BUTTON_PRESS } from '../general'
+import { getInitialPlayButtonState } from '../setup/setupReduxState'
+import { BUTTON_PRESS } from '../constants'
 
 const playButton = (state = getInitialPlayButtonState(), action) => {  
   switch (action.type) {

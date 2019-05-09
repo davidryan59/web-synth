@@ -1,10 +1,10 @@
 import {
   waveShapes,
   PLAY_SOUND, 
-  OVERALL_GAIN, NOTE_FREQ, DISTORTION_DB,
+  MIXER_GAIN, SYNTH_NOTE_FREQ, SYNTH_DISTORTION,
   MOD_FREQMULT_A, MOD_IDX_A, MOD2_RATE_A, MOD2_IDX_A,
-  MAIN_WAVE_SHAPE, MOD_WAVE_SHAPE_A, MOD2_WAVE_SHAPE_A
-} from '../general'
+  SYNTH_WAVE_SHAPE, MOD_WAVE_SHAPE_A, MOD2_WAVE_SHAPE_A
+} from '../constants'
 
 
 export const getInitialPlayButtonState = () => ({
@@ -16,7 +16,7 @@ export const getInitialPlayButtonState = () => ({
 
 export const getInitialPicklistsState = () => [
   {
-    id: MAIN_WAVE_SHAPE,
+    id: SYNTH_WAVE_SHAPE,
     label: 'Main wave shape',
     values: [...waveShapes],
     value: waveShapes[0]
@@ -37,7 +37,7 @@ export const getInitialPicklistsState = () => [
 
 export const getInitialSlidersState = () => [
   {
-    id: OVERALL_GAIN,
+    id: MIXER_GAIN,
     label: 'Overall Gain',
     min: '-30',
     step: '0.1',
@@ -47,7 +47,7 @@ export const getInitialSlidersState = () => [
     unit: 'dB'
   },
   {
-    id: NOTE_FREQ,
+    id: SYNTH_NOTE_FREQ,
     label: 'Note Frequency',
     min: '1',
     step: '1',
@@ -57,7 +57,7 @@ export const getInitialSlidersState = () => [
     unit: 'Hz'
   },
   {
-    id: DISTORTION_DB,
+    id: SYNTH_DISTORTION,
     label: 'Distortion',
     min: '0',
     step: '0.01',

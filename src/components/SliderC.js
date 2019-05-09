@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 
 import Slider from './Slider'
-import { moveSliderThunk } from '../actions'
+import { getSynthUpdateThunk } from '../actions'
+import { SLIDER_MOVE } from '../constants'
 
 const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  moveSlider: e => dispatch( moveSliderThunk( {id: ownProps.slider.id, value: parseFloat(e.target.value)} ) )
+  valueChange: e => dispatch(getSynthUpdateThunk(SLIDER_MOVE, {id: ownProps.slider.id, value: parseFloat(e.target.value)}))
 })
 
 export default connect(

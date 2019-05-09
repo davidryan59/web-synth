@@ -1,8 +1,8 @@
 import React from 'react'
 
-import { makeNChars } from '../general'
+import makeNChars from '../general/makeNChars'
 
-const Slider = ({ slider, moveSlider }) => (
+const Slider = ({ slider, valueChange }) => (
   <div>
     <label
       id={`label-${slider.id}`}
@@ -18,7 +18,7 @@ const Slider = ({ slider, moveSlider }) => (
       step={slider.step}
       max={slider.max}
       value={slider.value}
-      onChange={moveSlider}
+      onChange={valueChange}
       style={{width:'400px'}}
     />
     &nbsp;

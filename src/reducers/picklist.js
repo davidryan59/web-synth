@@ -1,4 +1,4 @@
-import { SET_PICKLIST } from '../general'
+import { SET_PICKLIST } from '../constants'
 
 const picklist = (state = {}, action) => {  
   switch (action.type) {

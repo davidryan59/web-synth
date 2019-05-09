@@ -1,10 +1,10 @@
 import drawCanvasWaveform from './drawCanvasWaveform'
 import drawCanvasSpectrum from './drawCanvasSpectrum'
 
-const frameDiff = 16
+import { framesBetweenCanvasUpdates } from '../constants'
 
-const frameWaveform = Math.floor(0.5 * (frameDiff - 1))
-const frameSpectrum = Math.floor(frameDiff - 1)
+const frameWaveform = Math.floor(0.5 * (framesBetweenCanvasUpdates - 1))
+const frameSpectrum = Math.floor(framesBetweenCanvasUpdates - 1)
 
 const animateCanvases = (objStore, reduxStore) => {
   // console.log('Started drawing waveform and spectrum canvases')
@@ -16,8 +16,8 @@ const animateCanvases = (objStore, reduxStore) => {
     } else {
       // console.log('Stopped drawing waveform and spectrum canvases')
     }
-    if (frameNumber % frameDiff === frameWaveform) drawCanvasWaveform(objStore, reduxStore)
-    if (frameNumber % frameDiff === frameSpectrum) drawCanvasSpectrum(objStore, reduxStore)
+    if (frameNumber % framesBetweenCanvasUpdates === frameWaveform) drawCanvasWaveform(objStore, reduxStore)
+    if (frameNumber % framesBetweenCanvasUpdates === frameSpectrum) drawCanvasSpectrum(objStore, reduxStore)
     frameNumber++
   }
   drawCanvases1Frame()

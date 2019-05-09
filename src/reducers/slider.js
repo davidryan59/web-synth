@@ -1,4 +1,4 @@
-import { SLIDER_MOVE } from '../general'
+import { SLIDER_MOVE } from '../constants'
 
 const slider = (state = {}, action) => {  
   switch (action.type) {

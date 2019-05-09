@@ -1,5 +1,5 @@
-import { getInitialPicklistsState } from '../initialise/setupReduxState'
-import { SET_PICKLIST } from '../general'
+import { getInitialPicklistsState } from '../setup/setupReduxState'
+import { SET_PICKLIST } from '../constants'
 
 import picklist from './picklist'
 

@@ -1,4 +1,5 @@
-const r255 = 1/255
+// Cache a division
+const r255 = 1 / 255
 
 const drawCanvasShared = ({ canvasCtx, canvasElt, bufferLength, widthMult=1, bytesToDraw }) => {
   canvasCtx.fillStyle = "#000";

@@ -1,7 +1,7 @@
 import drawCanvasShared from './drawCanvasShared'
 
 const drawCanvasWaveform = (objStore, reduxStore) => {
-  objStore.audioNode.analyser.getByteTimeDomainData(objStore.analyser.bytesWaveform);
+  objStore.mixer.analyser.getByteTimeDomainData(objStore.analyser.bytesWaveform);
   const bytesToDraw = objStore.analyser.bytesWaveform
   const canvasCtx = objStore.ctx.canvas.waveform
   const canvasElt = objStore.elt.canvas.waveform
