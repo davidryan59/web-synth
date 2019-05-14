@@ -8,6 +8,8 @@ import appReducer from './reducers'
 
 import setupObjectStore from './setup/setupObjectStore'
 import windowResizeHandler from './handlers/windowResizeHandler'
+import { getSynthUpdateThunk } from './actions'
+import { BUTTON_PRESS, PLAY_SOUND } from './constants'
 
 // Object store contains general things like audio contexts, page elements, e.g. non-pure objects
 // Redux store is standard Redux state management with state and actions as pure objects
@@ -30,3 +32,15 @@ window.addEventListener('load', () => {
 
 // If window resizes, that has an additional action
 window.addEventListener('resize', e => windowResizeHandler(e, reduxStore))
+
+// Keyboard
+window.addEventListener('keydown', e => console.log(`Key down ${e.code}`))
+window.addEventListener('keyup', e => {
+  console.log(`Key up ${e.code}`)
+  if (e.code === 'KeyQ') {
+    console.log('Toggling play button via Q key')
+    reduxStore.dispatch(
+      getSynthUpdateThunk(BUTTON_PRESS, {id: PLAY_SOUND, isActive: reduxStore.getState().playButton.isActive})
+    )    
+  }
+})

@@ -3,23 +3,18 @@ import getPicklistValueFromState from '../getters/getPicklistValueFromState'
 import getSliderValueFromState from '../getters/getSliderValueFromState'
 import dbToGain from '../general/dbToGain'
 import {
-  PLAY_SOUND,
-  MIXER_GAIN, SYNTH_NOTE_FREQ, SYNTH_DISTORTION,
-  SYNTH_WAVE_SHAPE, MOD_WAVE_SHAPE_A, MOD2_WAVE_SHAPE_A,
-  MOD_FREQMULT_A, MOD_IDX_A, MOD2_RATE_A, MOD2_IDX_A
+  PLAY_SOUND, MIXER_GAIN, SYNTH_NOTE_FREQ, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE,
+  MOD_WAVE_SHAPE_A, MOD2_WAVE_SHAPE_A, MOD_FREQMULT_A, MOD_IDX_A, MOD2_RATE_A, MOD2_IDX_A,
+  MOD_WAVE_SHAPE_B, MOD2_WAVE_SHAPE_B, MOD_FREQMULT_B, MOD_IDX_B, MOD2_RATE_B, MOD2_IDX_B
 } from '../constants'
 
-export const updateFrequencies = (objStore, state) => {
-  const value = getSliderValueFromState(state, SYNTH_NOTE_FREQ)
-  const multA = getSliderValueFromState(state, MOD_FREQMULT_A)
+export const updateSynthDistortion = (objStore, state) => {
+  const value = getSliderValueFromState(state, SYNTH_DISTORTION)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
-    synthNodes.mainOsc.frequency.value = value
-    synthNodes.modOscA.frequency.value = value * multA
-    // Modulator frequencies can easily go
-    // outside -22,050 Hz to 22,050 Hz
-    // which can give a warning.
-    // Currently ignoring this warning.
+    const finalAmp = dbToGain(-value)
+    synthNodes.limiterPreGain.gain.value = 1 / finalAmp
+    synthNodes.limiterPostGain.gain.value = finalAmp
   }
 }
 
@@ -28,6 +23,24 @@ export const updateMainWaveShape = (objStore, state) => {
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mainOsc.type = value
 }
+
+export const updateFrequencies = (objStore, state) => {
+  const value = getSliderValueFromState(state, SYNTH_NOTE_FREQ)
+  const multA = getSliderValueFromState(state, MOD_FREQMULT_A)
+  const multB = getSliderValueFromState(state, MOD_FREQMULT_B)
+  const synthNodes = objStore.synth.nodes
+  if (synthNodes) {
+    synthNodes.mainOsc.frequency.value = value
+    synthNodes.modOscA.frequency.value = value * multA
+    synthNodes.modOscB.frequency.value = value * multB
+    // Modulator frequencies can easily go
+    // outside -22,050 Hz to 22,050 Hz
+    // which can give a warning.
+    // Currently ignoring this warning.
+  }
+}
+
+
 
 export const updateModWaveShapeA = (objStore, state) => {
   const value = getPicklistValueFromState(state, MOD_WAVE_SHAPE_A)
@@ -38,18 +51,7 @@ export const updateModWaveShapeA = (objStore, state) => {
 export const updateMod2WaveShapeA = (objStore, state) => {
   const value = getPicklistValueFromState(state, MOD2_WAVE_SHAPE_A)
   const synthNodes = objStore.synth.nodes
-  if (synthNodes) synthNodes.modModOscA.type = value
-}
-
-export const updateDistortionDb = (objStore, state) => {
-  const value = getSliderValueFromState(state, SYNTH_DISTORTION)
-  const synthNodes = objStore.synth.nodes
-  if (synthNodes) {
-    const gainPre = dbToGain(value)
-    const gainPost = 1 / gainPre
-    synthNodes.limitGainPre.gain.value = gainPre
-    synthNodes.limitGainPost.gain.value = gainPost
-  }
+  if (synthNodes) synthNodes.mod2OscA.type = value
 }
 
 export const updateModIndexA = (objStore, state) => {
@@ -61,14 +63,51 @@ export const updateModIndexA = (objStore, state) => {
 export const updateMod2FreqA = (objStore, state) => {
   const value = getSliderValueFromState(state, MOD2_RATE_A)
   const synthNodes = objStore.synth.nodes
-  if (synthNodes) synthNodes.modModOscA.frequency.value = 10 ** value
+  if (synthNodes) synthNodes.mod2OscA.frequency.value = 10 ** value
 }
 
 export const updateMod2IndexA = (objStore, state) => {
   const value = getSliderValueFromState(state, MOD2_IDX_A)
   const synthNodes = objStore.synth.nodes
-  if (synthNodes) synthNodes.modModGainA.gain.value = value
+  if (synthNodes) synthNodes.mod2GainA.gain.value = value
 }
+
+
+
+
+
+
+export const updateModWaveShapeB = (objStore, state) => {
+  const value = getPicklistValueFromState(state, MOD_WAVE_SHAPE_B)
+  const synthNodes = objStore.synth.nodes
+  if (synthNodes) synthNodes.modOscB.type = value
+}
+
+export const updateMod2WaveShapeB = (objStore, state) => {
+  const value = getPicklistValueFromState(state, MOD2_WAVE_SHAPE_B)
+  const synthNodes = objStore.synth.nodes
+  if (synthNodes) synthNodes.mod2OscB.type = value
+}
+
+export const updateModIndexB = (objStore, state) => {
+  const value = getSliderValueFromState(state, MOD_IDX_B)
+  const synthNodes = objStore.synth.nodes
+  if (synthNodes) synthNodes.modGainB.gain.value = value
+}
+
+export const updateMod2FreqB = (objStore, state) => {
+  const value = getSliderValueFromState(state, MOD2_RATE_B)
+  const synthNodes = objStore.synth.nodes
+  if (synthNodes) synthNodes.mod2OscB.frequency.value = 10 ** value
+}
+
+export const updateMod2IndexB = (objStore, state) => {
+  const value = getSliderValueFromState(state, MOD2_IDX_B)
+  const synthNodes = objStore.synth.nodes
+  if (synthNodes) synthNodes.mod2GainB.gain.value = value
+}
+
+
 
 export const synthUpdate = (data, getState, objStore) => {
   if (objStore.setup && data && data.id && getState) {
@@ -81,15 +120,18 @@ export const synthUpdate = (data, getState, objStore) => {
         updateMixerGain(objStore, state)
         break
       case SYNTH_DISTORTION:
-      updateDistortionDb(objStore, state)
+      updateSynthDistortion(objStore, state)
       break
       case SYNTH_WAVE_SHAPE:
         updateMainWaveShape(objStore, state)
         break
+        
       case SYNTH_NOTE_FREQ:
       case MOD_FREQMULT_A:
+      case MOD_FREQMULT_B:
         updateFrequencies(objStore, state)
         break
+        
       case MOD_WAVE_SHAPE_A:
         updateModWaveShapeA(objStore, state)
         break
@@ -105,6 +147,23 @@ export const synthUpdate = (data, getState, objStore) => {
       case MOD2_IDX_A:
         updateMod2IndexA(objStore, state)
         break
+        
+      case MOD_WAVE_SHAPE_B:
+        updateModWaveShapeB(objStore, state)
+        break
+      case MOD_IDX_B:
+        updateModIndexB(objStore, state)
+        break
+      case MOD2_WAVE_SHAPE_B:
+        updateMod2WaveShapeB(objStore, state)
+        break
+      case MOD2_RATE_B:
+        updateMod2FreqB(objStore, state)
+        break
+      case MOD2_IDX_B:
+        updateMod2IndexB(objStore, state)
+        break
+        
       default:
         //
     }    
@@ -121,12 +180,19 @@ export const synthUpdate = (data, getState, objStore) => {
 
 export const synthInitialiseValues = (objStore, reduxStore) => {
   const reduxState = reduxStore.getState()
-  updateDistortionDb(objStore, reduxState)
+  updateSynthDistortion(objStore, reduxState)
   updateMainWaveShape(objStore, reduxState)
   updateFrequencies(objStore, reduxState)
+  
   updateModWaveShapeA(objStore, reduxState)
   updateModIndexA(objStore, reduxState)
   updateMod2WaveShapeA(objStore, reduxState)  
   updateMod2FreqA(objStore, reduxState)
   updateMod2IndexA(objStore, reduxState)
+  
+  updateModWaveShapeB(objStore, reduxState)
+  updateModIndexB(objStore, reduxState)
+  updateMod2WaveShapeB(objStore, reduxState)  
+  updateMod2FreqB(objStore, reduxState)
+  updateMod2IndexB(objStore, reduxState)
 }

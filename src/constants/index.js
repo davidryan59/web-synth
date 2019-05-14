@@ -10,10 +10,13 @@ export const canvasHeight = 150
 export const canvasWidthMultSpectrum = 5.0
 
 // Control how many frames between canvas updates
-export const framesBetweenCanvasUpdates = 16
+export const framesBetweenCanvasUpdates = 8
+// There are two updates, one for waveform, one for spectrum, and they are staggered.
+// If this number is 8, then one of the updates happens every 4 frames.
 
 // Control a short delay before starting an oscillator
-export const delayBeforeStartingMs = 1
+export const delayBeforeStartingMs = 10
+// To make sure all the audio nodes are setup before the start time
 
 // List of wave shapes in picklists
 export const waveShapes = ['sine', 'triangle', 'sawtooth', 'square']
@@ -45,3 +48,10 @@ export const MOD_IDX_A = 'MOD_IDX_A'
 export const MOD2_WAVE_SHAPE_A = 'MOD2_WAVE_SHAPE_A'
 export const MOD2_RATE_A = 'MOD2_RATE_A'
 export const MOD2_IDX_A = 'MOD2_IDX_A'
+
+export const MOD_WAVE_SHAPE_B = 'MOD_WAVE_SHAPE_B'
+export const MOD_FREQMULT_B = 'MOD_FREQMULT_B'
+export const MOD_IDX_B = 'MOD_IDX_B'
+export const MOD2_WAVE_SHAPE_B = 'MOD2_WAVE_SHAPE_B'
+export const MOD2_RATE_B = 'MOD2_RATE_B'
+export const MOD2_IDX_B = 'MOD2_IDX_B'
