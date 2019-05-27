@@ -3,9 +3,9 @@ import getPicklistValueFromState from '../getters/getPicklistValueFromState'
 import getSliderValueFromState from '../getters/getSliderValueFromState'
 import dbToGain from '../general/dbToGain'
 import {
-  PLAY_SOUND, MIXER_GAIN, SYNTH_NOTE_FREQ, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE,
-  MOD_WAVE_SHAPE_A, MOD2_WAVE_SHAPE_A, MOD_FREQMULT_A, MOD_IDX_A, MOD2_RATE_A, MOD2_IDX_A,
-  MOD_WAVE_SHAPE_B, MOD2_WAVE_SHAPE_B, MOD_FREQMULT_B, MOD_IDX_B, MOD2_RATE_B, MOD2_IDX_B
+  PLAY_SOUND, MIXER_GAIN, SYNTH_NOTE_FREQ, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE, MOD_FREQ_DENOM,
+  MOD_WAVE_SHAPE_A, MOD2_WAVE_SHAPE_A, MOD_FREQ_NUM_A, MOD_IDX_A, MOD2_RATE_A, MOD2_IDX_A,
+  MOD_WAVE_SHAPE_B, MOD2_WAVE_SHAPE_B, MOD_FREQ_NUM_B, MOD_IDX_B, MOD2_RATE_B, MOD2_IDX_B
 } from '../constants'
 
 export const updateSynthDistortion = (objStore, state) => {
@@ -26,13 +26,14 @@ export const updateMainWaveShape = (objStore, state) => {
 
 export const updateFrequencies = (objStore, state) => {
   const value = getSliderValueFromState(state, SYNTH_NOTE_FREQ)
-  const multA = getSliderValueFromState(state, MOD_FREQMULT_A)
-  const multB = getSliderValueFromState(state, MOD_FREQMULT_B)
+  const multA = getSliderValueFromState(state, MOD_FREQ_NUM_A)
+  const multB = getSliderValueFromState(state, MOD_FREQ_NUM_B)
+  const denom = getSliderValueFromState(state, MOD_FREQ_DENOM)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
     synthNodes.mainOsc.frequency.value = value
-    synthNodes.modOscA.frequency.value = value * multA
-    synthNodes.modOscB.frequency.value = value * multB
+    synthNodes.modOscA.frequency.value = value * multA / denom
+    synthNodes.modOscB.frequency.value = value * multB / denom
     // Modulator frequencies can easily go
     // outside -22,050 Hz to 22,050 Hz
     // which can give a warning.
@@ -127,8 +128,9 @@ export const synthUpdate = (data, getState, objStore) => {
         break
         
       case SYNTH_NOTE_FREQ:
-      case MOD_FREQMULT_A:
-      case MOD_FREQMULT_B:
+      case MOD_FREQ_NUM_A:
+      case MOD_FREQ_NUM_B:
+      case MOD_FREQ_DENOM:
         updateFrequencies(objStore, state)
         break
         
