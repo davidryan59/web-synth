@@ -1,6 +1,6 @@
 import {
   waveShapes,
-  PLAY_SOUND, MIXER_GAIN, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE, SYNTH_NOTE_FREQ, MOD_FREQ_DENOM,
+  PLAY_SOUND, MIXER_GAIN, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE, SYNTH_NOTE_FREQ, MOD_MULT_MAIN,
   DELAY_RESONANCE_L, DELAY_RESONANCE_M, DELAY_RESONANCE_R,
   MOD_FREQ_NUM_A, MOD_IDX_A, MOD_WAVE_SHAPE_A, MOD2_RATE_A, MOD2_IDX_A, MOD2_WAVE_SHAPE_A,
   MOD_FREQ_NUM_B, MOD_IDX_B, MOD_WAVE_SHAPE_B, MOD2_RATE_B, MOD2_IDX_B, MOD2_WAVE_SHAPE_B
@@ -56,7 +56,7 @@ export const getInitialSlidersState = () => [
     min: '-30',
     step: '0.1',
     max: '0',
-    value: '-6',
+    value: '-8',
     len: 5,
     unit: 'dB'
   },
@@ -66,9 +66,19 @@ export const getInitialSlidersState = () => [
     min: '1',
     step: '1',
     max: '720',
-    value: '155',
+    value: '239',
     len: 4,
     unit: 'Hz'
+  },  
+  {
+    id: MOD_MULT_MAIN,
+    label: 'Frequency multiplier',
+    min: '1',
+    step: '1',
+    max: '32',
+    value: '1',
+    len: 2,
+    unit: ''
   },
   {
     id: SYNTH_DISTORTION,
@@ -76,7 +86,7 @@ export const getInitialSlidersState = () => [
     min: '0',
     step: '0.01',
     max: '20',
-    value: '3',
+    value: '0.5',
     len: 5,
     unit: 'dB'
   },
@@ -87,7 +97,7 @@ export const getInitialSlidersState = () => [
     min: '0',
     step: '0.01',
     max: '16',
-    value: '7.1',
+    value: '1.9',
     len: 5,
     unit: ''
   },
@@ -98,7 +108,7 @@ export const getInitialSlidersState = () => [
     min: '0',
     step: '0.01',
     max: '16',
-    value: '8',
+    value: '2.6',
     len: 5,
     unit: ''
   },
@@ -109,19 +119,8 @@ export const getInitialSlidersState = () => [
     min: '0',
     step: '0.01',
     max: '16',
-    value: '7.2',
+    value: '3.2',
     len: 5,
-    unit: ''
-  },
-  
-  {
-    id: MOD_FREQ_DENOM,
-    label: 'FM Denominator',
-    min: '1',
-    step: '1',
-    max: '16',
-    value: '1',
-    len: 2,
     unit: ''
   },
   {
@@ -129,7 +128,7 @@ export const getInitialSlidersState = () => [
     label: 'FM Multiplier A',
     min: '1',
     step: '1',
-    max: '64',
+    max: '32',
     value: '2',
     len: 2,
     unit: ''
@@ -140,7 +139,7 @@ export const getInitialSlidersState = () => [
     min: '0',
     step: '1',
     max: '2000',
-    value: '0',
+    value: '100',
     len: 4,
     unit: 'Hz'
   },
@@ -170,7 +169,7 @@ export const getInitialSlidersState = () => [
     label: 'FM Multiplier B',
     min: '1',
     step: '1',
-    max: '64',
+    max: '32',
     value: '3',
     len: 2,
     unit: ''
@@ -181,7 +180,7 @@ export const getInitialSlidersState = () => [
     min: '0',
     step: '1',
     max: '2000',
-    value: '0',
+    value: '80',
     len: 4,
     unit: 'Hz'
   },
