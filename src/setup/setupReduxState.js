@@ -1,10 +1,13 @@
 import {
   waveShapes,
   PLAY_SOUND, MIXER_GAIN, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE, SYNTH_NOTE_FREQ, MOD_MULT_MAIN,
-  DELAY_RESONANCE_L, DELAY_RESONANCE_M, DELAY_RESONANCE_R,
+  POWER2, DELAY_RESONANCE_L, DELAY_RESONANCE_M, DELAY_RESONANCE_R,
+  POWER10,
   MOD_FREQ_NUM_A, MOD_IDX_A, MOD_WAVE_SHAPE_A, MOD2_RATE_A, MOD2_IDX_A, MOD2_WAVE_SHAPE_A,
   MOD_FREQ_NUM_B, MOD_IDX_B, MOD_WAVE_SHAPE_B, MOD2_RATE_B, MOD2_IDX_B, MOD2_WAVE_SHAPE_B
 } from '../constants'
+
+const valToDispPower2 = value => 2 ** value
 
 
 export const getInitialPlayButtonState = () => ({
@@ -78,7 +81,7 @@ export const getInitialSlidersState = () => [
     max: '32',
     value: '1',
     len: 2,
-    unit: ''
+    unit: 'x'
   },
   {
     id: SYNTH_DISTORTION,
@@ -94,34 +97,37 @@ export const getInitialSlidersState = () => [
   {
     id: DELAY_RESONANCE_L,
     label: 'Delay Resonance L',
-    min: '0',
-    step: '0.01',
-    max: '16',
+    min: '-2',
+    step: '0.05',
+    max: '13',
     value: '1.9',
-    len: 5,
-    unit: ''
+    len: 6,
+    displayMap: POWER2,
+    unit: 'Hz'
   },
   
   {
     id: DELAY_RESONANCE_M,
     label: 'Delay Resonance M',
-    min: '0',
-    step: '0.01',
-    max: '16',
+    min: '-2',
+    step: '0.05',
+    max: '13',
     value: '2.6',
-    len: 5,
-    unit: ''
+    len: 6,
+    displayMap: POWER2,
+    unit: 'Hz'
   },
   
   {
     id: DELAY_RESONANCE_R,
     label: 'Delay Resonance R',
-    min: '0',
-    step: '0.01',
-    max: '16',
+    min: '-2',
+    step: '0.05',
+    max: '13',
     value: '3.2',
-    len: 5,
-    unit: ''
+    len: 6,
+    displayMap: POWER2,
+    unit: 'Hz'
   },
   {
     id: MOD_FREQ_NUM_A,
@@ -131,7 +137,7 @@ export const getInitialSlidersState = () => [
     max: '32',
     value: '2',
     len: 2,
-    unit: ''
+    unit: 'x'
   },
   {
     id: MOD_IDX_A,
@@ -145,13 +151,14 @@ export const getInitialSlidersState = () => [
   },
   {
     id: MOD2_RATE_A,
-    label: 'Mod2 Rate (Log10 Hz) A',
+    label: 'Mod2 Rate A',
     min: '-2',
     step: '0.01',
     max: '4',
     value: '-0.69897',
-    len: 5,
-    unit: ''
+    len: 6,
+    displayMap: POWER10,
+    unit: 'Hz'
   },
   {
     id: MOD2_IDX_A,
@@ -172,7 +179,7 @@ export const getInitialSlidersState = () => [
     max: '32',
     value: '3',
     len: 2,
-    unit: ''
+    unit: 'x'
   },
   {
     id: MOD_IDX_B,
@@ -186,13 +193,14 @@ export const getInitialSlidersState = () => [
   },
   {
     id: MOD2_RATE_B,
-    label: 'Mod2 Rate (Log10 Hz) B',
+    label: 'Mod2 Rate B',
     min: '-2',
     step: '0.01',
     max: '4',
     value: '-0.845098',
-    len: 5,
-    unit: ''
+    len: 6,
+    displayMap: POWER10,
+    unit: 'Hz'
   },
   {
     id: MOD2_IDX_B,

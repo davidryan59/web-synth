@@ -140,6 +140,7 @@ export const synthUpdate = (data, getState, objStore) => {
     switch (data.id) {
       case PLAY_SOUND:
         (!data.isActive) ? objStore.synth.fns.startSoundAndGraphics() : objStore.synth.fns.stopSound()
+        console.dir(state)
         break
       case MIXER_GAIN:
         updateMixerGain(objStore, state)

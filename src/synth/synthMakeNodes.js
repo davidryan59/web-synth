@@ -25,17 +25,17 @@ const synthMakeNodes = (objStore, reduxStore) => {
   sNs.limiterPostGain = aCtx.createGain();
   
   const gainM = 0.5
-  sNs.delayNodeM = aCtx.createDelay()
+  sNs.delayNodeM = aCtx.createDelay(2)
   sNs.delayGainM = aCtx.createGain()
   sNs.delayGainM.gain.value = -gainM
   
-  sNs.delayNodeL = aCtx.createDelay()
+  sNs.delayNodeL = aCtx.createDelay(2)
   sNs.delayGainL = aCtx.createGain()
   sNs.delayPanL = aCtx.createStereoPanner()
   sNs.delayGainL.gain.value = gainM - 1
   sNs.delayPanL.pan.value = -1
   
-  sNs.delayNodeR = aCtx.createDelay()
+  sNs.delayNodeR = aCtx.createDelay(2)
   sNs.delayGainR = aCtx.createGain()
   sNs.delayPanR = aCtx.createStereoPanner()
   sNs.delayGainR.gain.value = gainM - 1

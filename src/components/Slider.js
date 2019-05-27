@@ -1,8 +1,6 @@
 import React from 'react'
 
-import makeNChars from '../general/makeNChars'
-
-const Slider = ({ slider, valueChange }) => (
+const Slider = ({ slider, displayVal, valueChange }) => (
   <div>
     <label
       id={`label-${slider.id}`}
@@ -25,7 +23,7 @@ const Slider = ({ slider, valueChange }) => (
     <span
       id={`display-${slider.id}`}
     >
-      {makeNChars(slider.value, slider.len)}
+      {displayVal}
     </span>
     &nbsp;
     <span>{slider.unit}</span>

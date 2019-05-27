@@ -2,9 +2,22 @@ import { connect } from 'react-redux'
 
 import Slider from './Slider'
 import { getSynthUpdateThunk } from '../actions'
-import { SLIDER_MOVE } from '../constants'
+import makeNChars from '../general/makeNChars'
+import { SLIDER_MOVE, POWER2, POWER10 } from '../constants'
+
+const getDisplayVal = (sliderVal, displayMap) => {
+  switch (displayMap) {
+    case POWER2:
+      return 2 ** sliderVal
+    case POWER10:
+      return 10 ** sliderVal
+    default:
+      return sliderVal
+  }
+}
 
 const mapStateToProps = (state, ownProps) => ({
+  displayVal: makeNChars(getDisplayVal(ownProps.slider.value, ownProps.slider.displayMap), ownProps.slider.len)
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
