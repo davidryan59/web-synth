@@ -24,10 +24,23 @@ const synthMakeNodes = (objStore, reduxStore) => {
   sNs.limiterWaveShape.curve = new Float32Array([-1, 1])
   sNs.limiterPostGain = aCtx.createGain();
   
-  sNs.delayNode = aCtx.createDelay()
-  sNs.delayGain = aCtx.createGain()
-  sNs.delayGain.gain.value = -1
-
+  const gainM = 0.5
+  sNs.delayNodeM = aCtx.createDelay()
+  sNs.delayGainM = aCtx.createGain()
+  sNs.delayGainM.gain.value = -gainM
+  
+  sNs.delayNodeL = aCtx.createDelay()
+  sNs.delayGainL = aCtx.createGain()
+  sNs.delayPanL = aCtx.createStereoPanner()
+  sNs.delayGainL.gain.value = gainM - 1
+  sNs.delayPanL.pan.value = -1
+  
+  sNs.delayNodeR = aCtx.createDelay()
+  sNs.delayGainR = aCtx.createGain()
+  sNs.delayPanR = aCtx.createStereoPanner()
+  sNs.delayGainR.gain.value = gainM - 1
+  sNs.delayPanR.pan.value = 1
+  
 
   // 3. SPECIFY SOURCE NODES, WHICH REQUIRE .start AND .stop
   sNs.sourceList = [
@@ -56,9 +69,19 @@ const synthMakeNodes = (objStore, reduxStore) => {
   sNs.limiterWaveShape.connect(sNs.limiterPostGain)
   sNs.limiterPostGain.connect(objStore.mixer.input);  
   
-  sNs.limiterPostGain.connect(sNs.delayNode)
-  sNs.delayNode.connect(sNs.delayGain)
-  sNs.delayGain.connect(objStore.mixer.input);  
+  sNs.limiterPostGain.connect(sNs.delayNodeM)
+  sNs.delayNodeM.connect(sNs.delayGainM)
+  sNs.delayGainM.connect(objStore.mixer.input);  
+  
+  sNs.limiterPostGain.connect(sNs.delayNodeL)
+  sNs.delayNodeL.connect(sNs.delayGainL)
+  sNs.delayGainL.connect(sNs.delayPanL);  
+  sNs.delayPanL.connect(objStore.mixer.input);  
+  
+  sNs.limiterPostGain.connect(sNs.delayNodeR)
+  sNs.delayNodeR.connect(sNs.delayGainR)
+  sNs.delayGainR.connect(sNs.delayPanR);  
+  sNs.delayPanR.connect(objStore.mixer.input);  
   // LAST SYNTH NODE(S) SHOULD NOW BE CONNECTED TO MIXER
 }
 

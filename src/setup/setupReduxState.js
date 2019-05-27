@@ -1,6 +1,7 @@
 import {
   waveShapes,
-  PLAY_SOUND, MIXER_GAIN, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE, SYNTH_NOTE_FREQ, DELAY_RESONANCE, MOD_FREQ_DENOM,
+  PLAY_SOUND, MIXER_GAIN, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE, SYNTH_NOTE_FREQ, MOD_FREQ_DENOM,
+  DELAY_RESONANCE_L, DELAY_RESONANCE_M, DELAY_RESONANCE_R,
   MOD_FREQ_NUM_A, MOD_IDX_A, MOD_WAVE_SHAPE_A, MOD2_RATE_A, MOD2_IDX_A, MOD2_WAVE_SHAPE_A,
   MOD_FREQ_NUM_B, MOD_IDX_B, MOD_WAVE_SHAPE_B, MOD2_RATE_B, MOD2_IDX_B, MOD2_WAVE_SHAPE_B
 } from '../constants'
@@ -81,12 +82,34 @@ export const getInitialSlidersState = () => [
   },
   
   {
-    id: DELAY_RESONANCE,
-    label: 'Delay Resonance',
+    id: DELAY_RESONANCE_L,
+    label: 'Delay Resonance L',
+    min: '0',
+    step: '0.01',
+    max: '16',
+    value: '7.1',
+    len: 5,
+    unit: ''
+  },
+  
+  {
+    id: DELAY_RESONANCE_M,
+    label: 'Delay Resonance M',
     min: '0',
     step: '0.01',
     max: '16',
     value: '8',
+    len: 5,
+    unit: ''
+  },
+  
+  {
+    id: DELAY_RESONANCE_R,
+    label: 'Delay Resonance R',
+    min: '0',
+    step: '0.01',
+    max: '16',
+    value: '7.2',
     len: 5,
     unit: ''
   },

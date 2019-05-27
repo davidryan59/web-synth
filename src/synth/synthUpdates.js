@@ -3,7 +3,8 @@ import getPicklistValueFromState from '../getters/getPicklistValueFromState'
 import getSliderValueFromState from '../getters/getSliderValueFromState'
 import dbToGain from '../general/dbToGain'
 import {
-  PLAY_SOUND, MIXER_GAIN, SYNTH_NOTE_FREQ, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE, DELAY_RESONANCE, MOD_FREQ_DENOM,
+  PLAY_SOUND, MIXER_GAIN, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE, SYNTH_NOTE_FREQ, MOD_FREQ_DENOM,
+  DELAY_RESONANCE_L, DELAY_RESONANCE_M, DELAY_RESONANCE_R,
   MOD_WAVE_SHAPE_A, MOD2_WAVE_SHAPE_A, MOD_FREQ_NUM_A, MOD_IDX_A, MOD2_RATE_A, MOD2_IDX_A,
   MOD_WAVE_SHAPE_B, MOD2_WAVE_SHAPE_B, MOD_FREQ_NUM_B, MOD_IDX_B, MOD2_RATE_B, MOD2_IDX_B
 } from '../constants'
@@ -47,17 +48,25 @@ export const updateFrequencies = (objStore, state) => {
 // Same, but for octave slider
 const mapDelayResonance = value => 1 / ((2 ** value) * 2)
 
-export const updateDelayNode = (objStore, state, isInitial) => {
-  const value = getSliderValueFromState(state, DELAY_RESONANCE)
-  const nodeValueS = mapDelayResonance(value)
+export const updateDelayNodes = (objStore, state, isInitial) => {
+  const sliderValueL = getSliderValueFromState(state, DELAY_RESONANCE_L)
+  const sliderValueM = getSliderValueFromState(state, DELAY_RESONANCE_M)
+  const sliderValueR = getSliderValueFromState(state, DELAY_RESONANCE_R)
+  const nodeValueL = mapDelayResonance(sliderValueL)
+  const nodeValueM = mapDelayResonance(sliderValueM)
+  const nodeValueR = mapDelayResonance(sliderValueR)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
     if (isInitial) {
       // Initialisation
-      synthNodes.delayNode.delayTime.value = nodeValueS
+      synthNodes.delayNodeL.delayTime.value = nodeValueL
+      synthNodes.delayNodeM.delayTime.value = nodeValueM
+      synthNodes.delayNodeR.delayTime.value = nodeValueR
     } else {
       // Gradual change, if set by user
-      synthNodes.delayNode.delayTime.setTargetAtTime(nodeValueS, objStore.ctx.audio.currentTime + 0.001, 0.01)
+      synthNodes.delayNodeL.delayTime.setTargetAtTime(nodeValueL, objStore.ctx.audio.currentTime + 0.001, 0.03)
+      synthNodes.delayNodeM.delayTime.setTargetAtTime(nodeValueM, objStore.ctx.audio.currentTime + 0.001, 0.03)
+      synthNodes.delayNodeR.delayTime.setTargetAtTime(nodeValueR, objStore.ctx.audio.currentTime + 0.001, 0.03)
     }
   }
 }
@@ -149,8 +158,10 @@ export const synthUpdate = (data, getState, objStore) => {
         updateFrequencies(objStore, state)
         break
         
-      case DELAY_RESONANCE:
-        updateDelayNode(objStore, state)
+      case DELAY_RESONANCE_L:
+      case DELAY_RESONANCE_M:
+      case DELAY_RESONANCE_R:
+        updateDelayNodes(objStore, state, true)
         break
         
       case MOD_WAVE_SHAPE_A:
@@ -205,7 +216,7 @@ export const synthInitialiseValues = (objStore, reduxStore) => {
   updateMainWaveShape(objStore, reduxState)
   updateFrequencies(objStore, reduxState)
 
-  updateDelayNode(objStore, reduxState, true)
+  updateDelayNodes(objStore, reduxState)
   
   updateModWaveShapeA(objStore, reduxState)
   updateModIndexA(objStore, reduxState)
