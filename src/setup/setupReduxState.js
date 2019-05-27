@@ -7,8 +7,6 @@ import {
   MOD_FREQ_NUM_B, MOD_IDX_B, MOD_WAVE_SHAPE_B, MOD2_RATE_B, MOD2_IDX_B, MOD2_WAVE_SHAPE_B
 } from '../constants'
 
-const valToDispPower2 = value => 2 ** value
-
 
 export const getInitialPlayButtonState = () => ({
   id: PLAY_SOUND,
