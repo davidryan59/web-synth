@@ -15,7 +15,7 @@ const setupSynth = (objStore, reduxStore) => {
   };
 
   objStore.synth.fns.stopSound = () => {
-    synthStop(objStore)
+    synthStop(objStore, reduxStore)
   }
 }
 
