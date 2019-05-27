@@ -54,8 +54,7 @@ const synthMakeNodes = (objStore, reduxStore) => {
 
   
   // 5. CONNECT LAST SYNTH NODE TO MIXER
-  sNs.synthOutput.connect(objStore.mixer.input);
-  
+  sNs.synthOutput.connect(objStore.mixer.input);  
 }
 
 export default synthMakeNodes
