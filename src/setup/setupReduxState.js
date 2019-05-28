@@ -3,8 +3,8 @@ import {
   PLAY_SOUND, MIXER_GAIN, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE, SYNTH_NOTE_FREQ, MOD_MULT_MAIN,
   POWER2, DELAY_RESONANCE_L, DELAY_RESONANCE_M, DELAY_RESONANCE_R,
   POWER10,
-  MOD_FREQ_NUM_A, MOD_IDX_A, MOD_WAVE_SHAPE_A, MOD2_RATE_A, MOD2_IDX_A, MOD2_WAVE_SHAPE_A,
-  MOD_FREQ_NUM_B, MOD_IDX_B, MOD_WAVE_SHAPE_B, MOD2_RATE_B, MOD2_IDX_B, MOD2_WAVE_SHAPE_B
+  MOD_MULT_A, MOD_IDX_A, MOD_WAVE_SHAPE_A, MOD2_RATE_A, MOD2_IDX_A, MOD2_WAVE_SHAPE_A,
+  MOD_MULT_B, MOD_IDX_B, MOD_WAVE_SHAPE_B, MOD2_RATE_B, MOD2_IDX_B, MOD2_WAVE_SHAPE_B
 } from '../constants'
 
 
@@ -87,7 +87,7 @@ export const getInitialSlidersState = () => [
     min: '0',
     step: '0.01',
     max: '20',
-    value: '0.5',
+    value: '1',
     len: 5,
     unit: 'dB'
   },
@@ -98,7 +98,7 @@ export const getInitialSlidersState = () => [
     min: '-2',
     step: '0.05',
     max: '13',
-    value: '1.9',
+    value: '-0.7',
     len: 6,
     displayMap: POWER2,
     unit: 'Hz'
@@ -110,7 +110,7 @@ export const getInitialSlidersState = () => [
     min: '-2',
     step: '0.05',
     max: '13',
-    value: '2.6',
+    value: '1.1',
     len: 6,
     displayMap: POWER2,
     unit: 'Hz'
@@ -122,13 +122,13 @@ export const getInitialSlidersState = () => [
     min: '-2',
     step: '0.05',
     max: '13',
-    value: '3.2',
+    value: '0.6',
     len: 6,
     displayMap: POWER2,
     unit: 'Hz'
   },
   {
-    id: MOD_FREQ_NUM_A,
+    id: MOD_MULT_A,
     label: 'FM Multiplier A',
     min: '1',
     step: '1',
@@ -143,7 +143,7 @@ export const getInitialSlidersState = () => [
     min: '0',
     step: '1',
     max: '2000',
-    value: '100',
+    value: '200',
     len: 4,
     unit: 'Hz'
   },
@@ -170,7 +170,7 @@ export const getInitialSlidersState = () => [
   },
   
   {
-    id: MOD_FREQ_NUM_B,
+    id: MOD_MULT_B,
     label: 'FM Multiplier B',
     min: '1',
     step: '1',
@@ -185,7 +185,7 @@ export const getInitialSlidersState = () => [
     min: '0',
     step: '1',
     max: '2000',
-    value: '80',
+    value: '160',
     len: 4,
     unit: 'Hz'
   },

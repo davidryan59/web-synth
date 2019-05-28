@@ -5,8 +5,8 @@ import dbToGain from '../general/dbToGain'
 import {
   PLAY_SOUND, MIXER_GAIN, SYNTH_DISTORTION, SYNTH_WAVE_SHAPE, SYNTH_NOTE_FREQ, MOD_MULT_MAIN,
   DELAY_RESONANCE_L, DELAY_RESONANCE_M, DELAY_RESONANCE_R,
-  MOD_WAVE_SHAPE_A, MOD2_WAVE_SHAPE_A, MOD_FREQ_NUM_A, MOD_IDX_A, MOD2_RATE_A, MOD2_IDX_A,
-  MOD_WAVE_SHAPE_B, MOD2_WAVE_SHAPE_B, MOD_FREQ_NUM_B, MOD_IDX_B, MOD2_RATE_B, MOD2_IDX_B
+  MOD_WAVE_SHAPE_A, MOD2_WAVE_SHAPE_A, MOD_MULT_A, MOD_IDX_A, MOD2_RATE_A, MOD2_IDX_A,
+  MOD_WAVE_SHAPE_B, MOD2_WAVE_SHAPE_B, MOD_MULT_B, MOD_IDX_B, MOD2_RATE_B, MOD2_IDX_B
 } from '../constants'
 
 export const updateSynthDistortion = (objStore, state) => {
@@ -25,16 +25,32 @@ export const updateMainWaveShape = (objStore, state) => {
   if (synthNodes) synthNodes.mainOsc.type = value
 }
 
+// const scale = [24, 27, 30, 32, 36, 40, 45]
+// const scale = [12, 14, 16, 18, 21]
+// const scale = [7, 8, 9, 10, 11, 12, 13]
+// const scale = [6, 7, 8, 9, 10, 11]
+const scale = [9, 10, 11, 12, 13, 14, 15, 16, 17]
+const scaleR = [...scale].sort((a, b) => b - a) // b - a gives DESCENDING order
+console.log(scaleR)
+
+const mapMainFreq = (freq, state) => {
+  const octaves = Math.floor(Math.log(freq / scale[0]) / Math.log(2))
+  const findVal = freq * (2 ** -octaves)
+  const foundScaleElt = scaleR.find(scaleElt => scaleElt <= findVal)
+  return foundScaleElt * (2 ** octaves)
+}
+
 export const updateFrequencies = (objStore, state) => {
-  const value = getSliderValueFromState(state, SYNTH_NOTE_FREQ)
+  const sliderValue = getSliderValueFromState(state, SYNTH_NOTE_FREQ)
   const multMain = getSliderValueFromState(state, MOD_MULT_MAIN)
-  const multA = getSliderValueFromState(state, MOD_FREQ_NUM_A)
-  const multB = getSliderValueFromState(state, MOD_FREQ_NUM_B)
+  const multA = getSliderValueFromState(state, MOD_MULT_A)
+  const multB = getSliderValueFromState(state, MOD_MULT_B)
+  const freqValue = mapMainFreq(sliderValue, state)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
-    synthNodes.mainOsc.frequency.value = value * multMain
-    synthNodes.modOscA.frequency.value = value * multA
-    synthNodes.modOscB.frequency.value = value * multB
+    synthNodes.mainOsc.frequency.value = freqValue * multMain
+    synthNodes.modOscA.frequency.value = freqValue * multA
+    synthNodes.modOscB.frequency.value = freqValue * multB
     // Modulator frequencies can easily go
     // outside -22,050 Hz to 22,050 Hz
     // which can give a warning.
@@ -153,8 +169,8 @@ export const synthUpdate = (data, getState, objStore) => {
         break
         
       case SYNTH_NOTE_FREQ:
-      case MOD_FREQ_NUM_A:
-      case MOD_FREQ_NUM_B:
+      case MOD_MULT_A:
+      case MOD_MULT_B:
       case MOD_MULT_MAIN:
         updateFrequencies(objStore, state)
         break
