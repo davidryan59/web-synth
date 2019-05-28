@@ -3,13 +3,10 @@ import * as ui from '../constants/uiNames'
 import { updateMixerGain } from '../setup/task/setupMixer'
 import getPicklistValueFromState from '../getters/getPicklistValueFromState'
 import getSliderValueFromState from '../getters/getSliderValueFromState'
+import getSliderFromState from '../getters/getSliderFromState'
 import dbToGain from '../general/dbToGain'
-// import {
-//   PLAY_SOUND, MIXER_GAIN, MAIN_DISTORT, MAIN_SHAPE, MAIN_FREQ, MAIN_MULT,
-//   DELAY_RESONANCE_L, DELAY_RESONANCE_M, DELAY_RESONANCE_R,
-//   MOD_SHAPE_A, MOD2_SHAPE_A, MOD_MULT_A, MOD_IDX_A, MOD2_RATE_A, MOD2_IDX_A,
-//   MOD_SHAPE_B, MOD2_SHAPE_B, MOD_MULT_B, MOD_IDX_B, MOD2_RATE_B, MOD2_IDX_B
-// } from '../constants/general'
+import { callFunction } from '../functions'
+
 
 export const updateSynthDistortion = (objStore, state) => {
   const value = getSliderValueFromState(state, ui.MAIN_DISTORT)
@@ -60,32 +57,39 @@ export const updateFrequencies = (objStore, state) => {
   }
 }
 
-// Maps a resonant frequency in Hz to a delay time in seconds
-// const mapDelayResonance = valueInHz => 1 / (valueInHz * 2)
+const delayUiNames = [ui.DELAY_RESONANCE_L, ui.DELAY_RESONANCE_M, ui.DELAY_RESONANCE_R]
 
-// Same, but for octave slider
-const mapDelayResonance = value => 1 / ((2 ** value) * 2)
+const getDelayNodeFromUiName = (synthNodes, uiName) => {
+  switch (uiName) {
+    case ui.DELAY_RESONANCE_L:
+      return synthNodes.delayNodeL
+    case ui.DELAY_RESONANCE_M:
+      return synthNodes.delayNodeM
+    case ui.DELAY_RESONANCE_R:
+      return synthNodes.delayNodeR
+    default:
+      return null    
+  }
+}
 
 export const updateDelayNodes = (objStore, state, isInitial) => {
-  const sliderValueL = getSliderValueFromState(state, ui.DELAY_RESONANCE_L)
-  const sliderValueM = getSliderValueFromState(state, ui.DELAY_RESONANCE_M)
-  const sliderValueR = getSliderValueFromState(state, ui.DELAY_RESONANCE_R)
-  const nodeValueL = mapDelayResonance(sliderValueL)
-  const nodeValueM = mapDelayResonance(sliderValueM)
-  const nodeValueR = mapDelayResonance(sliderValueR)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
-    if (isInitial) {
-      // Initialisation
-      synthNodes.delayNodeL.delayTime.value = nodeValueL
-      synthNodes.delayNodeM.delayTime.value = nodeValueM
-      synthNodes.delayNodeR.delayTime.value = nodeValueR
-    } else {
-      // Gradual change, if set by user
-      synthNodes.delayNodeL.delayTime.setTargetAtTime(nodeValueL, objStore.ctx.audio.currentTime + 0.001, 0.03)
-      synthNodes.delayNodeM.delayTime.setTargetAtTime(nodeValueM, objStore.ctx.audio.currentTime + 0.001, 0.03)
-      synthNodes.delayNodeR.delayTime.setTargetAtTime(nodeValueR, objStore.ctx.audio.currentTime + 0.001, 0.03)
-    }
+    delayUiNames.forEach(delayUiName => {
+      const slider = getSliderFromState(state, delayUiName)
+      if (slider) {
+        const value = slider.value
+        const displayFn = slider.displayFn
+        const resonantFreq = callFunction(value, displayFn)
+        const nodeValue = 1 / (2 * resonantFreq)    // Delay time in seconds
+        const delayNode = getDelayNodeFromUiName(synthNodes, delayUiName)
+        if (isInitial) {
+          delayNode.delayTime.value = nodeValue
+        } else {
+          delayNode.delayTime.setTargetAtTime(nodeValue, objStore.ctx.audio.currentTime + 0.001, 0.1)
+        }
+      }    
+    })
   }
 }
 
@@ -180,7 +184,7 @@ export const synthUpdate = (data, getState, objStore) => {
       case ui.DELAY_RESONANCE_L:
       case ui.DELAY_RESONANCE_M:
       case ui.DELAY_RESONANCE_R:
-        updateDelayNodes(objStore, state, true)
+        updateDelayNodes(objStore, state)
         break
         
       case ui.MOD_SHAPE_A:
@@ -235,7 +239,7 @@ export const synthInitialiseValues = (objStore, reduxStore) => {
   updateMainWaveShape(objStore, reduxState)
   updateFrequencies(objStore, reduxState)
 
-  updateDelayNodes(objStore, reduxState)
+  updateDelayNodes(objStore, reduxState, true)
   
   updateModWaveShapeA(objStore, reduxState)
   updateModIndexA(objStore, reduxState)
