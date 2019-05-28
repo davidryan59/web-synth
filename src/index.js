@@ -9,7 +9,8 @@ import appReducer from './reducers'
 import setupObjectStore from './setup/setupObjectStore'
 import windowResizeHandler from './handlers/windowResizeHandler'
 import { getSynthUpdateThunk } from './actions'
-import { BUTTON_PRESS, PLAY_SOUND } from './constants'
+import { BUTTON_PRESS } from './constants/actionTypes'
+import { PLAY_SOUND } from './constants/uiNames'
 
 // Object store contains general things like audio contexts, page elements, e.g. non-pure objects
 // Redux store is standard Redux state management with state and actions as pure objects

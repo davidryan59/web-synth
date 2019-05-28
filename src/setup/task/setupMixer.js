@@ -1,6 +1,6 @@
 import getSliderValueFromState from '../../getters/getSliderValueFromState'
 import dbToGain from '../../general/dbToGain'
-import { MIXER_GAIN } from '../../constants'
+import { MIXER_GAIN } from '../../constants/uiNames'
 
 export const updateMixerGain = (objStore, state) => {
   const dbOverallGain = getSliderValueFromState(state, MIXER_GAIN)

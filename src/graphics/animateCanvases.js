@@ -1,7 +1,7 @@
 import drawCanvasWaveform from './drawCanvasWaveform'
 import drawCanvasSpectrum from './drawCanvasSpectrum'
 
-import { framesBetweenCanvasUpdates } from '../constants'
+import { framesBetweenCanvasUpdates } from '../constants/general'
 
 const frameWaveform = Math.floor(0.5 * (framesBetweenCanvasUpdates - 1))
 const frameSpectrum = Math.floor(framesBetweenCanvasUpdates - 1)

@@ -1,5 +1,5 @@
 import { getInitialPicklistsState } from '../setup/setupReduxState'
-import { SET_PICKLIST } from '../constants'
+import { SET_PICKLIST } from '../constants/actionTypes'
 
 import picklist from './picklist'
 

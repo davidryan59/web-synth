@@ -1,5 +1,5 @@
 import drawCanvasShared from './drawCanvasShared'
-import { canvasWidthMultSpectrum } from '../constants'
+import { canvasWidthMultSpectrum } from '../constants/general'
 
 const drawCanvasSpectrum = (objStore, reduxStore) => {
   objStore.mixer.analyser.getByteFrequencyData(objStore.analyser.bytesSpectrum);

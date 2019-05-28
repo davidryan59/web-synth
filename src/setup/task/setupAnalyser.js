@@ -1,4 +1,4 @@
-import { analyserParameters } from '../../constants'
+import { analyserParameters } from '../../constants/general'
 
 const setupAnalyser = (objStore, reduxStore) => {
   // The analyser node generates data for plotting graphs of waveform and spectrum

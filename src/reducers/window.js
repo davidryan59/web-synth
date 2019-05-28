@@ -1,4 +1,4 @@
-import { WINDOW_RESIZE } from '../constants'
+import { WINDOW_RESIZE } from '../constants/actionTypes'
 import { getInitialWindowState } from '../setup/setupReduxState'
 
 const windowReducer = (state = getInitialWindowState(), action) => {

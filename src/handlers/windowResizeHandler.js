@@ -1,5 +1,6 @@
 import { getActionObject } from '../actions'
-import { WINDOW_RESIZE, windowSizeChangeMinDiff } from '../constants'
+import { windowSizeChangeMinDiff } from '../constants/general'
+import { WINDOW_RESIZE } from '../constants/actionTypes'
 
 const windowResizeHandler = (event, reduxStore) => {
   const windowState = reduxStore.getState().window

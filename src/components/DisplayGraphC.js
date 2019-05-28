@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import DisplayGraph from './DisplayGraph'
-import { windowSizeChangeMinDiff, windowSizeChangeExtraReduction, canvasHeight } from '../constants'
+import { windowSizeChangeMinDiff, windowSizeChangeExtraReduction, canvasHeight } from '../constants/general'
 
 const mapStateToProps = (state, ownProps) => ({
   width: state.window.width - windowSizeChangeMinDiff - windowSizeChangeExtraReduction,
