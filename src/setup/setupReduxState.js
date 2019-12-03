@@ -3,12 +3,26 @@ import * as ui from '../constants/uiNames'
 import { waveShapes } from '../constants/general'
 
 
-export const getInitialPlayButtonState = () => ({
-  id: ui.PLAY_SOUND,
-  labelInactive: 'Play sound',
-  labelActive: 'Stop sound',
-  isActive: false
-})
+export const getInitialButtonsState = () => ([
+  {
+    id: ui.TOGGLE_AUDIO,
+    labelInactive: 'Play sound',
+    labelActive: 'Stop sound',
+    isActive: false
+  },
+  {
+    id: ui.TOGGLE_ANIMATION,
+    labelInactive: 'Animation OFF',
+    labelActive: 'Animation ON',
+    isActive: false
+  },
+  {
+    id: ui.TOGGLE_DISTORT_MODE,
+    labelInactive: 'Distortion CLIP',
+    labelActive: 'Distortion AMPLIFY',
+    isActive: false
+  }
+])
 
 export const getInitialPicklistsState = () => [
   {
@@ -69,7 +83,7 @@ export const getInitialSlidersState = () => [
   {
     id: ui.MAIN_MULT,
     label: 'Frequency multiplier',
-    min: '1',
+    min: '0',
     step: '1',
     max: '32',
     value: '1',

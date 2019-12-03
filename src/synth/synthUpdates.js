@@ -160,10 +160,21 @@ export const synthUpdate = (data, getState, objStore) => {
   if (objStore.setup && data && data.id && getState) {
     const state = getState()
     switch (data.id) {
-      case ui.PLAY_SOUND:
+      case ui.TOGGLE_AUDIO:
         (!data.isActive) ? objStore.synth.fns.startSoundAndGraphics() : objStore.synth.fns.stopSound()
         console.dir(state)
         break
+        
+      // case ui.TOGGLE_ANIMATION:
+      //   (!data.isActive) ? objStore.synth.fns.startSoundAndGraphics() : objStore.synth.fns.stopSound()
+      //   console.dir(state)
+      //   break
+      // 
+      // case ui.TOGGLE_DISTORT_MODE:
+      //   (!data.isActive) ? objStore.synth.fns.startSoundAndGraphics() : objStore.synth.fns.stopSound()
+      //   console.dir(state)
+      //   break
+        
       case ui.MIXER_GAIN:
         updateMixerGain(objStore, state)
         break

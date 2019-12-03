@@ -3,14 +3,15 @@ import { render } from 'react-dom'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
+
 import AppC from './components/AppC'
 import appReducer from './reducers'
-
 import setupObjectStore from './setup/setupObjectStore'
 import windowResizeHandler from './handlers/windowResizeHandler'
 import { getSynthUpdateThunk } from './actions'
+import getButtonFromState from './getters/getButtonFromState'
 import { BUTTON_PRESS } from './constants/actionTypes'
-import { PLAY_SOUND } from './constants/uiNames'
+import { TOGGLE_AUDIO } from './constants/uiNames'
 
 // Object store contains general things like audio contexts, page elements, e.g. non-pure objects
 // Redux store is standard Redux state management with state and actions as pure objects
@@ -41,7 +42,10 @@ window.addEventListener('keyup', e => {
   if (e.code === 'KeyQ') {
     console.log('Toggling play button via Q key')
     reduxStore.dispatch(
-      getSynthUpdateThunk(BUTTON_PRESS, {id: PLAY_SOUND, isActive: reduxStore.getState().playButton.isActive})
+      getSynthUpdateThunk(BUTTON_PRESS, {
+        id: TOGGLE_AUDIO,
+        isActive: getButtonFromState(reduxStore.getState(), TOGGLE_AUDIO).isActive
+      })
     )    
   }
 })

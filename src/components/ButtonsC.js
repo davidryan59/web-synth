@@ -1,8 +1,9 @@
 import { connect } from 'react-redux'
 
-import App from './App'
+import Buttons from './Buttons'
 
 const mapStateToProps = (state, ownProps) => ({
+  buttons: state.buttons
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -11,5 +12,5 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(App)
+)(Buttons)
  
