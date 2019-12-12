@@ -7,8 +7,10 @@ export const getActionObject = (type, data) => ({
   ...data
 })
 
+let nextThunkId = 0
 export const getSynthUpdateThunk = (type, data) => (dispatch, getState, objStore) => {
-  console.log(data)
-  dispatch(getActionObject(type, data))
+  const theData = {thunkId: nextThunkId++, ...data}
+  console.log(theData)
+  dispatch(getActionObject(type, theData))
   synthUpdate(data, getState, objStore)
 }
