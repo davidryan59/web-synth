@@ -1,5 +1,6 @@
 import * as fn from '../functions'
 import * as ui from '../constants/uiNames'
+import { scaleLabels } from '../constants/scales'
 import { waveShapes } from '../constants/general'
 
 
@@ -26,12 +27,18 @@ export const getInitialButtonsState = () => ([
 
 export const getInitialPicklistsState = () => [
   {
+    id: ui.MAIN_SCALE,
+    label: 'Scale',
+    values: [...scaleLabels],
+    value: scaleLabels[0]
+  },
+  {
     id: ui.MAIN_SHAPE,
     label: 'Main wave shape',
     values: [...waveShapes],
     value: waveShapes[0]
   },
-  
+
   {
     id: ui.MOD_SHAPE_A,
     label: 'Modulating wave shape A',
@@ -44,7 +51,7 @@ export const getInitialPicklistsState = () => [
     values: [...waveShapes],
     value: waveShapes[0]
   },
-  
+
   {
     id: ui.MOD_SHAPE_B,
     label: 'Modulating wave shape B',
@@ -79,7 +86,7 @@ export const getInitialSlidersState = () => [
     value: '239',
     len: 4,
     unit: 'Hz'
-  },  
+  },
   {
     id: ui.MAIN_MULT,
     label: 'Frequency multiplier',
@@ -100,7 +107,7 @@ export const getInitialSlidersState = () => [
     len: 5,
     unit: 'dB'
   },
-  
+
   {
     id: ui.DELAY_RESONANCE_L,
     label: 'Delay Resonance L',
@@ -112,7 +119,7 @@ export const getInitialSlidersState = () => [
     displayFn: fn.POWER2,
     unit: 'Hz'
   },
-  
+
   {
     id: ui.DELAY_RESONANCE_M,
     label: 'Delay Resonance M',
@@ -124,7 +131,7 @@ export const getInitialSlidersState = () => [
     displayFn: fn.POWER2,
     unit: 'Hz'
   },
-  
+
   {
     id: ui.DELAY_RESONANCE_R,
     label: 'Delay Resonance R',
@@ -177,7 +184,7 @@ export const getInitialSlidersState = () => [
     len: 4,
     unit: 'Hz'
   },
-  
+
   {
     id: ui.MOD_MULT_B,
     label: 'FM Multiplier B',
@@ -223,5 +230,5 @@ export const getInitialSlidersState = () => [
 
 export const getInitialWindowState = () => ({
   width: window.innerWidth,
-  height: window.innerHeight  
+  height: window.innerHeight
 })

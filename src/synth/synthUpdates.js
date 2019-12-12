@@ -6,6 +6,7 @@ import getSliderValueFromState from '../getters/getSliderValueFromState'
 import getSliderFromState from '../getters/getSliderFromState'
 import dbToGain from '../general/dbToGain'
 import { callFunction } from '../functions'
+import { scaleFromLabel } from '../constants/scales'
 
 
 export const updateSynthDistortion = (objStore, state) => {
@@ -24,13 +25,13 @@ export const updateMainWaveShape = (objStore, state) => {
   if (synthNodes) synthNodes.mainOsc.type = value
 }
 
-// const scale = [24, 27, 30, 32, 36, 40, 45]
-// const scale = [12, 14, 16, 18, 21]
-// const scale = [7, 8, 9, 10, 11, 12, 13]
-// const scale = [6, 7, 8, 9, 10, 11]
-const scale = [9, 10, 11, 12, 13, 14, 15, 16, 17]
-const scaleR = [...scale].sort((a, b) => b - a) // b - a gives DESCENDING order
-console.log(scaleR)
+let scale = []
+let scaleR = []  // Reversed version of scale
+export const updateMainScale = (objStore, state) => {
+  const value = getPicklistValueFromState(state, ui.MAIN_SCALE)
+  scale = scaleFromLabel(value)
+  scaleR = [...scale].sort((a, b) => b - a) // b - a gives DESCENDING order
+}
 
 const mapMainFreq = (freq, state) => {
   const octaves = Math.floor(Math.log(freq / scale[0]) / Math.log(2))
@@ -68,7 +69,7 @@ const getDelayNodeFromUiName = (synthNodes, uiName) => {
     case ui.DELAY_RESONANCE_R:
       return synthNodes.delayNodeR
     default:
-      return null    
+      return null
   }
 }
 
@@ -88,7 +89,7 @@ export const updateDelayNodes = (objStore, state, isInitial) => {
         } else {
           delayNode.delayTime.setTargetAtTime(nodeValue, objStore.ctx.audio.currentTime + 0.001, 0.1)
         }
-      }    
+      }
     })
   }
 }
@@ -164,40 +165,43 @@ export const synthUpdate = (data, getState, objStore) => {
         (!data.isActive) ? objStore.synth.fns.startSoundAndGraphics() : objStore.synth.fns.stopSound()
         console.dir(state)
         break
-        
+
       // case ui.TOGGLE_ANIMATION:
       //   (!data.isActive) ? objStore.synth.fns.startSoundAndGraphics() : objStore.synth.fns.stopSound()
       //   console.dir(state)
       //   break
-      // 
+      //
       // case ui.TOGGLE_DISTORT_MODE:
       //   (!data.isActive) ? objStore.synth.fns.startSoundAndGraphics() : objStore.synth.fns.stopSound()
       //   console.dir(state)
       //   break
-        
+
       case ui.MIXER_GAIN:
         updateMixerGain(objStore, state)
         break
       case ui.MAIN_DISTORT:
-      updateSynthDistortion(objStore, state)
-      break
+        updateSynthDistortion(objStore, state)
+        break
+      case ui.MAIN_SCALE:
+        updateMainScale(objStore, state)
+        break
       case ui.MAIN_SHAPE:
         updateMainWaveShape(objStore, state)
         break
-        
+
       case ui.MAIN_FREQ:
       case ui.MOD_MULT_A:
       case ui.MOD_MULT_B:
       case ui.MAIN_MULT:
         updateFrequencies(objStore, state)
         break
-        
+
       case ui.DELAY_RESONANCE_L:
       case ui.DELAY_RESONANCE_M:
       case ui.DELAY_RESONANCE_R:
         updateDelayNodes(objStore, state)
         break
-        
+
       case ui.MOD_SHAPE_A:
         updateModWaveShapeA(objStore, state)
         break
@@ -213,7 +217,7 @@ export const synthUpdate = (data, getState, objStore) => {
       case ui.MOD2_IDX_A:
         updateMod2IndexA(objStore, state)
         break
-        
+
       case ui.MOD_SHAPE_B:
         updateModWaveShapeB(objStore, state)
         break
@@ -229,18 +233,18 @@ export const synthUpdate = (data, getState, objStore) => {
       case ui.MOD2_IDX_B:
         updateMod2IndexB(objStore, state)
         break
-        
+
       default:
         //
-    }    
+    }
   } else {
     console.log(`Synth update failed for data:`, data)
-  }  
+  }
   if (objStore.setup) {
     switch (data.id) {
       default:
         //
-    }    
+    }
   }
 }
 
@@ -248,19 +252,20 @@ export const synthInitialiseValues = (objStore, reduxStore) => {
   const reduxState = reduxStore.getState()
   updateSynthDistortion(objStore, reduxState)
   updateMainWaveShape(objStore, reduxState)
+  updateMainScale(objStore, reduxState)
   updateFrequencies(objStore, reduxState)
 
   updateDelayNodes(objStore, reduxState, true)
-  
+
   updateModWaveShapeA(objStore, reduxState)
   updateModIndexA(objStore, reduxState)
-  updateMod2WaveShapeA(objStore, reduxState)  
+  updateMod2WaveShapeA(objStore, reduxState)
   updateMod2FreqA(objStore, reduxState)
   updateMod2IndexA(objStore, reduxState)
-  
+
   updateModWaveShapeB(objStore, reduxState)
   updateModIndexB(objStore, reduxState)
-  updateMod2WaveShapeB(objStore, reduxState)  
+  updateMod2WaveShapeB(objStore, reduxState)
   updateMod2FreqB(objStore, reduxState)
   updateMod2IndexB(objStore, reduxState)
 }
