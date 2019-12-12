@@ -8,6 +8,7 @@ export const getActionObject = (type, data) => ({
 })
 
 export const getSynthUpdateThunk = (type, data) => (dispatch, getState, objStore) => {
+  console.log(data)
   dispatch(getActionObject(type, data))
   synthUpdate(data, getState, objStore)
 }

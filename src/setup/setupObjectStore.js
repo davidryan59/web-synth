@@ -5,7 +5,7 @@ import setupAnalyser from './task/setupAnalyser'
 import setupSynth from './task/setupSynth'
 
 const setupObjectStore = (objStore, reduxStore) => {
-  // Initialise redux store before initialising object store
+  // Initialise Redux store before initialising object store
   setupHtmlElements(objStore, reduxStore)
   setupContexts(objStore, reduxStore)
   setupMixer(objStore, reduxStore)

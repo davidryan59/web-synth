@@ -1,12 +1,12 @@
 import React from 'react'
 
 import DisplayGraphC from './DisplayGraphC'
-import ButtonC from './ButtonC'
+import ButtonsC from './ButtonsC'
 import PicklistsC from './PicklistsC'
 import SlidersC from './SlidersC'
 import StateViewerC from './StateViewerC'
 
-const App = ({ playButton }) => (
+const App = () => (
   <div className='app'>
     <div className='topline'>
       <b>Web Synth</b> -
@@ -15,7 +15,7 @@ const App = ({ playButton }) => (
     </div>
     <DisplayGraphC id='waveform' />
     <DisplayGraphC id='spectrum' />
-    <ButtonC button={playButton} />
+    <ButtonsC />
     <PicklistsC />
     <SlidersC />
     <StateViewerC />
