@@ -7,6 +7,7 @@ export const MIXER_GAIN = 'MIXER_GAIN'
 export const MAIN_SHAPE = 'MAIN_SHAPE'
 export const MAIN_SCALE = 'MAIN_SCALE'
 export const MAIN_FREQ = 'MAIN_FREQ'
+export const BASE_FREQ = 'BASE_FREQ'
 export const MAIN_MULT = 'MAIN_MULT'
 export const MAIN_DISTORT = 'MAIN_DISTORT'
 

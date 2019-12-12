@@ -3,7 +3,7 @@ export const scaleSetupArray = []
 // Format is: [ [Label 1, Scale frequency array 1], [Label 2, Scale frequency array 2], ... ]
 
 scaleSetupArray.push(['Major Scale', [24, 27, 30, 32, 36, 40, 45]])
-scaleSetupArray.push(['Major Chord', [3, 4, 5]])
+scaleSetupArray.push(['Major Chord', [4, 5, 6]])
 scaleSetupArray.push(['Pentatonic (Major 9th)', [5, 6, 7, 8, 9]])
 scaleSetupArray.push(['Pentatonic (7-limit)', [12, 14, 16, 18, 21]])
 scaleSetupArray.push(['11-limit', [6, 7, 8, 9, 10, 11]])

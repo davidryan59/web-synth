@@ -88,6 +88,16 @@ export const getInitialSlidersState = () => [
     unit: 'Hz'
   },
   {
+    id: ui.BASE_FREQ,
+    label: 'Start of scale',
+    min: '200',
+    step: '1',
+    max: '600',
+    value: '256',
+    len: 3,
+    unit: 'Hz'
+  },
+  {
     id: ui.MAIN_MULT,
     label: 'Frequency multiplier',
     min: '0',
@@ -119,7 +129,6 @@ export const getInitialSlidersState = () => [
     displayFn: fn.POWER2,
     unit: 'Hz'
   },
-
   {
     id: ui.DELAY_RESONANCE_M,
     label: 'Delay Resonance M',
@@ -131,7 +140,6 @@ export const getInitialSlidersState = () => [
     displayFn: fn.POWER2,
     unit: 'Hz'
   },
-
   {
     id: ui.DELAY_RESONANCE_R,
     label: 'Delay Resonance R',

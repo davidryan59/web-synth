@@ -25,27 +25,33 @@ export const updateMainWaveShape = (objStore, state) => {
   if (synthNodes) synthNodes.mainOsc.type = value
 }
 
-let scale = []
-let scaleR = []  // Reversed version of scale
+let scaleFractionArray = []
 export const updateMainScale = (objStore, state) => {
   const value = getPicklistValueFromState(state, ui.MAIN_SCALE)
-  scale = scaleFromLabel(value)
-  scaleR = [...scale].sort((a, b) => b - a) // b - a gives DESCENDING order
+  const scaleAsc = [...scaleFromLabel(value)].sort((a, b) => a - b) // a - b gives ASCENDING order
+  const scaleLowestNote = scaleAsc[0]
+  const scaleDesc = [...scaleAsc].sort((a, b) => b - a) // b - a gives DESCENDING order
+   // Reversed and normalised scale
+  scaleFractionArray = scaleDesc.map( a => a / scaleLowestNote )   // Now in terms of fractions over lowest note
 }
 
-const mapMainFreq = (freq, state) => {
-  const octaves = Math.floor(Math.log(freq / scale[0]) / Math.log(2))
-  const findVal = freq * (2 ** -octaves)
-  const foundScaleElt = scaleR.find(scaleElt => scaleElt <= findVal)
-  return foundScaleElt * (2 ** octaves)
+const mapMainFreqIntoScale = (baseFreq, mainFreq, state) => {
+  const freqRatio = mainFreq / baseFreq
+  const octaves = Math.floor(Math.log(freqRatio) / Math.log(2))
+  const octaveRatio = 2 ** octaves
+  const scaleFraction = freqRatio / octaveRatio
+  const foundScaleFraction = scaleFractionArray.find(scaleElt => scaleElt <= scaleFraction)
+  const mappedFreq = baseFreq * octaveRatio * foundScaleFraction
+  return mappedFreq
 }
 
 export const updateFrequencies = (objStore, state) => {
-  const sliderValue = getSliderValueFromState(state, ui.MAIN_FREQ)
+  const baseFreqHz = getSliderValueFromState(state, ui.BASE_FREQ)
+  const mainFreqHz = getSliderValueFromState(state, ui.MAIN_FREQ)
+  const freqValue = mapMainFreqIntoScale(baseFreqHz, mainFreqHz, state)
   const multMain = getSliderValueFromState(state, ui.MAIN_MULT)
   const multA = getSliderValueFromState(state, ui.MOD_MULT_A)
   const multB = getSliderValueFromState(state, ui.MOD_MULT_B)
-  const freqValue = mapMainFreq(sliderValue, state)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
     synthNodes.mainOsc.frequency.value = freqValue * multMain
@@ -184,11 +190,13 @@ export const synthUpdate = (data, getState, objStore) => {
         break
       case ui.MAIN_SCALE:
         updateMainScale(objStore, state)
+        updateFrequencies(objStore, state)
         break
       case ui.MAIN_SHAPE:
         updateMainWaveShape(objStore, state)
         break
 
+      case ui.BASE_FREQ:
       case ui.MAIN_FREQ:
       case ui.MOD_MULT_A:
       case ui.MOD_MULT_B:
