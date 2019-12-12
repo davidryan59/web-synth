@@ -1,5 +1,7 @@
 const synthStop = (objStore, reduxStore) => {
-  objStore.synth.nodes.sourceList.forEach( osc => osc.stop(0) )
+  objStore.synth.sourceList.forEach( node => node.stop(0) )
+  const nodeArray = Object.values(objStore.synth.nodes)
+  nodeArray.forEach( node => node.disconnect() )
   objStore.synth.nodes = null
 }
 

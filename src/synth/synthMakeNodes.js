@@ -2,6 +2,7 @@ const synthMakeNodes = (objStore, reduxStore) => {
 
   // 1. CREATE NODE OBJECT AND SHORTCUTS
   const sNs = objStore.synth.nodes = {}
+  const sSL = objStore.synth.sourceList = []
   const aCtx = objStore.ctx.audio
 
   // 2. CREATE NODES
@@ -43,13 +44,11 @@ const synthMakeNodes = (objStore, reduxStore) => {
   sNs.delayMainGain = aCtx.createGain()
 
   // 3. SPECIFY SOURCE NODES, WHICH REQUIRE .start AND .stop
-  sNs.sourceList = [
-    sNs.mod2OscA,
-    sNs.modOscA,
-    sNs.mod2OscB,
-    sNs.modOscB,
-    sNs.mainOsc
-  ]
+  sSL.push(sNs.mod2OscA)
+  sSL.push(sNs.mod2OscB)
+  sSL.push(sNs.modOscA)
+  sSL.push(sNs.modOscB)
+  sSL.push(sNs.mainOsc)
 
   // 4. MAKE AUDIO NODE GRAPH
   sNs.mod2OscA.connect(sNs.mod2GainA);
