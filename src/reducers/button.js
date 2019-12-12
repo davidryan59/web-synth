@@ -1,7 +1,6 @@
-import { getInitialPlayButtonState } from '../setup/setupReduxState'
 import { BUTTON_PRESS } from '../constants/actionTypes'
 
-const playButton = (state = getInitialPlayButtonState(), action) => {  
+const button = (state = {}, action) => {  
   switch (action.type) {
     case BUTTON_PRESS:
       return {
@@ -13,4 +12,4 @@ const playButton = (state = getInitialPlayButtonState(), action) => {
   }
 }
 
-export default playButton
+export default button

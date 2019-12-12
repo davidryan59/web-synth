@@ -1,4 +1,6 @@
-export const PLAY_SOUND = 'PLAY_SOUND'
+export const TOGGLE_AUDIO = 'TOGGLE_AUDIO'
+export const TOGGLE_ANIMATION = 'TOGGLE_ANIMATION'
+export const TOGGLE_DISTORT_MODE = 'TOGGLE_DISTORT_MODE'
 
 export const MIXER_GAIN = 'MIXER_GAIN'
 

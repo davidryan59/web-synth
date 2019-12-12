@@ -7,10 +7,10 @@ const Picklist = ({ picklist, valueChange }) => (
     </label>
     &nbsp;&nbsp;
     <select
-      defaultValue = {picklist.value}
+      value = {picklist.value}
       onChange = {valueChange}
     >
-      { picklist.values.map( pv => <option key={`${picklist.id}|${pv}`}>{pv}</option> ) }
+      { picklist.values.map( pv => <option key={pv}>{pv}</option> ) }
     </select>
   </span>
 )
