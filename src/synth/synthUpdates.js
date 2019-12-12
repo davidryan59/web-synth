@@ -79,7 +79,7 @@ const getDelayNodeFromUiName = (synthNodes, uiName) => {
   }
 }
 
-export const updateDelayNodes = (objStore, state, isInitial) => {
+export const updateDelayTimes = (objStore, state, isInitial) => {
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
     delayUiNames.forEach(delayUiName => {
@@ -100,6 +100,11 @@ export const updateDelayNodes = (objStore, state, isInitial) => {
   }
 }
 
+export const updateDelayVolumePercent = (objStore, state) => {
+  const value = getSliderValueFromState(state, ui.DELAY_VOLUME_PERCENT)
+  const synthNodes = objStore.synth.nodes
+  if (synthNodes) synthNodes.delayMainGain.gain.value = 0.01 * value
+}
 
 export const updateModWaveShapeA = (objStore, state) => {
   const value = getPicklistValueFromState(state, ui.MOD_SHAPE_A)
@@ -130,7 +135,6 @@ export const updateMod2IndexA = (objStore, state) => {
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mod2GainA.gain.value = value
 }
-
 
 export const updateModWaveShapeB = (objStore, state) => {
   const value = getPicklistValueFromState(state, ui.MOD_SHAPE_B)
@@ -204,10 +208,14 @@ export const synthUpdate = (data, getState, objStore) => {
         updateFrequencies(objStore, state)
         break
 
+      case ui.DELAY_VOLUME_PERCENT:
+        updateDelayVolumePercent(objStore, state)
+        break
+
       case ui.DELAY_RESONANCE_L:
       case ui.DELAY_RESONANCE_M:
       case ui.DELAY_RESONANCE_R:
-        updateDelayNodes(objStore, state)
+        updateDelayTimes(objStore, state)
         break
 
       case ui.MOD_SHAPE_A:
@@ -263,7 +271,8 @@ export const synthInitialiseValues = (objStore, reduxStore) => {
   updateMainScale(objStore, reduxState)
   updateFrequencies(objStore, reduxState)
 
-  updateDelayNodes(objStore, reduxState, true)
+  updateDelayVolumePercent(objStore, reduxState)
+  updateDelayTimes(objStore, reduxState, true)
 
   updateModWaveShapeA(objStore, reduxState)
   updateModIndexA(objStore, reduxState)

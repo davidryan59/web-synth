@@ -83,8 +83,8 @@ export const getInitialSlidersState = () => [
     min: '1',
     step: '1',
     max: '720',
-    value: '239',
-    len: 4,
+    value: '256',
+    len: 3,
     unit: 'Hz'
   },
   {
@@ -118,6 +118,16 @@ export const getInitialSlidersState = () => [
     unit: 'dB'
   },
 
+  {
+    id: ui.DELAY_VOLUME_PERCENT,
+    label: 'Delay Volume',
+    min: '0',
+    step: '1',
+    max: '100',
+    value: '100',
+    len: 3,
+    unit: '%'
+  },
   {
     id: ui.DELAY_RESONANCE_L,
     label: 'Delay Resonance L',
