@@ -19,7 +19,8 @@
     "react-dom": "^16.8.6",
     "react-redux": "^5.1.1",
     "redux": "^3.5.2",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "tone": "^13.8.25"
   },
   "scripts": {
     "start": "react-scripts start",
