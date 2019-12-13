@@ -1,4 +1,4 @@
-import * as ui from '../constants/uiNames'
+import Tone from 'tone'
 
 import { updateMixerGain } from '../setup/task/setupMixer'
 import getPicklistValueFromState from '../getters/getPicklistValueFromState'
@@ -7,6 +7,7 @@ import getSliderFromState from '../getters/getSliderFromState'
 import dbToGain from '../general/dbToGain'
 import { callFunction } from '../functions'
 import { scaleFromLabel } from '../constants/scales'
+import * as ui from '../constants/uiNames'
 
 
 export const updateSynthDistortion = (objStore, state) => {
@@ -93,7 +94,8 @@ export const updateDelayTimes = (objStore, state, isInitial) => {
         if (isInitial) {
           delayNode.delayTime.value = nodeValue
         } else {
-          delayNode.delayTime.setTargetAtTime(nodeValue, objStore.ctx.audio.currentTime + 0.001, 0.1)
+          const currentTime = Tone.now()
+          delayNode.delayTime.setTargetAtTime(nodeValue, currentTime + 0.001, 0.1)
         }
       }
     })

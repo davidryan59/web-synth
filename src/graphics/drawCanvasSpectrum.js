@@ -1,13 +1,19 @@
 import drawCanvasShared from './drawCanvasShared'
-import { canvasWidthMultSpectrum } from '../constants/general'
+import { analyserParameters } from '../constants/general'
 
 const drawCanvasSpectrum = (objStore, reduxStore) => {
-  objStore.mixer.analyser.getByteFrequencyData(objStore.analyser.bytesSpectrum);
-  const bytesToDraw = objStore.analyser.bytesSpectrum
+  // Tone.Analyser with mode 'fft'
+  // returns Float32Array with
+  // analyserParameters.fftSize dB values between approx -200 and 0
+  const arrayToDraw = objStore.mixer.analyser.fft.getValue();
+  const minVal = analyserParameters.minDecibels
+  const maxVal = analyserParameters.maxDecibels
   const canvasCtx = objStore.ctx.canvas.spectrum
   const canvasElt = objStore.elt.canvas.spectrum
-  const bufferLength = objStore.analyser.bufferLength
-  drawCanvasShared({ canvasCtx, canvasElt, bufferLength, widthMult: canvasWidthMultSpectrum, bytesToDraw })
+  const sampleRate = analyserParameters.sampleRate
+  const maxDisplayFreq = analyserParameters.maxDisplayFreq
+  const widthMult = 0.5 * sampleRate / maxDisplayFreq
+  drawCanvasShared({ arrayToDraw, minVal, maxVal, canvasCtx, canvasElt, widthMult })
 }
 
 export default drawCanvasSpectrum
