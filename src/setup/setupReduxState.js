@@ -6,21 +6,23 @@ import { waveShapes } from '../constants/general'
 
 export const getInitialButtonsState = () => ([
   {
-    id: ui.TOGGLE_AUDIO,
-    labelInactive: 'Play sound',
-    labelActive: 'Stop sound',
+    id: ui.TOGGLE_ANIMATION,
+    labelInactive: 'Animation OFF (A)',
+    labelActive: 'Animation ON (A)',
+    padSpaces: 2,
     isActive: false
   },
   {
-    id: ui.TOGGLE_ANIMATION,
-    labelInactive: 'Animation OFF',
-    labelActive: 'Animation ON',
+    id: ui.TOGGLE_AUDIO,
+    labelInactive: 'Play sound (S)',
+    labelActive: 'Stop sound (S)',
+    padSpaces: 6,
     isActive: false
   },
   {
     id: ui.TOGGLE_DISTORT_MODE,
-    labelInactive: 'Distortion CLIP',
-    labelActive: 'Distortion AMPLIFY',
+    labelInactive: 'Distortion CLIP (D)',
+    labelActive: 'Distortion AMPLIFY (D)',
     isActive: false
   }
 ])

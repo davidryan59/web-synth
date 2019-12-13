@@ -11,7 +11,7 @@ import windowResizeHandler from './handlers/windowResizeHandler'
 import { getSynthUpdateThunk } from './actions'
 import getButtonFromState from './getters/getButtonFromState'
 import { BUTTON_PRESS } from './constants/actionTypes'
-import { TOGGLE_AUDIO } from './constants/uiNames'
+import * as ui from './constants/uiNames'
 
 // Object store contains general things like audio contexts, page elements, e.g. non-pure objects
 // Redux store is standard Redux state management with state and actions as pure objects
@@ -39,12 +39,30 @@ window.addEventListener('resize', e => windowResizeHandler(e, reduxStore))
 window.addEventListener('keydown', e => console.log(`Key down ${e.code}`))
 window.addEventListener('keyup', e => {
   console.log(`Key up ${e.code}`)
-  if (e.code === 'KeyQ') {
-    console.log('Toggling play button via Q key')
+  if (e.code === 'KeyS') {
+    console.log('Toggling sound (play button) via S key')
     reduxStore.dispatch(
       getSynthUpdateThunk(BUTTON_PRESS, {
-        id: TOGGLE_AUDIO,
-        isActive: getButtonFromState(reduxStore.getState(), TOGGLE_AUDIO).isActive
+        id: ui.TOGGLE_AUDIO,
+        isActive: getButtonFromState(reduxStore.getState(), ui.TOGGLE_AUDIO).isActive
+      })
+    )
+  }
+  if (e.code === 'KeyA') {
+    console.log('Toggling animation via A key')
+    reduxStore.dispatch(
+      getSynthUpdateThunk(BUTTON_PRESS, {
+        id: ui.TOGGLE_ANIMATION,
+        isActive: getButtonFromState(reduxStore.getState(), ui.TOGGLE_ANIMATION).isActive
+      })
+    )
+  }
+  if (e.code === 'KeyD') {
+    console.log('Toggling distortion via D key')
+    reduxStore.dispatch(
+      getSynthUpdateThunk(BUTTON_PRESS, {
+        id: ui.TOGGLE_DISTORT_MODE,
+        isActive: getButtonFromState(reduxStore.getState(), ui.TOGGLE_DISTORT_MODE).isActive
       })
     )
   }
