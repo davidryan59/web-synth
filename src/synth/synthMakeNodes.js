@@ -1,47 +1,48 @@
+import Tone from 'tone'
+
 const synthMakeNodes = (objStore, reduxStore) => {
 
   // 1. CREATE NODE OBJECT AND SHORTCUTS
   const sNs = objStore.synth.nodes = {}
   const sSL = objStore.synth.sourceList = []
-  const aCtx = objStore.ctx.audio
 
   // 2. CREATE NODES
-  sNs.mod2OscA = aCtx.createOscillator();
-  sNs.mod2GainA = aCtx.createGain();
-  sNs.modOscA = aCtx.createOscillator();
-  sNs.modGainA = aCtx.createGain();
+  sNs.mod2OscA = new Tone.Oscillator();
+  sNs.mod2GainA = new Tone.Gain();
+  sNs.modOscA = new Tone.Oscillator();
+  sNs.modGainA = new Tone.Gain();
 
-  sNs.mod2OscB = aCtx.createOscillator();
-  sNs.mod2GainB = aCtx.createGain();
-  sNs.modOscB = aCtx.createOscillator();
-  sNs.modGainB = aCtx.createGain();
+  sNs.mod2OscB = new Tone.Oscillator();
+  sNs.mod2GainB = new Tone.Gain();
+  sNs.modOscB = new Tone.Oscillator();
+  sNs.modGainB = new Tone.Gain();
 
-  sNs.mainOsc = aCtx.createOscillator();
+  sNs.mainOsc = new Tone.Oscillator();
 
-  sNs.limiterPreGain = aCtx.createGain();
-  sNs.limiterWaveShape = aCtx.createWaveShaper();
+  sNs.limiterPreGain = new Tone.Gain();
+  sNs.limiterWaveShape = new Tone.WaveShaper();
   sNs.limiterWaveShape.curve = new Float32Array([-1, 1])
-  sNs.limiterPostGain = aCtx.createGain();
+  sNs.limiterPostGain = new Tone.Gain();
 
   const maxDelayS = 2
   const gainM = 0.5
-  sNs.delayNodeM = aCtx.createDelay(maxDelayS)
-  sNs.delayGainM = aCtx.createGain()
+  sNs.delayNodeM = new Tone.Delay(maxDelayS, maxDelayS)
+  sNs.delayGainM = new Tone.Gain()
   sNs.delayGainM.gain.value = -gainM
 
-  sNs.delayNodeL = aCtx.createDelay(maxDelayS)
-  sNs.delayGainL = aCtx.createGain()
+  sNs.delayNodeL = new Tone.Delay(maxDelayS, maxDelayS)
+  sNs.delayGainL = new Tone.Gain()
   sNs.delayGainL.gain.value = gainM - 1
-  sNs.delayPanL = aCtx.createStereoPanner()
+  sNs.delayPanL = new Tone.Panner()
   sNs.delayPanL.pan.value = -1
 
-  sNs.delayNodeR = aCtx.createDelay(maxDelayS)
-  sNs.delayGainR = aCtx.createGain()
+  sNs.delayNodeR = new Tone.Delay(maxDelayS, maxDelayS)
+  sNs.delayGainR = new Tone.Gain()
   sNs.delayGainR.gain.value = gainM - 1
-  sNs.delayPanR = aCtx.createStereoPanner()
+  sNs.delayPanR = new Tone.Panner()
   sNs.delayPanR.pan.value = 1
 
-  sNs.delayMainGain = aCtx.createGain()
+  sNs.delayMainGain = new Tone.Gain()
 
   // 3. SPECIFY SOURCE NODES, WHICH REQUIRE .start AND .stop
   sSL.push(sNs.mod2OscA)
