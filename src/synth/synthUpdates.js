@@ -1,9 +1,9 @@
 import Tone from 'tone'
 
 import { updateMixerGain } from '../setup/task/setupMixer'
-import getPicklistValueFromState from '../getters/getPicklistValueFromState'
-import getSliderValueFromState from '../getters/getSliderValueFromState'
-import getSliderFromState from '../getters/getSliderFromState'
+import { getPicklistValueFromState } from '../getters/getPicklist'
+import { getSliderInternalValueFromState } from '../getters/getSlider'
+import { getSliderFromState } from '../getters/getSlider'
 import dbToGain from '../general/dbToGain'
 import { numericMap } from '../general/mappings'
 import { scaleFromLabel } from '../constants/scales'
@@ -11,7 +11,7 @@ import * as ui from '../constants/uiNames'
 
 
 export const updateSynthDistortion = (objStore, state) => {
-  const value = getSliderValueFromState(state, ui.MAIN_DISTORT)
+  const value = getSliderInternalValueFromState(state, ui.MAIN_DISTORT)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
     const finalAmp = dbToGain(-value)
@@ -47,12 +47,12 @@ const mapMainFreqIntoScale = (baseFreq, mainFreq, state) => {
 }
 
 export const updateFrequencies = (objStore, state) => {
-  const baseFreqHz = getSliderValueFromState(state, ui.BASE_FREQ)
-  const mainFreqHz = getSliderValueFromState(state, ui.MAIN_FREQ)
+  const baseFreqHz = getSliderInternalValueFromState(state, ui.BASE_FREQ)
+  const mainFreqHz = getSliderInternalValueFromState(state, ui.MAIN_FREQ)
   const freqValue = mapMainFreqIntoScale(baseFreqHz, mainFreqHz, state)
-  const multMain = getSliderValueFromState(state, ui.MAIN_MULT)
-  const multA = getSliderValueFromState(state, ui.MOD_MULT_A)
-  const multB = getSliderValueFromState(state, ui.MOD_MULT_B)
+  const multMain = getSliderInternalValueFromState(state, ui.MAIN_MULT)
+  const multA = getSliderInternalValueFromState(state, ui.MOD_MULT_A)
+  const multB = getSliderInternalValueFromState(state, ui.MOD_MULT_B)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
     synthNodes.mainOsc.frequency.value = freqValue * multMain
@@ -103,7 +103,7 @@ export const updateDelayTimes = (objStore, state, isInitial) => {
 }
 
 export const updateDelayVolumePercent = (objStore, state) => {
-  const value = getSliderValueFromState(state, ui.DELAY_VOLUME_PERCENT)
+  const value = getSliderInternalValueFromState(state, ui.DELAY_VOLUME_PERCENT)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.delayMainGain.gain.value = 0.01 * value
 }
@@ -121,19 +121,19 @@ export const updateMod2WaveShapeA = (objStore, state) => {
 }
 
 export const updateModIndexA = (objStore, state) => {
-  const value = getSliderValueFromState(state, ui.MOD_IDX_A)
+  const value = getSliderInternalValueFromState(state, ui.MOD_IDX_A)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.modGainA.gain.value = value
 }
 
 export const updateMod2FreqA = (objStore, state) => {
-  const value = getSliderValueFromState(state, ui.MOD2_RATE_A)
+  const value = getSliderInternalValueFromState(state, ui.MOD2_RATE_A)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mod2OscA.frequency.value = 10 ** value
 }
 
 export const updateMod2IndexA = (objStore, state) => {
-  const value = getSliderValueFromState(state, ui.MOD2_IDX_A)
+  const value = getSliderInternalValueFromState(state, ui.MOD2_IDX_A)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mod2GainA.gain.value = value
 }
@@ -151,19 +151,19 @@ export const updateMod2WaveShapeB = (objStore, state) => {
 }
 
 export const updateModIndexB = (objStore, state) => {
-  const value = getSliderValueFromState(state, ui.MOD_IDX_B)
+  const value = getSliderInternalValueFromState(state, ui.MOD_IDX_B)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.modGainB.gain.value = value
 }
 
 export const updateMod2FreqB = (objStore, state) => {
-  const value = getSliderValueFromState(state, ui.MOD2_RATE_B)
+  const value = getSliderInternalValueFromState(state, ui.MOD2_RATE_B)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mod2OscB.frequency.value = 10 ** value
 }
 
 export const updateMod2IndexB = (objStore, state) => {
-  const value = getSliderValueFromState(state, ui.MOD2_IDX_B)
+  const value = getSliderInternalValueFromState(state, ui.MOD2_IDX_B)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mod2GainB.gain.value = value
 }

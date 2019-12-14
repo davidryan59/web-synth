@@ -1,5 +1,5 @@
 import { getSynthUpdateThunk } from '../actions'
-import getButtonFromState from '../getters/getButtonFromState'
+import { getButtonFromState } from '../getters/getButton'
 import { BUTTON_PRESS } from '../constants/actionTypes'
 import { keyUpMap } from '../constants/uiNames'
 

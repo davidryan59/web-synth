@@ -1,4 +1,4 @@
-const getButtonFromState = (state, buttonId) => {
+export const getButtonFromState = (state, buttonId) => {
   try {
     return state.buttons.find(button => button.id === buttonId)
   } catch(e) {
@@ -6,5 +6,3 @@ const getButtonFromState = (state, buttonId) => {
     return null
   }
 }
-
-export default getButtonFromState

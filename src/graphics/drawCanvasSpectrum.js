@@ -1,7 +1,7 @@
 import drawCanvasShared from './drawCanvasShared'
 import { analyserParameters } from '../constants/general'
 import * as ui from '../constants/uiNames'
-import getSliderOutputValueFromState from '../getters/getSliderOutputValueFromState'
+import { getSliderOutputValueFromState } from '../getters/getSlider'
 
 const drawCanvasSpectrum = (objStore, reduxStore) => {
   // Tone.Analyser with mode 'fft'

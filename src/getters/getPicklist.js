@@ -1,4 +1,4 @@
-const getPicklistValueFromState = (state, picklistId) => {
+export const getPicklistValueFromState = (state, picklistId) => {
   try {
     return state.picklists.find( picklist => picklist.id === picklistId ).value
   } catch(e) {
@@ -6,5 +6,3 @@ const getPicklistValueFromState = (state, picklistId) => {
     return ''
   }
 }
-
-export default getPicklistValueFromState

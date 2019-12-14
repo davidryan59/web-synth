@@ -1,11 +1,11 @@
 import Tone from 'tone'
-import getSliderValueFromState from '../../getters/getSliderValueFromState'
+import { getSliderInternalValueFromState } from '../../getters/getSlider'
 import dbToGain from '../../general/dbToGain'
 import { MIXER_GAIN } from '../../constants/uiNames'
 import { analyserParameters } from '../../constants/general'
 
 export const updateMixerGain = (objStore, state) => {
-  const dbOverallGain = getSliderValueFromState(state, MIXER_GAIN)
+  const dbOverallGain = getSliderInternalValueFromState(state, MIXER_GAIN)
   objStore.mixer.gain.gain.value = dbToGain(dbOverallGain)
 }
 

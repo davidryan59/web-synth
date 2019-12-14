@@ -1,6 +1,6 @@
 import drawCanvasWaveform from './drawCanvasWaveform'
 import drawCanvasSpectrum from './drawCanvasSpectrum'
-import getButtonFromState from '../getters/getButtonFromState'
+import { getButtonFromState } from '../getters/getButton'
 import { TOGGLE_ANIMATION } from '../constants/uiNames'
 
 import { framesBetweenCanvasUpdates } from '../constants/general'
