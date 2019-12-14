@@ -142,7 +142,7 @@ export const getInitialSlidersState = () => [
     unit: 'Hz'
   },
   {
-    id: ui.DELAY_RESONANCE_M,
+    id: ui.DELAY_RESONANCE_C,
     label: 'Delay Resonance M',
     min: '-2',
     step: '0.05',

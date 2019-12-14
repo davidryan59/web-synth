@@ -25,22 +25,16 @@ const synthMakeNodes = (objStore, reduxStore) => {
   sNs.limiterPostGain = new Tone.Gain();
 
   const maxDelayS = 2
-  const gainM = 0.5
-  sNs.delayNodeM = new Tone.Delay(maxDelayS, maxDelayS)
-  sNs.delayGainM = new Tone.Gain()
-  sNs.delayGainM.gain.value = -gainM
+  sNs.delayNodeC = new Tone.Delay(0, maxDelayS)
+  sNs.delayGainC = new Tone.Gain(-0.5)
 
-  sNs.delayNodeL = new Tone.Delay(maxDelayS, maxDelayS)
-  sNs.delayGainL = new Tone.Gain()
-  sNs.delayGainL.gain.value = gainM - 1
-  sNs.delayPanL = new Tone.Panner()
-  sNs.delayPanL.pan.value = -1
+  sNs.delayNodeL = new Tone.Delay(0, maxDelayS)
+  sNs.delayPanL = new Tone.Panner(-1)
+  sNs.delayGainL = new Tone.Gain(-0.25)
 
-  sNs.delayNodeR = new Tone.Delay(maxDelayS, maxDelayS)
-  sNs.delayGainR = new Tone.Gain()
-  sNs.delayGainR.gain.value = gainM - 1
-  sNs.delayPanR = new Tone.Panner()
-  sNs.delayPanR.pan.value = 1
+  sNs.delayNodeR = new Tone.Delay(0, maxDelayS)
+  sNs.delayPanR = new Tone.Panner(1)
+  sNs.delayGainR = new Tone.Gain(-0.25)
 
   sNs.delayMainGain = new Tone.Gain()
 
@@ -68,19 +62,19 @@ const synthMakeNodes = (objStore, reduxStore) => {
   sNs.limiterWaveShape.connect(sNs.limiterPostGain)
   sNs.limiterPostGain.connect(objStore.mixer.input);
 
-  sNs.limiterPostGain.connect(sNs.delayNodeM)
-  sNs.delayNodeM.connect(sNs.delayGainM)
-  sNs.delayGainM.connect(sNs.delayMainGain);
+  sNs.limiterPostGain.connect(sNs.delayNodeC)
+  sNs.delayNodeC.connect(sNs.delayGainC)
+  sNs.delayGainC.connect(sNs.delayMainGain);
 
   sNs.limiterPostGain.connect(sNs.delayNodeL)
-  sNs.delayNodeL.connect(sNs.delayGainL)
-  sNs.delayGainL.connect(sNs.delayPanL);
-  sNs.delayPanL.connect(sNs.delayMainGain);
+  sNs.delayNodeL.connect(sNs.delayPanL)
+  sNs.delayPanL.connect(sNs.delayGainL);
+  sNs.delayGainL.connect(sNs.delayMainGain);
 
   sNs.limiterPostGain.connect(sNs.delayNodeR)
-  sNs.delayNodeR.connect(sNs.delayGainR)
-  sNs.delayGainR.connect(sNs.delayPanR);
-  sNs.delayPanR.connect(sNs.delayMainGain);
+  sNs.delayNodeR.connect(sNs.delayPanR)
+  sNs.delayPanR.connect(sNs.delayGainR);
+  sNs.delayGainR.connect(sNs.delayMainGain);
 
   sNs.delayMainGain.connect(objStore.mixer.input);
 

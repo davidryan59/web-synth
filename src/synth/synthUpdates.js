@@ -65,14 +65,14 @@ export const updateFrequencies = (objStore, state) => {
   }
 }
 
-const delayUiNames = [ui.DELAY_RESONANCE_L, ui.DELAY_RESONANCE_M, ui.DELAY_RESONANCE_R]
+const delayUiNames = [ui.DELAY_RESONANCE_L, ui.DELAY_RESONANCE_C, ui.DELAY_RESONANCE_R]
 
 const getDelayNodeFromUiName = (synthNodes, uiName) => {
   switch (uiName) {
     case ui.DELAY_RESONANCE_L:
       return synthNodes.delayNodeL
-    case ui.DELAY_RESONANCE_M:
-      return synthNodes.delayNodeM
+    case ui.DELAY_RESONANCE_C:
+      return synthNodes.delayNodeC
     case ui.DELAY_RESONANCE_R:
       return synthNodes.delayNodeR
     default:
@@ -215,7 +215,7 @@ export const synthUpdate = (data, getState, objStore) => {
         break
 
       case ui.DELAY_RESONANCE_L:
-      case ui.DELAY_RESONANCE_M:
+      case ui.DELAY_RESONANCE_C:
       case ui.DELAY_RESONANCE_R:
         updateDelayTimes(objStore, state)
         break
