@@ -80,6 +80,17 @@ export const getInitialSlidersState = () => [
     unit: 'dB'
   },
   {
+    id: ui.ANALYSER_MAX_FREQ,
+    label: 'Max Frequency for Analyser',
+    min: '8',
+    step: '0.02',
+    max: '14.5',
+    value: '12',
+    len: 5,
+    displayFn: fn.POWER2ROUND,
+    unit: 'Hz'
+  },
+  {
     id: ui.MAIN_FREQ,
     label: 'Note Frequency',
     min: '1',

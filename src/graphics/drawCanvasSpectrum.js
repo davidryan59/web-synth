@@ -1,5 +1,7 @@
 import drawCanvasShared from './drawCanvasShared'
 import { analyserParameters } from '../constants/general'
+import * as ui from '../constants/uiNames'
+import getSliderOutputValueFromState from '../getters/getSliderOutputValueFromState'
 
 const drawCanvasSpectrum = (objStore, reduxStore) => {
   // Tone.Analyser with mode 'fft'
@@ -10,7 +12,8 @@ const drawCanvasSpectrum = (objStore, reduxStore) => {
   const maxVal = analyserParameters.maxDecibels
   const canvasCtx = objStore.ctx.canvas.spectrum
   const canvasElt = objStore.elt.canvas.spectrum
-  const widthMult = 0.5 * analyserParameters.sampleRate / analyserParameters.maxDisplayFreq
+  const maxDisplayFreq = getSliderOutputValueFromState(reduxStore.getState(), ui.ANALYSER_MAX_FREQ)
+  const widthMult = 0.5 * analyserParameters.sampleRate / maxDisplayFreq
   drawCanvasShared({ arrayToDraw, minVal, maxVal, canvasCtx, canvasElt, widthMult })
 }
 

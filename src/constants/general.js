@@ -21,7 +21,6 @@ export const waveShapes = ['sine', 'triangle', 'sawtooth', 'square']
 // Control the analyser output and display
 export const analyserParameters = {
   sampleRate: 44100,         // IMPROVE: Can this be calculated from context?
-  maxDisplayFreq: 5000,      // Max frequency (in Hz) to appear on spectrum
   fftSize: 4096,             // Power of 2. Between 2^5 and 2^15, default 2^10. Time / Frequency trade-off.
   minDecibels: -100,         // default -100
   maxDecibels: 0,            // max -0 dB, default -30
