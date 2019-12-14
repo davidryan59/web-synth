@@ -4,7 +4,7 @@ import { updateMixerGain } from '../setup/task/setupMixer'
 import { getPicklistValue } from '../getters/picklist'
 import { buttonActive } from '../getters/button'
 import { getSliderByName, getSliderDisplayValue } from '../getters/slider'
-import dbToGain from '../general/dbToGain'
+import * as map from '../general/mappings'
 import { scaleFromLabel } from '../constants/scales'
 import * as ui from '../constants/uiNames'
 
@@ -14,7 +14,7 @@ export const updateSynthDistortion = (objStore, state) => {
   const amplifyDistortModeOn = buttonActive(state, ui.TOGGLE_DISTORT_MODE)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
-    const finalAmp = dbToGain(value)    // this slider positive, 0 to 20 dB
+    const finalAmp = map.numericMap(value, map.MAP_DB_TO_GAIN)  // this slider positive, 0 to 20 dB
     synthNodes.limiterPreGain.gain.value = finalAmp
     synthNodes.limiterPostGain.gain.value = (amplifyDistortModeOn) ? 1 : 1 / finalAmp
   }
