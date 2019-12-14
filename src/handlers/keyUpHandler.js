@@ -1,5 +1,5 @@
 import { getSynthUpdateThunk } from '../actions'
-import { getButtonFromState } from '../getters/getButton'
+import { buttonActive } from '../getters/button'
 import { BUTTON_PRESS } from '../constants/actionTypes'
 import { keyUpMap } from '../constants/uiNames'
 
@@ -11,7 +11,7 @@ const keyUpHandler = (evt, objStore, reduxStore) => {
       if (keyUI) reduxStore.dispatch(
         getSynthUpdateThunk(BUTTON_PRESS, {
           id: keyUI,
-          isActive: getButtonFromState(reduxStore.getState(), keyUI).isActive
+          isActive: buttonActive(reduxStore.getState(), keyUI)
         })
       )
       if (keyMsg) console.log(keyMsg)

@@ -57,7 +57,6 @@ const synthMakeNodes = (objStore, reduxStore) => {
   sNs.modGainB.connect(sNs.mainOsc.frequency);
 
   sNs.mainOsc.connect(sNs.limiterPreGain);
-
   sNs.limiterPreGain.connect(sNs.limiterWaveShape)
   sNs.limiterWaveShape.connect(sNs.limiterPostGain)
   sNs.limiterPostGain.connect(objStore.mixer.input);
