@@ -1,6 +1,7 @@
 export const TOGGLE_AUDIO = 'TOGGLE_AUDIO'
 export const TOGGLE_ANIMATION = 'TOGGLE_ANIMATION'
 export const TOGGLE_DISTORT_MODE = 'TOGGLE_DISTORT_MODE'
+export const TOGGLE_ANALYSER_LOG = 'TOGGLE_ANALYSER_LOG'
 
 // Format of each row is:
 // [keyboard coard, UI element, optional user message]
@@ -8,6 +9,7 @@ export const keyUpMap = [
   ['KeyS', TOGGLE_AUDIO, 'Toggling sound (play button) via S key'],
   ['KeyA', TOGGLE_ANIMATION, 'Toggling animation via A key'],
   ['KeyD', TOGGLE_DISTORT_MODE, 'Toggling distortion via D key'],
+  ['KeyL', TOGGLE_ANALYSER_LOG, 'Toggling analyser log mode via L key'],
 ]
 
 export const MIXER_GAIN = 'MIXER_GAIN'

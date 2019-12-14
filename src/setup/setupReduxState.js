@@ -24,6 +24,12 @@ export const getInitialButtonsState = () => ([
     labelInactive: 'Distortion CLIP (D)',
     labelActive: 'Distortion AMPLIFY (D)',
     isActive: false
+  },
+  {
+    id: ui.TOGGLE_ANALYSER_LOG,
+    labelInactive: 'Analyser Linear (L)',
+    labelActive: 'Analyser Log (L)',
+    isActive: false
   }
 ])
 

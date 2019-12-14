@@ -22,5 +22,6 @@ export const waveShapes = ['sine', 'triangle', 'sawtooth', 'square']
 export const analyserParameters = {
   sampleRate: 44100,         // IMPROVE: Can this be calculated from context?
   fftSize: 4096,             // Power of 2. Between 2^5 and 2^15, default 2^10. Time / Frequency trade-off.
-  smoothingTimeConstant: 0   // 0 no smoothing, 0.99 really smooth
+  smoothingTimeConstant: 0,  // 0 no smoothing, 0.99 really smooth
+  logXParam: 100             // Controls shape of (modified) Log graph, allowing DC component to be plotted
 }

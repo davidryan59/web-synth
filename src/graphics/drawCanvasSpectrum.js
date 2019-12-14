@@ -1,6 +1,7 @@
 import drawCanvasShared from './drawCanvasShared'
 import { analyserParameters } from '../constants/general'
 import * as ui from '../constants/uiNames'
+import { buttonActive } from '../getters/button'
 import { getSliderDisplayValue } from '../getters/slider'
 
 const drawCanvasSpectrum = (objStore, reduxStore) => {
@@ -8,13 +9,15 @@ const drawCanvasSpectrum = (objStore, reduxStore) => {
   // returns Float32Array with
   // analyserParameters.fftSize dB values between approx -200 and 0
   const arrayToDraw = objStore.mixer.analyser.fft.getValue();
+  const logXMode = buttonActive(reduxStore.getState(), ui.TOGGLE_ANALYSER_LOG)
   const minVal = getSliderDisplayValue(reduxStore.getState(), ui.ANALYSER_MIN_DB)
   const maxVal = 0
   const canvasCtx = objStore.ctx.canvas.spectrum
   const canvasElt = objStore.elt.canvas.spectrum
   const maxDisplayFreq = getSliderDisplayValue(reduxStore.getState(), ui.ANALYSER_MAX_FREQ)
   const widthMult = 0.5 * analyserParameters.sampleRate / maxDisplayFreq
-  drawCanvasShared({ arrayToDraw, minVal, maxVal, canvasCtx, canvasElt, widthMult })
+  const logXParam = analyserParameters.logXParam
+  drawCanvasShared({ arrayToDraw, minVal, maxVal, canvasCtx, canvasElt, widthMult, logXMode, logXParam })
 }
 
 export default drawCanvasSpectrum
