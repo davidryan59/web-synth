@@ -10,11 +10,11 @@ const drawCanvasSpectrum = (objStore, reduxStore) => {
   // analyserParameters.fftSize dB values between approx -200 and 0
   const arrayToDraw = objStore.mixer.analyser.fft.getValue();
   const logXMode = buttonActive(reduxStore.getState(), ui.TOGGLE_ANALYSER_LOG)
-  const minVal = getSliderDisplayValue(reduxStore.getState(), ui.ANALYSER_MIN_DB)
+  const minVal = getSliderDisplayValue(reduxStore.getState(), ui.SLIDER_ANALYSER_MIN_DB)
   const maxVal = 0
   const canvasCtx = objStore.ctx.canvas.spectrum
   const canvasElt = objStore.elt.canvas.spectrum
-  const maxDisplayFreq = getSliderDisplayValue(reduxStore.getState(), ui.ANALYSER_MAX_FREQ)
+  const maxDisplayFreq = getSliderDisplayValue(reduxStore.getState(), ui.SLIDER_ANALYSER_MAX_FREQ)
   const widthMult = 0.5 * analyserParameters.sampleRate / maxDisplayFreq
   const logXParam = analyserParameters.logXParam
   drawCanvasShared({ arrayToDraw, minVal, maxVal, canvasCtx, canvasElt, widthMult, logXMode, logXParam })

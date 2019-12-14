@@ -10,7 +10,7 @@ import * as ui from '../constants/uiNames'
 
 
 export const updateSynthDistortion = (objStore, state) => {
-  const value = getSliderDisplayValue(state, ui.MAIN_DISTORT)
+  const value = getSliderDisplayValue(state, ui.SLIDER_DISTORTION)
   const amplifyDistortModeOn = buttonActive(state, ui.TOGGLE_DISTORT_MODE)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
@@ -21,14 +21,14 @@ export const updateSynthDistortion = (objStore, state) => {
 }
 
 export const updateMainWaveShape = (objStore, state) => {
-  const value = getPicklistValue(state, ui.MAIN_SHAPE)
+  const value = getPicklistValue(state, ui.PICK_MAIN_SHAPE)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mainOsc.type = value
 }
 
 let scaleFractionArray = []
 export const updateMainScale = (objStore, state) => {
-  const value = getPicklistValue(state, ui.MAIN_SCALE)
+  const value = getPicklistValue(state, ui.PICK_SCALE)
   const scaleAsc = [...scaleFromLabel(value)].sort((a, b) => a - b) // a - b gives ASCENDING order
   const scaleLowestNote = scaleAsc[0]
   const scaleDesc = [...scaleAsc].sort((a, b) => b - a) // b - a gives DESCENDING order
@@ -47,12 +47,12 @@ const mapMainFreqIntoScale = (baseFreq, mainFreq, state) => {
 }
 
 export const updateFrequencies = (objStore, state) => {
-  const baseFreqHz = getSliderDisplayValue(state, ui.BASE_FREQ)
-  const mainFreqHz = getSliderDisplayValue(state, ui.MAIN_FREQ)
+  const baseFreqHz = getSliderDisplayValue(state, ui.SLIDER_BASE_FREQ)
+  const mainFreqHz = getSliderDisplayValue(state, ui.SLIDER_MAIN_FREQ)
   const freqValue = mapMainFreqIntoScale(baseFreqHz, mainFreqHz, state)
-  const multMain = getSliderDisplayValue(state, ui.MAIN_MULT)
-  const multA = getSliderDisplayValue(state, ui.MOD_MULT_A)
-  const multB = getSliderDisplayValue(state, ui.MOD_MULT_B)
+  const multMain = getSliderDisplayValue(state, ui.SLIDER_MAIN_MULT)
+  const multA = getSliderDisplayValue(state, ui.SLIDER_MOD_MULT_A)
+  const multB = getSliderDisplayValue(state, ui.SLIDER_MOD_MULT_B)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
     synthNodes.mainOsc.frequency.value = freqValue * multMain
@@ -65,15 +65,15 @@ export const updateFrequencies = (objStore, state) => {
   }
 }
 
-const delayUiNames = [ui.DELAY_RESONANCE_L, ui.DELAY_RESONANCE_C, ui.DELAY_RESONANCE_R]
+const delayUiNames = [ui.SLIDER_DELAY_RES_L, ui.SLIDER_DELAY_RES_C, ui.SLIDER_DELAY_RES_R]
 
 const getDelayNodeFromUiName = (synthNodes, uiName) => {
   switch (uiName) {
-    case ui.DELAY_RESONANCE_L:
+    case ui.SLIDER_DELAY_RES_L:
       return synthNodes.delayNodeL
-    case ui.DELAY_RESONANCE_C:
+    case ui.SLIDER_DELAY_RES_C:
       return synthNodes.delayNodeC
-    case ui.DELAY_RESONANCE_R:
+    case ui.SLIDER_DELAY_RES_R:
       return synthNodes.delayNodeR
     default:
       return null
@@ -101,67 +101,67 @@ export const updateDelayTimes = (objStore, state, isInitial) => {
 }
 
 export const updateDelayVolumePercent = (objStore, state) => {
-  const value = getSliderDisplayValue(state, ui.DELAY_VOLUME_PERCENT)
+  const value = getSliderDisplayValue(state, ui.SLIDER_DELAY_VOL_PC)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.delayMainGain.gain.value = 0.01 * value
 }
 
 export const updateModWaveShapeA = (objStore, state) => {
-  const value = getPicklistValue(state, ui.MOD_SHAPE_A)
+  const value = getPicklistValue(state, ui.PICK_MOD_SHAPE_A)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.modOscA.type = value
 }
 
 export const updateMod2WaveShapeA = (objStore, state) => {
-  const value = getPicklistValue(state, ui.MOD2_SHAPE_A)
+  const value = getPicklistValue(state, ui.PICK_MOD2_SHAPE_A)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mod2OscA.type = value
 }
 
 export const updateModIndexA = (objStore, state) => {
-  const value = getSliderDisplayValue(state, ui.MOD_IDX_A)
+  const value = getSliderDisplayValue(state, ui.SLIDER_MOD_IDX_A)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.modGainA.gain.value = value
 }
 
 export const updateMod2FreqA = (objStore, state) => {
-  const value = getSliderDisplayValue(state, ui.MOD2_RATE_A)
+  const value = getSliderDisplayValue(state, ui.SLIDER_MOD2_RATE_A)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mod2OscA.frequency.value = value
 }
 
 export const updateMod2IndexA = (objStore, state) => {
-  const value = getSliderDisplayValue(state, ui.MOD2_IDX_A)
+  const value = getSliderDisplayValue(state, ui.SLIDER_MOD2_IDX_A)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mod2GainA.gain.value = value
 }
 
 export const updateModWaveShapeB = (objStore, state) => {
-  const value = getPicklistValue(state, ui.MOD_SHAPE_B)
+  const value = getPicklistValue(state, ui.PICK_MOD_SHAPE_B)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.modOscB.type = value
 }
 
 export const updateMod2WaveShapeB = (objStore, state) => {
-  const value = getPicklistValue(state, ui.MOD2_SHAPE_B)
+  const value = getPicklistValue(state, ui.PICK_MOD2_SHAPE_B)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mod2OscB.type = value
 }
 
 export const updateModIndexB = (objStore, state) => {
-  const value = getSliderDisplayValue(state, ui.MOD_IDX_B)
+  const value = getSliderDisplayValue(state, ui.SLIDER_MOD_IDX_B)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.modGainB.gain.value = value
 }
 
 export const updateMod2FreqB = (objStore, state) => {
-  const value = getSliderDisplayValue(state, ui.MOD2_RATE_B)
+  const value = getSliderDisplayValue(state, ui.SLIDER_MOD2_RATE_B)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mod2OscB.frequency.value = value
 }
 
 export const updateMod2IndexB = (objStore, state) => {
-  const value = getSliderDisplayValue(state, ui.MOD2_IDX_B)
+  const value = getSliderDisplayValue(state, ui.SLIDER_MOD2_IDX_B)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) synthNodes.mod2GainB.gain.value = value
 }
@@ -180,68 +180,68 @@ export const synthUpdate = (data, getState, objStore) => {
         (!data.isActive) ? objStore.synth.fns.startGraphics() : objStore.synth.fns.stopGraphics()
         break
 
-      case ui.MIXER_GAIN:
+      case ui.SLIDER_MIXER_GAIN:
         updateMixerGain(objStore, state)
         break
-      case ui.MAIN_DISTORT:
+      case ui.SLIDER_DISTORTION:
       case ui.TOGGLE_DISTORT_MODE:
         updateSynthDistortion(objStore, state)
         break
-      case ui.MAIN_SCALE:
+      case ui.PICK_SCALE:
         updateMainScale(objStore, state)
         updateFrequencies(objStore, state)
         break
-      case ui.MAIN_SHAPE:
+      case ui.PICK_MAIN_SHAPE:
         updateMainWaveShape(objStore, state)
         break
 
-      case ui.BASE_FREQ:
-      case ui.MAIN_FREQ:
-      case ui.MOD_MULT_A:
-      case ui.MOD_MULT_B:
-      case ui.MAIN_MULT:
+      case ui.SLIDER_BASE_FREQ:
+      case ui.SLIDER_MAIN_FREQ:
+      case ui.SLIDER_MOD_MULT_A:
+      case ui.SLIDER_MOD_MULT_B:
+      case ui.SLIDER_MAIN_MULT:
         updateFrequencies(objStore, state)
         break
 
-      case ui.DELAY_VOLUME_PERCENT:
+      case ui.SLIDER_DELAY_VOL_PC:
         updateDelayVolumePercent(objStore, state)
         break
 
-      case ui.DELAY_RESONANCE_L:
-      case ui.DELAY_RESONANCE_C:
-      case ui.DELAY_RESONANCE_R:
+      case ui.SLIDER_DELAY_RES_L:
+      case ui.SLIDER_DELAY_RES_C:
+      case ui.SLIDER_DELAY_RES_R:
         updateDelayTimes(objStore, state)
         break
 
-      case ui.MOD_SHAPE_A:
+      case ui.PICK_MOD_SHAPE_A:
         updateModWaveShapeA(objStore, state)
         break
-      case ui.MOD_IDX_A:
+      case ui.SLIDER_MOD_IDX_A:
         updateModIndexA(objStore, state)
         break
-      case ui.MOD2_SHAPE_A:
+      case ui.PICK_MOD2_SHAPE_A:
         updateMod2WaveShapeA(objStore, state)
         break
-      case ui.MOD2_RATE_A:
+      case ui.SLIDER_MOD2_RATE_A:
         updateMod2FreqA(objStore, state)
         break
-      case ui.MOD2_IDX_A:
+      case ui.SLIDER_MOD2_IDX_A:
         updateMod2IndexA(objStore, state)
         break
 
-      case ui.MOD_SHAPE_B:
+      case ui.PICK_MOD_SHAPE_B:
         updateModWaveShapeB(objStore, state)
         break
-      case ui.MOD_IDX_B:
+      case ui.SLIDER_MOD_IDX_B:
         updateModIndexB(objStore, state)
         break
-      case ui.MOD2_SHAPE_B:
+      case ui.PICK_MOD2_SHAPE_B:
         updateMod2WaveShapeB(objStore, state)
         break
-      case ui.MOD2_RATE_B:
+      case ui.SLIDER_MOD2_RATE_B:
         updateMod2FreqB(objStore, state)
         break
-      case ui.MOD2_IDX_B:
+      case ui.SLIDER_MOD2_IDX_B:
         updateMod2IndexB(objStore, state)
         break
 

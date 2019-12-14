@@ -1,11 +1,11 @@
 import Tone from 'tone'
 import { getSliderDisplayValue } from '../../getters/slider'
 import * as map from '../../general/mappings'
-import { MIXER_GAIN } from '../../constants/uiNames'
+import { SLIDER_MIXER_GAIN } from '../../constants/uiNames'
 import { analyserParameters } from '../../constants/general'
 
 export const updateMixerGain = (objStore, state) => {
-  const dbOverallGain = getSliderDisplayValue(state, MIXER_GAIN)
+  const dbOverallGain = getSliderDisplayValue(state, SLIDER_MIXER_GAIN)
   objStore.mixer.gain.gain.value = map.numericMap(dbOverallGain, map.MAP_DB_TO_GAIN)
 }
 
