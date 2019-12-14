@@ -5,7 +5,7 @@ import getPicklistValueFromState from '../getters/getPicklistValueFromState'
 import getSliderValueFromState from '../getters/getSliderValueFromState'
 import getSliderFromState from '../getters/getSliderFromState'
 import dbToGain from '../general/dbToGain'
-import { callFunction } from '../functions'
+import { numericMap } from '../general/mappings'
 import { scaleFromLabel } from '../constants/scales'
 import * as ui from '../constants/uiNames'
 
@@ -88,7 +88,7 @@ export const updateDelayTimes = (objStore, state, isInitial) => {
       if (slider) {
         const value = slider.value
         const displayFn = slider.displayFn
-        const resonantFreq = callFunction(value, displayFn)
+        const resonantFreq = numericMap(value, displayFn)
         const nodeValue = 1 / (2 * resonantFreq)    // Delay time in seconds
         const delayNode = getDelayNodeFromUiName(synthNodes, delayUiName)
         if (isInitial) {

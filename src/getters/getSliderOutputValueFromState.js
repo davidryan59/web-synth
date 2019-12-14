@@ -1,9 +1,9 @@
-import { callFunction } from '../functions'
+import { numericMap } from '../general/mappings'
 
 const getSliderOutputValueFromState = (state, sliderId) => {
   try {
     const slider = state.sliders.find(slider => slider.id === sliderId)
-    const outputValue = callFunction(slider.value, slider.displayFn)
+    const outputValue = numericMap(slider.value, slider.displayFn)
     return outputValue
   } catch(e) {
     console.log(`Slider ${sliderId} could not be found. Default value 0 returned.`)

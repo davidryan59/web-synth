@@ -4,13 +4,13 @@ import Slider from './Slider'
 import { getSynthUpdateThunk } from '../actions'
 import makeNChars from '../general/makeNChars'
 import { SLIDER_MOVE } from '../constants/actionTypes'
-import { callFunction } from '../functions'
+import { numericMap } from '../general/mappings'
 
 const mapStateToProps = (state, ownProps) => {
   const slider = ownProps.slider
   return {
-    displayVal: makeNChars(callFunction(slider.value, slider.displayFn), slider.len)
-  }  
+    displayVal: makeNChars(numericMap(slider.value, slider.displayFn), slider.len)
+  }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -21,4 +21,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Slider)
- 

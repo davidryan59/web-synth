@@ -1,4 +1,4 @@
-import * as fn from '../functions'
+import * as map from '../general/mappings'
 import * as ui from '../constants/uiNames'
 import { scaleLabels } from '../constants/scales'
 import { waveShapes } from '../constants/general'
@@ -87,7 +87,7 @@ export const getInitialSlidersState = () => [
     max: '14.5',
     value: '12',
     len: 5,
-    displayFn: fn.POWER2ROUND,
+    displayFn: map.MAP_EXP2_ROUNDED,
     unit: 'Hz'
   },
   {
@@ -159,7 +159,7 @@ export const getInitialSlidersState = () => [
     max: '13',
     value: '-0.7',
     len: 6,
-    displayFn: fn.POWER2,
+    displayFn: map.MAP_EXP_2,
     unit: 'Hz'
   },
   {
@@ -170,7 +170,7 @@ export const getInitialSlidersState = () => [
     max: '13',
     value: '1.1',
     len: 6,
-    displayFn: fn.POWER2,
+    displayFn: map.MAP_EXP_2,
     unit: 'Hz'
   },
   {
@@ -181,7 +181,7 @@ export const getInitialSlidersState = () => [
     max: '13',
     value: '0.6',
     len: 6,
-    displayFn: fn.POWER2,
+    displayFn: map.MAP_EXP_2,
     unit: 'Hz'
   },
   {
@@ -212,7 +212,7 @@ export const getInitialSlidersState = () => [
     max: '4',
     value: '-0.69897',
     len: 6,
-    displayFn: fn.POWER10,
+    displayFn: map.MAP_EXP_10,
     unit: 'Hz'
   },
   {
@@ -254,7 +254,7 @@ export const getInitialSlidersState = () => [
     max: '4',
     value: '-0.845098',
     len: 6,
-    displayFn: fn.POWER10,
+    displayFn: map.MAP_EXP_10,
     unit: 'Hz'
   },
   {
