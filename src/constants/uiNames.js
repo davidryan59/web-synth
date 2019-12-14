@@ -12,6 +12,7 @@ export const keyUpMap = [
 
 export const MIXER_GAIN = 'MIXER_GAIN'
 export const ANALYSER_MAX_FREQ = 'ANALYSER_MAX_FREQ'
+export const ANALYSER_MIN_DB = 'ANALYSER_MIN_DB'
 
 export const MAIN_SHAPE = 'MAIN_SHAPE'
 export const MAIN_SCALE = 'MAIN_SCALE'

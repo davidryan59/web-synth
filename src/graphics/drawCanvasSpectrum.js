@@ -8,8 +8,8 @@ const drawCanvasSpectrum = (objStore, reduxStore) => {
   // returns Float32Array with
   // analyserParameters.fftSize dB values between approx -200 and 0
   const arrayToDraw = objStore.mixer.analyser.fft.getValue();
-  const minVal = analyserParameters.minDecibels
-  const maxVal = analyserParameters.maxDecibels
+  const minVal = getSliderOutputValueFromState(reduxStore.getState(), ui.ANALYSER_MIN_DB)
+  const maxVal = 0
   const canvasCtx = objStore.ctx.canvas.spectrum
   const canvasElt = objStore.elt.canvas.spectrum
   const maxDisplayFreq = getSliderOutputValueFromState(reduxStore.getState(), ui.ANALYSER_MAX_FREQ)

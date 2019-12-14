@@ -91,6 +91,16 @@ export const getInitialSlidersState = () => [
     unit: 'Hz'
   },
   {
+    id: ui.ANALYSER_MIN_DB,
+    label: 'Min dB for Analyser',
+    min: '-240',
+    step: '1',
+    max: '-30',
+    value: '-120',
+    len: 4,
+    unit: 'dB'
+  },
+  {
     id: ui.MAIN_FREQ,
     label: 'Note Frequency',
     min: '1',
