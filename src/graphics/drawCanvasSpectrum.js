@@ -10,9 +10,7 @@ const drawCanvasSpectrum = (objStore, reduxStore) => {
   const maxVal = analyserParameters.maxDecibels
   const canvasCtx = objStore.ctx.canvas.spectrum
   const canvasElt = objStore.elt.canvas.spectrum
-  const sampleRate = analyserParameters.sampleRate
-  const maxDisplayFreq = analyserParameters.maxDisplayFreq
-  const widthMult = 0.5 * sampleRate / maxDisplayFreq
+  const widthMult = 0.5 * analyserParameters.sampleRate / analyserParameters.maxDisplayFreq
   drawCanvasShared({ arrayToDraw, minVal, maxVal, canvasCtx, canvasElt, widthMult })
 }
 

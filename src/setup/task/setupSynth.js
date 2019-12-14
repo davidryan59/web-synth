@@ -6,16 +6,25 @@ import synthStop from '../../synth/synthStop'
 
 const setupSynth = (objStore, reduxStore) => {
   objStore.synth = {}
-  objStore.synth.fns = {}
-  objStore.synth.fns.startSoundAndGraphics = () => {
+  const fns = objStore.synth.fns = {}
+
+  fns.startSound = () => {
     synthMakeNodes(objStore, reduxStore)
     synthInitialiseValues(objStore, reduxStore)
-    synthPlay(objStore, reduxStore)    
+    synthPlay(objStore, reduxStore)
+  };
+
+  fns.startGraphics = () => {
     animateCanvases(objStore, reduxStore)
   };
 
-  objStore.synth.fns.stopSound = () => {
+  fns.stopSound = () => {
     synthStop(objStore, reduxStore)
+  }
+
+  fns.stopGraphics = () => {
+    // Do nothing - animation loop will break automatically
+    // when button toggled in Redux state
   }
 }
 

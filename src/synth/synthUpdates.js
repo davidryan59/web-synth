@@ -173,16 +173,15 @@ export const synthUpdate = (data, getState, objStore) => {
   if (objStore.setup && data && data.id && getState) {
     const state = getState()
     switch (data.id) {
+
       case ui.TOGGLE_AUDIO:
-        (!data.isActive) ? objStore.synth.fns.startSoundAndGraphics() : objStore.synth.fns.stopSound()
-        console.dir(state)
+        (!data.isActive) ? objStore.synth.fns.startSound() : objStore.synth.fns.stopSound()
         break
 
-      // case ui.TOGGLE_ANIMATION:
-      //   (!data.isActive) ? objStore.synth.fns.startSoundAndGraphics() : objStore.synth.fns.stopSound()
-      //   console.dir(state)
-      //   break
-      //
+      case ui.TOGGLE_ANIMATION:
+        (!data.isActive) ? objStore.synth.fns.startGraphics() : objStore.synth.fns.stopGraphics()
+        break
+
       // case ui.TOGGLE_DISTORT_MODE:
       //   (!data.isActive) ? objStore.synth.fns.startSoundAndGraphics() : objStore.synth.fns.stopSound()
       //   console.dir(state)

@@ -11,8 +11,6 @@ const drawCanvasWaveform = (objStore, reduxStore) => {
   const canvasCtx = objStore.ctx.canvas.waveform
   const canvasElt = objStore.elt.canvas.waveform
 
-
-
   drawCanvasShared({ arrayToDraw, minVal, maxVal, canvasCtx, canvasElt })
 }
 
