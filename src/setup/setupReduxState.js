@@ -13,8 +13,8 @@ export const getInitialButtonsState = () => ([
   },
   {
     id: ui.TOGGLE_AUDIO,
-    labelInactive: 'Play sound (S)',
-    labelActive: 'Stop sound (S)',
+    labelInactive: 'Sound OFF (S)',
+    labelActive: 'Sound ON (S)',
     padSpaces: 6,
     isActive: false
   },
@@ -26,8 +26,8 @@ export const getInitialButtonsState = () => ([
   },
   {
     id: ui.TOGGLE_ANALYSER_LOG,
-    labelInactive: 'Analyser Linear (L)',
-    labelActive: 'Analyser Log (L)',
+    labelInactive: 'Analyser LINEAR (L)',
+    labelActive: 'Analyser LOG (L)',
     isActive: false
   }
 ])

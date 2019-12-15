@@ -12,7 +12,7 @@ export const framesBetweenCanvasUpdates = 8
 // If this number is 8, then one of the updates happens every 4 frames.
 
 // Control a short delay before starting an oscillator
-export const delayBeforeStartingMs = 10
+export const delayBeforeStartingMs = 50
 // To make sure all the audio nodes are setup before the start time
 
 // List of wave shapes in picklists
