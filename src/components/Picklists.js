@@ -4,7 +4,7 @@ import PicklistC from './PicklistC'
 
 const Picklists = ({ picklists }) => (
   <div>
-    {picklists.map( picklist =>
+    {picklists.map(picklist =>
       <PicklistC
         key={picklist.id}
         picklist={picklist}

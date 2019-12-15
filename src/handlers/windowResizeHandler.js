@@ -17,8 +17,7 @@ const windowResizeHandler = (evt, objStore, reduxStore) => {
 
   // Only dispatch action if change is more than a specific amount,
   // to avoid too many window resize actions
-  if (windowSizeChangeMinDiff <= windowSizeChangeDiff)
-    dispatch(getActionObject(WINDOW_RESIZE, {width:newWidth, height:newHeight}))
+  if (windowSizeChangeMinDiff <= windowSizeChangeDiff) { dispatch(getActionObject(WINDOW_RESIZE, { width: newWidth, height: newHeight })) }
 }
 
 export default windowResizeHandler

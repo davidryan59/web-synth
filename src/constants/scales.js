@@ -18,9 +18,9 @@ scaleSetupArray.push(['32 to 64', [
   48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63
 ]])
 
-export const scaleLabels = scaleSetupArray.map( row => row[0] )
+export const scaleLabels = scaleSetupArray.map(row => row[0])
 export const scaleFromLabel = label => {
-  const foundRow = scaleSetupArray.find( row => row[0] === label ) || scaleSetupArray[0]
+  const foundRow = scaleSetupArray.find(row => row[0] === label) || scaleSetupArray[0]
   const scale = foundRow[1]
   return scale
 }

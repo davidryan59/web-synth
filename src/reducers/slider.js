@@ -1,6 +1,6 @@
 import { SLIDER_MOVE } from '../constants/actionTypes'
 
-const slider = (state = {}, action) => {  
+const slider = (state = {}, action) => {
   switch (action.type) {
     case SLIDER_MOVE:
       return {

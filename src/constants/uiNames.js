@@ -9,7 +9,7 @@ export const keyUpMap = [
   ['KeyS', TOGGLE_AUDIO, 'Toggling sound (play button) via S key'],
   ['KeyA', TOGGLE_ANIMATION, 'Toggling animation via A key'],
   ['KeyD', TOGGLE_DISTORT_MODE, 'Toggling distortion via D key'],
-  ['KeyL', TOGGLE_ANALYSER_LOG, 'Toggling analyser log mode via L key'],
+  ['KeyL', TOGGLE_ANALYSER_LOG, 'Toggling analyser log mode via L key']
 ]
 
 export const SLIDER_MIXER_GAIN = 'SLIDER_MIXER_GAIN'

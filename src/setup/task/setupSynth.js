@@ -12,11 +12,11 @@ const setupSynth = (objStore, reduxStore) => {
     synthMakeNodes(objStore, reduxStore)
     synthInitialiseValues(objStore, reduxStore)
     synthPlay(objStore, reduxStore)
-  };
+  }
 
   fns.startGraphics = () => {
     animateCanvases(objStore, reduxStore)
-  };
+  }
 
   fns.stopSound = () => {
     synthStop(objStore, reduxStore)

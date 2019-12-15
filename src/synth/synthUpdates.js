@@ -8,13 +8,12 @@ import * as map from '../general/mappings'
 import { scaleFromLabel } from '../constants/scales'
 import * as ui from '../constants/uiNames'
 
-
 export const updateSynthDistortion = (objStore, state, isInitial) => {
   const value = getSliderDisplayValue(state, ui.SLIDER_DISTORTION)
   const amplifyDistortModeOn = buttonActive(state, ui.TOGGLE_DISTORT_MODE)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
-    const finalAmp = map.numericMap(value, map.MAP_DB_TO_GAIN)  // this slider positive, 0 to 20 dB
+    const finalAmp = map.numericMap(value, map.MAP_DB_TO_GAIN) // this slider positive, 0 to 20 dB
     synthNodes.limiterPreGain.gain.value = finalAmp
     synthNodes.limiterPostGain.gain.value = (amplifyDistortModeOn) ? 1 : 1 / finalAmp
   }
@@ -32,8 +31,8 @@ export const updateMainScale = (objStore, state, isInitial) => {
   const scaleAsc = [...scaleFromLabel(value)].sort((a, b) => a - b) // a - b gives ASCENDING order
   const scaleLowestNote = scaleAsc[0]
   const scaleDesc = [...scaleAsc].sort((a, b) => b - a) // b - a gives DESCENDING order
-   // Reversed and normalised scale
-  scaleFractionArray = scaleDesc.map( a => a / scaleLowestNote )   // Now in terms of fractions over lowest note
+  // Reversed and normalised scale
+  scaleFractionArray = scaleDesc.map(a => a / scaleLowestNote) // Now in terms of fractions over lowest note
 }
 
 const mapMainFreqIntoScale = (baseFreq, mainFreq, state) => {
@@ -87,7 +86,7 @@ export const updateDelayTimes = (objStore, state, isInitial) => {
       const slider = getSliderByName(state, delayUiName)
       if (slider) {
         const resonantFreq = getSliderDisplayValue(state, delayUiName)
-        const nodeValue = 1 / (2 * resonantFreq)    // Delay time in seconds
+        const nodeValue = 1 / (2 * resonantFreq) // Delay time in seconds
         const delayNode = getDelayNodeFromUiName(synthNodes, delayUiName)
         if (isInitial) {
           delayNode.delayTime.value = nodeValue
@@ -166,12 +165,10 @@ export const updateMod2IndexB = (objStore, state, isInitial) => {
   if (synthNodes) synthNodes.mod2GainB.gain.value = value
 }
 
-
 export const synthUpdate = (data, getState, objStore) => {
   if (objStore.setup && data && data.id && getState) {
     const reduxState = getState()
     switch (data.id) {
-
       case ui.TOGGLE_AUDIO:
         (!data.isActive) ? objStore.synth.fns.startSound() : objStore.synth.fns.stopSound()
         break
@@ -249,7 +246,7 @@ export const synthUpdate = (data, getState, objStore) => {
         //
     }
   } else {
-    console.log(`Synth update failed for data:`, data)
+    console.log('Synth update failed for data:', data)
   }
   if (objStore.setup) {
     switch (data.id) {

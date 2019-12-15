@@ -4,7 +4,7 @@ import SliderC from './SliderC'
 
 const Sliders = ({ sliders }) => (
   <div>
-    {sliders.map( slider =>
+    {sliders.map(slider =>
       <SliderC
         key={slider.id}
         slider={slider}
