@@ -99,11 +99,12 @@ export const getInitialSlidersState = () => [
   {
     id: ui.SLIDER_ANALYSER_MIN_DB,
     label: 'Min dB for Analyser',
-    min: '-240',
+    min: '30',
     step: '1',
-    max: '-30',
-    value: '-120',
+    max: '240',
+    value: '120',
     len: 4,
+    displayFn: map.MAP_NEGATE,
     unit: 'dB'
   },
   {
