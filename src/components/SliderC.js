@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  valueChange: e => dispatch(getSynthUpdateThunk(SLIDER_MOVE, {id: ownProps.slider.id, value: parseFloat(e.target.value)}))
+  valueChange: e => dispatch(getSynthUpdateThunk(SLIDER_MOVE, { id: ownProps.slider.id, value: parseFloat(e.target.value) }))
 })
 
 export default connect(

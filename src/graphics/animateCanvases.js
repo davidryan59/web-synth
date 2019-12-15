@@ -14,7 +14,7 @@ const animateCanvases = (objStore, reduxStore) => {
   const drawCanvases1Frame = () => {
     if (buttonActive(reduxStore.getState(), TOGGLE_ANIMATION)) {
       // Schedule the next frame
-      window.requestAnimationFrame(drawCanvases1Frame);
+      window.requestAnimationFrame(drawCanvases1Frame)
     } else {
       // console.log('Stopped drawing waveform and spectrum canvases')
     }

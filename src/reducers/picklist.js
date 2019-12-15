@@ -1,6 +1,6 @@
 import { SET_PICKLIST } from '../constants/actionTypes'
 
-const picklist = (state = {}, action) => {  
+const picklist = (state = {}, action) => {
   switch (action.type) {
     case SET_PICKLIST:
       return {

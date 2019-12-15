@@ -3,7 +3,6 @@ import * as ui from '../constants/uiNames'
 import { scaleLabels } from '../constants/scales'
 import { waveShapes } from '../constants/general'
 
-
 export const getInitialButtonsState = () => ([
   {
     id: ui.TOGGLE_ANIMATION,

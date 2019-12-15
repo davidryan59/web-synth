@@ -1,6 +1,6 @@
 import { BUTTON_PRESS } from '../constants/actionTypes'
 
-const button = (state = {}, action) => {  
+const button = (state = {}, action) => {
   switch (action.type) {
     case BUTTON_PRESS:
       return {

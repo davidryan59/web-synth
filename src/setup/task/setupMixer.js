@@ -14,15 +14,15 @@ const setupMixer = (objStore, reduxStore) => {
   const timeConst = analyserParameters.smoothingTimeConstant
 
   const mixer = objStore.mixer = {}
-  mixer.input = mixer.gain = new Tone.Gain();
+  mixer.input = mixer.gain = new Tone.Gain()
   mixer.analyser = {}
   mixer.analyser.wave = new Tone.Analyser('waveform', fftSize)
   mixer.analyser.wave.smoothing = timeConst
   mixer.analyser.fft = new Tone.Analyser('fft', fftSize)
   mixer.analyser.fft.smoothing = timeConst
-  mixer.gain.connect(Tone.Master);
-  mixer.gain.connect(mixer.analyser.wave);
-  mixer.gain.connect(mixer.analyser.fft);
+  mixer.gain.connect(Tone.Master)
+  mixer.gain.connect(mixer.analyser.wave)
+  mixer.gain.connect(mixer.analyser.fft)
 
   // Need to set main gain from state
   updateMixerGain(objStore, reduxStore.getState())

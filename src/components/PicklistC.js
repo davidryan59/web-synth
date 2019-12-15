@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  valueChange: e => dispatch(getSynthUpdateThunk(SET_PICKLIST, {id: ownProps.picklist.id, value: e.target.value}))
+  valueChange: e => dispatch(getSynthUpdateThunk(SET_PICKLIST, { id: ownProps.picklist.id, value: e.target.value }))
 })
 
 export default connect(

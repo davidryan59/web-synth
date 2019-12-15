@@ -1,7 +1,7 @@
 export const getButtonByName = (state, buttonId) => {
   try {
     return state.buttons.find(button => button.id === buttonId)
-  } catch(e) {
+  } catch (e) {
     console.log(`Button ${buttonId} could not be found.`)
     return null
   }

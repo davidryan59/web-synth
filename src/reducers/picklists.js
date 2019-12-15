@@ -3,10 +3,10 @@ import { SET_PICKLIST } from '../constants/actionTypes'
 
 import picklist from './picklist'
 
-const picklists = (state = getInitialPicklistsState(), action) => {  
+const picklists = (state = getInitialPicklistsState(), action) => {
   switch (action.type) {
     case SET_PICKLIST:
-      return state.map( picklistState =>
+      return state.map(picklistState =>
         (picklistState.id === action.id) ? picklist(picklistState, action) : picklistState
       )
     default:

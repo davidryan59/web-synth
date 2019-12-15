@@ -4,7 +4,7 @@ import ButtonC from './ButtonC'
 
 const Buttons = ({ buttons }) => (
   <div>
-    {buttons.map( button =>
+    {buttons.map(button =>
       <ButtonC
         key={button.id}
         button={button}

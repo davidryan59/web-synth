@@ -17,7 +17,7 @@ const Slider = ({ slider, displayVal, valueChange }) => (
       max={slider.max}
       value={slider.value}
       onChange={valueChange}
-      style={{width:'400px'}}
+      style={{ width: '400px' }}
     />
     &nbsp;
     <span

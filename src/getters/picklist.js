@@ -1,7 +1,7 @@
 export const getPicklistByName = (state, picklistId) => {
   try {
-    return state.picklists.find( picklist => picklist.id === picklistId )
-  } catch(e) {
+    return state.picklists.find(picklist => picklist.id === picklistId)
+  } catch (e) {
     console.log(`Picklist ${picklistId} could not be found.`)
     return null
   }
