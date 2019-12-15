@@ -24,12 +24,13 @@ const synthMakeNodes = (objStore, reduxStore) => {
   sNs.limiterPostGain = new Tone.Gain()
 
   const maxDelayS = 2
-  sNs.delayNodeC = new Tone.Delay(0, maxDelayS)
-  sNs.delayGainC = new Tone.Gain(-0.5)
 
   sNs.delayNodeL = new Tone.Delay(0, maxDelayS)
   sNs.delayPanL = new Tone.Panner(-1)
   sNs.delayGainL = new Tone.Gain(-0.25)
+
+  sNs.delayNodeC = new Tone.Delay(0, maxDelayS)
+  sNs.delayGainC = new Tone.Gain(-0.5)
 
   sNs.delayNodeR = new Tone.Delay(0, maxDelayS)
   sNs.delayPanR = new Tone.Panner(1)

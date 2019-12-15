@@ -157,6 +157,17 @@ export const getInitialSlidersState = () => [
     len: 3,
     unit: '%'
   },
+
+  {
+    id: ui.SLIDER_DELAY_CENTRE_PC,
+    label: 'Delay Fraction C',
+    min: '0',
+    step: '1',
+    max: '100',
+    value: '50',
+    len: 3,
+    unit: '%'
+  },
   {
     id: ui.SLIDER_DELAY_RES_L,
     label: 'Delay Resonance L',
@@ -170,7 +181,7 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_DELAY_RES_C,
-    label: 'Delay Resonance M',
+    label: 'Delay Resonance C',
     min: '-2',
     step: '0.05',
     max: '13',

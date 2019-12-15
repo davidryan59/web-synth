@@ -64,6 +64,23 @@ export const updateFrequencies = (objStore, state, isInitial) => {
   }
 }
 
+export const updateDelayVolumePercent = (objStore, state, isInitial) => {
+  const value = getSliderDisplayValue(state, ui.SLIDER_DELAY_VOL_PC)
+  const synthNodes = objStore.synth.nodes
+  if (synthNodes) synthNodes.delayMainGain.gain.value = 0.01 * value
+}
+
+export const updateDelayChannelGains = (objStore, state, isInitial) => {
+  const value = getSliderDisplayValue(state, ui.SLIDER_DELAY_CENTRE_PC)
+  const synthNodes = objStore.synth.nodes
+  if (synthNodes) {
+    const centreAmp = 0.01 * value   // 0 to 1
+    synthNodes.delayGainL.gain.value = -0.5 * (1-centreAmp)
+    synthNodes.delayGainC.gain.value = -centreAmp
+    synthNodes.delayGainR.gain.value = -0.5 * (1-centreAmp)
+  }
+}
+
 const delayUiNames = [ui.SLIDER_DELAY_RES_L, ui.SLIDER_DELAY_RES_C, ui.SLIDER_DELAY_RES_R]
 
 const getDelayNodeFromUiName = (synthNodes, uiName) => {
@@ -97,12 +114,6 @@ export const updateDelayTimes = (objStore, state, isInitial) => {
       }
     })
   }
-}
-
-export const updateDelayVolumePercent = (objStore, state, isInitial) => {
-  const value = getSliderDisplayValue(state, ui.SLIDER_DELAY_VOL_PC)
-  const synthNodes = objStore.synth.nodes
-  if (synthNodes) synthNodes.delayMainGain.gain.value = 0.01 * value
 }
 
 export const updateModWaveShapeA = (objStore, state, isInitial) => {
@@ -203,7 +214,9 @@ export const synthUpdate = (data, getState, objStore) => {
       case ui.SLIDER_DELAY_VOL_PC:
         updateDelayVolumePercent(objStore, reduxState)
         break
-
+      case ui.SLIDER_DELAY_CENTRE_PC:
+        updateDelayChannelGains(objStore, reduxState)
+        break
       case ui.SLIDER_DELAY_RES_L:
       case ui.SLIDER_DELAY_RES_C:
       case ui.SLIDER_DELAY_RES_R:
@@ -264,6 +277,7 @@ export const synthInitialiseValues = (objStore, reduxStore) => {
   updateFrequencies(objStore, reduxState, true)
 
   updateDelayVolumePercent(objStore, reduxState, true)
+  updateDelayChannelGains(objStore, reduxState, true)
   updateDelayTimes(objStore, reduxState, true)
 
   updateModWaveShapeA(objStore, reduxState, true)
