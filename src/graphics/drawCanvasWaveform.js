@@ -1,6 +1,5 @@
 import drawCanvasShared from './drawCanvasShared'
 
-
 const drawCanvasWaveform = (objStore, reduxStore) => {
   // Tone.Analyser with mode 'waveform'
   // returns Float32Array with
@@ -10,7 +9,6 @@ const drawCanvasWaveform = (objStore, reduxStore) => {
   const maxVal = 1
   const canvasCtx = objStore.ctx.canvas.waveform
   const canvasElt = objStore.elt.canvas.waveform
-
   drawCanvasShared({ arrayToDraw, minVal, maxVal, canvasCtx, canvasElt })
 }
 
