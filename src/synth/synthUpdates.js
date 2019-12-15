@@ -74,10 +74,10 @@ export const updateDelayChannelGains = (objStore, state, isInitial) => {
   const value = getSliderDisplayValue(state, ui.SLIDER_DELAY_CENTRE_PC)
   const synthNodes = objStore.synth.nodes
   if (synthNodes) {
-    const centreAmp = 0.01 * value   // 0 to 1
-    synthNodes.delayGainL.gain.value = -0.5 * (1-centreAmp)
+    const centreAmp = 0.01 * value // 0 to 1
+    synthNodes.delayGainL.gain.value = -0.5 * (1 - centreAmp)
     synthNodes.delayGainC.gain.value = -centreAmp
-    synthNodes.delayGainR.gain.value = -0.5 * (1-centreAmp)
+    synthNodes.delayGainR.gain.value = -0.5 * (1 - centreAmp)
   }
 }
 
