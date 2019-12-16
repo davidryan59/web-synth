@@ -85,6 +85,16 @@ export const getInitialSlidersState = () => [
     unit: 'dB'
   },
   {
+    id: ui.SLIDER_ANIMATION_RATE,
+    label: 'Animation Rate',
+    min: '1',
+    step: '0.01',
+    max: '24',
+    value: '8',
+    len: 5,
+    unit: 'frames'
+  },
+  {
     id: ui.SLIDER_ANALYSER_MAX_FREQ,
     label: 'Max Frequency for Analyser',
     min: '8',
