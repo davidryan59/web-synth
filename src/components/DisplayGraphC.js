@@ -1,11 +1,13 @@
 import { connect } from 'react-redux'
 
 import DisplayGraph from './DisplayGraph'
-import { windowSizeChangeMinDiff, windowSizeChangeExtraReduction, canvasHeight } from '../constants/general'
+import { windowSizeChangeMinDiff, windowSizeChangeExtraReduction } from '../constants/general'
+import * as ui from '../constants/uiNames'
+import { getSliderDisplayValue } from '../getters/slider'
 
 const mapStateToProps = (state, ownProps) => ({
   width: state.window.width - windowSizeChangeMinDiff - windowSizeChangeExtraReduction,
-  height: canvasHeight
+  height: getSliderDisplayValue(state, ui.getHeightSliderNameFromCanvasId[ownProps.id])
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -95,7 +95,37 @@ export const getInitialSlidersState = () => [
     unit: 'frames'
   },
   {
-    id: ui.SLIDER_ANALYSER_MAX_FREQ,
+    id: ui.SLIDER_WAVEFORM_ZOOM,
+    label: 'Waveform zoom',
+    min: '0',
+    step: '1',
+    max: '100',
+    value: '0',
+    len: 3,
+    unit: '%'
+  },
+  {
+    id: ui.SLIDER_WAVEFORM_HEIGHT,
+    label: 'Waveform height',
+    min: '5',
+    step: '1',
+    max: '960',
+    value: '140',
+    len: 3,
+    unit: 'px'
+  },
+  {
+    id: ui.SLIDER_SPECTRUM_HEIGHT,
+    label: 'Spectrum height',
+    min: '5',
+    step: '1',
+    max: '960',
+    value: '180',
+    len: 3,
+    unit: 'px'
+  },
+  {
+    id: ui.SLIDER_SPECTRUM_MAX_FREQ,
     label: 'Max Frequency for Analyser',
     min: '8',
     step: '0.02',
@@ -106,7 +136,7 @@ export const getInitialSlidersState = () => [
     unit: 'Hz'
   },
   {
-    id: ui.SLIDER_ANALYSER_MIN_DB,
+    id: ui.SLIDER_SPECTRUM_MIN_DB,
     label: 'Min dB for Analyser',
     min: '30',
     step: '1',

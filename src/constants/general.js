@@ -3,8 +3,8 @@
 export const windowSizeChangeMinDiff = 20
 // Extra padding to keep canvas sides away from side of window
 export const windowSizeChangeExtraReduction = 35
-// Set canvasHeight for waveform and spectrum canvases
-export const canvasHeight = 150
+// Waveform zoom between x1 and this number
+export const maxWaveformZoomFraction = 100
 
 // Control a short delay before starting an oscillator
 export const delayBeforeStartingMs = 50
