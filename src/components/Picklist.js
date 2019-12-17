@@ -1,18 +1,22 @@
 import React from 'react'
 
 const Picklist = ({ picklist, valueChange }) => (
-  <span style={{ textAlign: 'center', margin: '2px 10px' }}>
-    <label>
+  <div className='inputPanel'>
+    <label
+      className='inputLabel'
+      style={{ width: '95px' }}
+    >
       {picklist.label}
     </label>
-    &nbsp;&nbsp;
+    &nbsp;
     <select
       value={picklist.value}
       onChange={valueChange}
+      style={{ width: '145px', background: '#D4CCD9' }}
     >
       {picklist.values.map(pv => <option key={pv}>{pv}</option>)}
     </select>
-  </span>
+  </div>
 )
 
 export default Picklist

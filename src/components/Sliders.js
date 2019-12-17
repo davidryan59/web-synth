@@ -3,7 +3,7 @@ import React from 'react'
 import SliderC from './SliderC'
 
 const Sliders = ({ sliders }) => (
-  <div>
+  <div className='inputPanelContainer'>
     {sliders.map(slider =>
       <SliderC
         key={slider.id}

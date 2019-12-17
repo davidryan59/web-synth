@@ -1,15 +1,15 @@
 import React from 'react'
 
 const Button = ({ button, valueChange }) => (
-  <button
-    id={button.id}
-    onClick={valueChange}
-  >
-    {[...(new Array(button.padSpaces || 0))].map(() => '\u00a0')}
-    {button.isActive ? button.labelActive : button.labelInactive}
-    {[...(new Array(button.padSpaces || 0))].map(() => '\u00a0')}
-  </button>
+  <div className='inputPanel inputPanel-noBackground'>
+    <button
+      id={button.id}
+      onClick={valueChange}
+      style={{ fontSize: '12px', width: '160px', background: '#DFDACF'}}
+    >
+      {button.isActive ? button.labelActive : button.labelInactive}
+    </button>
+  </div>
 )
-// "\u00a0" are non-breaking spaces
 
 export default Button

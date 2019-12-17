@@ -126,7 +126,7 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_SPECTRUM_MAX_FREQ,
-    label: 'Max Frequency for Analyser',
+    label: 'Analyser Max Freq',
     min: '8',
     step: '0.02',
     max: '14.5',

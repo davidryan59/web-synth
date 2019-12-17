@@ -1,3 +1,18 @@
 div {
   border: 1px red solid;
 }
+span {
+  border: 1px green dashed;
+}
+label {
+  border: 1px blue dashed;
+}
+select {
+  border: 1px yellow dashed;
+}
+input {
+  border: 1px magenta dashed;
+}
+canvas {
+  border: 1px cyan dashed;
+}

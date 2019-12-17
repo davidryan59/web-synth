@@ -1,7 +1,7 @@
 import React from 'react'
 
 const StateViewer = ({ actionJSON, stateJSON }) => (
-  <div className='StateViewer'>
+  <div className='stateViewerDiv'>
     <p>
       <b>state.lastAction</b>:&nbsp;&nbsp;{actionJSON}
     </p>

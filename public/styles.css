@@ -1,22 +1,22 @@
 body {
   margin: 0px;
-  background-color: #444;
+  background: #444;
   font-family: monospace;
-  font-size: 10px;
+  font-size: 12px;
   color: #DDD;
   text-align: center;
 }
 
-.app {
+.appDiv {
   margin: 5px;
+  background: #222;
   border: 1px #999 solid;
   border-radius: 10px;
-  background: #222;
   padding: 7px;
 }
 
-.topline {
-  font-size: 12px;
+.appTopLine {
+  font-size: 14px;
 }
 
 div {
@@ -26,38 +26,65 @@ div {
 
 canvas {
   border: 1px solid #444;
-  background-color: #000;
+  background: #000;
   border-radius: 10px;
 }
 
-.StateViewer {
+.stateViewerDiv {
   background: #331;
   border: 1px #ABF solid;
   border-radius: 7px;
-  padding: '5px';
+  padding: 5px;
   font-family: monospace;
   font-size: 9;
 }
 
 button {
   margin: 3px;
-  background-color: #FEFDFB;
+  border-radius: 4px;
   color: #06B;
   font-weight: bold;
-  border-radius: 4px;
   cursor: pointer;
 }
 
-button.text {
-  font-weight: normal;
-}
-
-button.disabled {
-  background-color: #F9F9F9;
-  color: #DDD;
-  cursor: default;
+select {
+  cursor: pointer;
 }
 
 input {
   cursor: pointer;
 }
+
+.inputPanelContainer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.inputPanel {
+  background: #2D2D2D;
+  border-radius: 4px;
+  width: 250px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputPanel-noBackground {
+  background: none;
+}
+
+.inputPanelElt {
+  width: 235px;
+}
+
+.inputLabel {
+  color: #BA8;
+}
+
+.inputValue {
+  color: #CDF;
+}
+
+/* Flex box help: https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox */
