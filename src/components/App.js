@@ -1,10 +1,10 @@
 import React from 'react'
 
 import DisplayGraphC from './DisplayGraphC'
-import ButtonsC from './ButtonsC'
-import PicklistsC from './PicklistsC'
-import SlidersC from './SlidersC'
+import PanelC from './PanelC'
 import StateViewerC from './StateViewerC'
+
+import * as ui from '../constants/uiNames'
 
 const App = () => (
   <div className='appDiv'>
@@ -13,11 +13,16 @@ const App = () => (
       View a waveform created using Tone.JS and Web Audio API, in both time and frequency domains
       - <i>by David Ryan, 2020</i>
     </div>
+    <PanelC id={ui.PANEL_GRAPHS} />
+    <PanelC id={ui.PANEL_WAVEFORM} />
     <DisplayGraphC id='waveform' />
+    <PanelC id={ui.PANEL_SPECTRUM} />
     <DisplayGraphC id='spectrum' />
-    <ButtonsC />
-    <PicklistsC />
-    <SlidersC />
+    <PanelC id={ui.PANEL_MAIN} />
+    <PanelC id={ui.PANEL_DISTORT} />
+    <PanelC id={ui.PANEL_DELAY} />
+    <PanelC id={ui.PANEL_MOD_A} />
+    <PanelC id={ui.PANEL_MOD_B} />
     <StateViewerC />
   </div>
 )

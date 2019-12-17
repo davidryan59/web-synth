@@ -10,7 +10,7 @@ const drawCanvasSpectrum = (objStore, reduxStore) => {
   // returns Float32Array with
   // analyserParameters.fftSize dB values between approx -200 and 0
   const arrayToDraw = objStore.mixer.analyser.fft.getValue()
-  const logXMode = buttonActive(state, ui.TOGGLE_ANALYSER_LOG)
+  const logXMode = buttonActive(state, ui.TOGGLE_SPECTRUM_LOG)
   const minVal = getSliderDisplayValue(state, ui.SLIDER_SPECTRUM_MIN_DB)
   const maxVal = 0
   const canvasCtx = objStore.ctx.canvas.spectrum
