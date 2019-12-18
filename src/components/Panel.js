@@ -7,8 +7,8 @@ import TextC from './TextC'
 
 import * as ui from '../constants/uiNames'
 
-const Panel = ({ items }) => (
-  <div className='inputPanelContainer'>
+const Panel = ({ items, innerClassNames }) => (
+  <div className={`${innerClassNames}`}>
     {items.map(item =>
       (item.type === ui.TYPE_TOGGLE)
       ?
@@ -31,9 +31,16 @@ const Panel = ({ items }) => (
         slider={item}
       />
       :
+      (item.type === ui.TYPE_TEXT)
+      ?
       <TextC
         key={item.id}
-        text='Error: panel item not recognised'
+        text={item}
+      />
+      :
+      <TextC
+        key={item.id}
+        text={{value:'Error: panel type not recognised'}}
       />
     )}
   </div>

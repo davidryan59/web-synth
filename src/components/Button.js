@@ -1,11 +1,11 @@
 import React from 'react'
 
 const Button = ({ button, valueChange }) => (
-  <div className='inputPanel inputPanel-noBackground'>
+  <div className='flex alignCentre'>
     <button
       id={button.id}
       onClick={valueChange}
-      style={{ fontSize: '12px', width: '160px', background: '#DFDACF'}}
+      style={{ padding: '5px', width: `${button.widthPx}px` }}
     >
       {button.isActive ? button.labelActive : button.labelInactive}
     </button>

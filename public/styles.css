@@ -16,6 +16,7 @@ body {
 }
 
 .appTopLine {
+  margin: 5px 0px;
   font-size: 14px;
 }
 
@@ -40,11 +41,20 @@ canvas {
 }
 
 button {
-  margin: 3px;
+  margin: 2px;
+  padding: 4px;
   border-radius: 4px;
-  color: #06B;
+  background: #DDFFCC;
+  color: #01B;
+  font-size: 12px;
   font-weight: bold;
   cursor: pointer;
+}
+
+.picklist {
+  background: #FFDDCC;
+  color: #02A;
+  font-size: 12px;
 }
 
 select {
@@ -55,36 +65,37 @@ input {
   cursor: pointer;
 }
 
-.inputPanelContainer {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+.labelColour {
+  color: #FEA;
 }
 
-.inputPanel {
+.valueColour {
+  color: #ADF;
+}
+
+.greyBack {
   background: #2D2D2D;
   border-radius: 4px;
-  width: 250px;
+}
+
+.flex {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
   justify-content: center;
+  align-items: stretch;
+  align-content: center;
 }
 
-.inputPanel-noBackground {
-  background: none;
+.justifyStart {
+  justify-content: start;
 }
 
-.inputPanelElt {
-  width: 235px;
+.alignCentre {
+  align-items: center;
 }
 
-.inputLabel {
-  color: #BA8;
-}
-
-.inputValue {
-  color: #CDF;
-}
-
-/* Flex box help: https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox */
+/*
+Flex box help:
+https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+``*/

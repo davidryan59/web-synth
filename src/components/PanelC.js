@@ -8,11 +8,14 @@ const extractUIItems = (state, panelId) => {
   const innerItemIdArray = ui.panelSetup[panelId]
   if (!innerItemIdArray) return []
   const currentItemState = [...state.buttons, ...state.picklists, ...state.sliders]
-  return innerItemIdArray.map( itemId =>
-    currentItemState.find( item =>
-      item.id === itemId
-    )
-  )
+  return innerItemIdArray.map( itemId => {
+    const stateItem = currentItemState.find( item => item.id === itemId )
+    return (stateItem) ? stateItem : ({
+      type: ui.TYPE_TEXT,
+      id: itemId,
+      value: itemId
+    })
+  })
 }
 
 const mapStateToProps = (state, ownProps) => ({
