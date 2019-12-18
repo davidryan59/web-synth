@@ -4,8 +4,8 @@ const drawLine = (ctx, height, colour, minVal, maxVal, cX, cY) => {
   if (vHeight < 0 || vHeight > 1) return
   ctx.strokeStyle = colour
   ctx.beginPath()
-  ctx.moveTo(0, Math.floor(vHeight*cY)+0.5)   // 0.5 looks sharper on Retina
-  ctx.lineTo(cX, Math.floor(vHeight*cY)+0.5)  // ... make more general
+  ctx.moveTo(0, Math.floor(vHeight * cY) + 0.5) // 0.5 looks sharper on Retina
+  ctx.lineTo(cX, Math.floor(vHeight * cY) + 0.5) // ... make more general
   ctx.stroke()
 }
 

@@ -14,7 +14,7 @@ const Picklist = ({ picklist, valueChange }) => (
         className='picklist'
         style={{ width: '165px', height: '23px' }}
       >
-      {picklist.values.map(pv => <option key={pv}>{pv}</option>)}
+        {picklist.values.map(pv => <option key={pv}>{pv}</option>)}
       </select>
     </div>
   </div>

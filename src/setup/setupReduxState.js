@@ -96,7 +96,7 @@ export const getInitialSlidersState = () => [
     value: '-8',
     len: 5,
     unit: 'dB',
-    bgColour: '#444',
+    bgColour: '#444'
   },
   {
     id: ui.SLIDER_ANIMATION_RATE,
@@ -187,7 +187,7 @@ export const getInitialSlidersState = () => [
     value: '256',
     len: 3,
     unit: 'Hz',
-    bgColour: '#444',
+    bgColour: '#444'
   },
   {
     id: ui.SLIDER_BASE_FREQ,
