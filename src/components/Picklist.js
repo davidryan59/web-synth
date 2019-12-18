@@ -1,18 +1,23 @@
 import React from 'react'
 
 const Picklist = ({ picklist, valueChange }) => (
-  <span style={{ textAlign: 'center', margin: '2px 10px' }}>
-    <label>
-      {picklist.label}
-    </label>
-    &nbsp;&nbsp;
-    <select
-      value={picklist.value}
-      onChange={valueChange}
-    >
-      {picklist.values.map(pv => <option key={pv}>{pv}</option>)}
-    </select>
-  </span>
+  <div className='flex alignCentre' style={{ width: '250px' }}>
+    <div style={{ width: '60px' }}>
+      <label className='labelColour'>
+        {picklist.label}
+      </label>
+    </div>
+    <div style={{ width: '170px' }}>
+      <select
+        value={picklist.value}
+        onChange={valueChange}
+        className='picklist'
+        style={{ width: '165px', height: '23px' }}
+      >
+        {picklist.values.map(pv => <option key={pv}>{pv}</option>)}
+      </select>
+    </div>
+  </div>
 )
 
 export default Picklist

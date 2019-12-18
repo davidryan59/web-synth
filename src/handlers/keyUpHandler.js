@@ -4,21 +4,20 @@ import { BUTTON_PRESS } from '../constants/actionTypes'
 import { keyUpMap } from '../constants/uiNames'
 
 const keyUpHandler = (evt, objStore, reduxStore) => {
-  const thisKeyCode = evt.code
-  console.log(`Key up ${thisKeyCode}`)
-  keyUpMap.forEach(([keyCode, keyUI, keyMsg]) => {
-    if (thisKeyCode === keyCode) {
-      if (keyUI) {
-        reduxStore.dispatch(
-          getSynthUpdateThunk(BUTTON_PRESS, {
-            id: keyUI,
-            isActive: buttonActive(reduxStore.getState(), keyUI)
-          })
-        )
-      }
-      if (keyMsg) console.log(keyMsg)
-    }
-  })
+  const keyCode = evt.code
+  const keyUI = keyUpMap[keyCode]
+  if (!keyUI) {
+    console.log(`Key up ${keyCode}`)
+    return
+  }
+  const buttonState = buttonActive(reduxStore.getState(), keyUI)
+  console.log(`Key up ${keyCode}: ${keyUI} on previous state ${buttonState}`)
+  reduxStore.dispatch(
+    getSynthUpdateThunk(BUTTON_PRESS, {
+      id: keyUI,
+      isActive: buttonState
+    })
+  )
 }
 
 export default keyUpHandler

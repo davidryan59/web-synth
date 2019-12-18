@@ -6,28 +6,34 @@ import { waveShapes } from '../constants/general'
 export const getInitialButtonsState = () => ([
   {
     id: ui.TOGGLE_ANIMATION,
-    labelInactive: 'Animation OFF (A)',
-    labelActive: 'Animation ON (A)',
-    padSpaces: 2,
+    type: ui.TYPE_TOGGLE,
+    labelInactive: 'OFF (A)',
+    labelActive: 'ON (A)',
+    widthPx: 140,
+    isActive: false
+  },
+  {
+    id: ui.TOGGLE_SPECTRUM_LOG,
+    type: ui.TYPE_TOGGLE,
+    labelInactive: 'LINEAR Scale (L)',
+    labelActive: 'LOG Scale (L)',
+    widthPx: 130,
     isActive: false
   },
   {
     id: ui.TOGGLE_AUDIO,
+    type: ui.TYPE_TOGGLE,
     labelInactive: 'Sound OFF (S)',
     labelActive: 'Sound ON (S)',
-    padSpaces: 6,
+    widthPx: 175,
     isActive: false
   },
   {
     id: ui.TOGGLE_DISTORT_MODE,
-    labelInactive: 'Distortion CLIP (D)',
-    labelActive: 'Distortion AMPLIFY (D)',
-    isActive: false
-  },
-  {
-    id: ui.TOGGLE_ANALYSER_LOG,
-    labelInactive: 'Analyser LINEAR (L)',
-    labelActive: 'Analyser LOG (L)',
+    type: ui.TYPE_TOGGLE,
+    labelInactive: 'CLIP Mode (D)',
+    labelActive: 'AMPLIFY Mode (D)',
+    widthPx: 140,
     isActive: false
   }
 ])
@@ -35,39 +41,45 @@ export const getInitialButtonsState = () => ([
 export const getInitialPicklistsState = () => [
   {
     id: ui.PICK_SCALE,
-    label: 'Scale',
+    type: ui.TYPE_PICKLIST,
+    label: 'Type',
     values: [...scaleLabels],
     value: scaleLabels[0]
   },
   {
     id: ui.PICK_MAIN_SHAPE,
-    label: 'Main wave shape',
+    type: ui.TYPE_PICKLIST,
+    label: 'Shape',
     values: [...waveShapes],
     value: waveShapes[0]
   },
 
   {
     id: ui.PICK_MOD_SHAPE_A,
-    label: 'Modulating wave shape A',
+    type: ui.TYPE_PICKLIST,
+    label: 'Shape',
     values: [...waveShapes],
     value: waveShapes[0]
   },
   {
     id: ui.PICK_MOD2_SHAPE_A,
-    label: 'Mod2 wave shape A',
+    type: ui.TYPE_PICKLIST,
+    label: 'Shape',
     values: [...waveShapes],
     value: waveShapes[0]
   },
 
   {
     id: ui.PICK_MOD_SHAPE_B,
-    label: 'Modulating wave shape B',
+    type: ui.TYPE_PICKLIST,
+    label: 'Shape',
     values: [...waveShapes],
     value: waveShapes[0]
   },
   {
     id: ui.PICK_MOD2_SHAPE_B,
-    label: 'Mod2 wave shape B',
+    type: ui.TYPE_PICKLIST,
+    label: 'Shape',
     values: [...waveShapes],
     value: waveShapes[0]
   }
@@ -76,17 +88,20 @@ export const getInitialPicklistsState = () => [
 export const getInitialSlidersState = () => [
   {
     id: ui.SLIDER_MIXER_GAIN,
-    label: 'Overall Gain',
+    type: ui.TYPE_SLIDER,
+    label: 'MAIN GAIN',
     min: '-30',
     step: '0.1',
     max: '0',
     value: '-8',
     len: 5,
-    unit: 'dB'
+    unit: 'dB',
+    bgColour: '#444'
   },
   {
     id: ui.SLIDER_ANIMATION_RATE,
-    label: 'Animation Rate',
+    type: ui.TYPE_SLIDER,
+    label: 'Speed',
     min: '1',
     step: '0.01',
     max: '24',
@@ -95,8 +110,20 @@ export const getInitialSlidersState = () => [
     unit: 'frames'
   },
   {
-    id: ui.SLIDER_WAVEFORM_ZOOM,
-    label: 'Waveform zoom',
+    id: ui.SLIDER_WAVEFORM_H_ZOOM,
+    type: ui.TYPE_SLIDER,
+    label: 'Horizontal Zoom',
+    min: '0',
+    step: '1',
+    max: '100',
+    value: '0',
+    len: 3,
+    unit: '%'
+  },
+  {
+    id: ui.SLIDER_WAVEFORM_V_ZOOM,
+    type: ui.TYPE_SLIDER,
+    label: 'Vertical Zoom',
     min: '0',
     step: '1',
     max: '100',
@@ -106,7 +133,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_WAVEFORM_HEIGHT,
-    label: 'Waveform height',
+    type: ui.TYPE_SLIDER,
+    label: 'Graph Height',
     min: '5',
     step: '1',
     max: '960',
@@ -116,7 +144,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_SPECTRUM_HEIGHT,
-    label: 'Spectrum height',
+    type: ui.TYPE_SLIDER,
+    label: 'Graph Height',
     min: '5',
     step: '1',
     max: '960',
@@ -126,7 +155,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_SPECTRUM_MAX_FREQ,
-    label: 'Max Frequency for Analyser',
+    type: ui.TYPE_SLIDER,
+    label: 'Max Frequency',
     min: '8',
     step: '0.02',
     max: '14.5',
@@ -137,7 +167,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_SPECTRUM_MIN_DB,
-    label: 'Min dB for Analyser',
+    type: ui.TYPE_SLIDER,
+    label: 'Min dB',
     min: '30',
     step: '1',
     max: '240',
@@ -148,17 +179,20 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_MAIN_FREQ,
-    label: 'Note Frequency',
+    type: ui.TYPE_SLIDER,
+    label: 'MAIN FREQUENCY',
     min: '1',
     step: '1',
     max: '720',
     value: '256',
     len: 3,
-    unit: 'Hz'
+    unit: 'Hz',
+    bgColour: '#444'
   },
   {
     id: ui.SLIDER_BASE_FREQ,
-    label: 'Start of scale',
+    type: ui.TYPE_SLIDER,
+    label: 'Starts At',
     min: '200',
     step: '1',
     max: '600',
@@ -168,7 +202,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_MAIN_MULT,
-    label: 'Frequency multiplier',
+    type: ui.TYPE_SLIDER,
+    label: 'Multiplier',
     min: '0',
     step: '1',
     max: '32',
@@ -178,6 +213,7 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_DISTORTION,
+    type: ui.TYPE_SLIDER,
     label: 'Distortion',
     min: '0',
     step: '0.01',
@@ -189,7 +225,8 @@ export const getInitialSlidersState = () => [
 
   {
     id: ui.SLIDER_DELAY_VOL_PC,
-    label: 'Delay Volume',
+    type: ui.TYPE_SLIDER,
+    label: 'Effect Volume',
     min: '0',
     step: '1',
     max: '100',
@@ -200,7 +237,8 @@ export const getInitialSlidersState = () => [
 
   {
     id: ui.SLIDER_DELAY_CENTRE_PC,
-    label: 'Delay Fraction C',
+    type: ui.TYPE_SLIDER,
+    label: 'Centre Volume',
     min: '0',
     step: '1',
     max: '100',
@@ -210,7 +248,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_DELAY_RES_L,
-    label: 'Delay Resonance L',
+    type: ui.TYPE_SLIDER,
+    label: 'Left Resonance',
     min: '-2',
     step: '0.05',
     max: '13',
@@ -221,7 +260,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_DELAY_RES_C,
-    label: 'Delay Resonance C',
+    type: ui.TYPE_SLIDER,
+    label: 'Centre Resonance',
     min: '-2',
     step: '0.05',
     max: '13',
@@ -232,7 +272,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_DELAY_RES_R,
-    label: 'Delay Resonance R',
+    type: ui.TYPE_SLIDER,
+    label: 'Right Resonance',
     min: '-2',
     step: '0.05',
     max: '13',
@@ -243,7 +284,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_MOD_MULT_A,
-    label: 'FM Multiplier A',
+    type: ui.TYPE_SLIDER,
+    label: 'Multiplier',
     min: '1',
     step: '1',
     max: '32',
@@ -253,7 +295,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_MOD_IDX_A,
-    label: 'Modulating Index A',
+    type: ui.TYPE_SLIDER,
+    label: 'Index',
     min: '0',
     step: '1',
     max: '2000',
@@ -263,7 +306,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_MOD2_RATE_A,
-    label: 'Mod2 Rate A',
+    type: ui.TYPE_SLIDER,
+    label: 'Frequency',
     min: '-2',
     step: '0.01',
     max: '4',
@@ -274,7 +318,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_MOD2_IDX_A,
-    label: 'Mod2 Index A',
+    type: ui.TYPE_SLIDER,
+    label: 'Index',
     min: '0',
     step: '1',
     max: '2000',
@@ -285,7 +330,8 @@ export const getInitialSlidersState = () => [
 
   {
     id: ui.SLIDER_MOD_MULT_B,
-    label: 'FM Multiplier B',
+    type: ui.TYPE_SLIDER,
+    label: 'Multiplier',
     min: '1',
     step: '1',
     max: '32',
@@ -295,7 +341,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_MOD_IDX_B,
-    label: 'Modulating Index B',
+    type: ui.TYPE_SLIDER,
+    label: 'Index',
     min: '0',
     step: '1',
     max: '2000',
@@ -305,7 +352,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_MOD2_RATE_B,
-    label: 'Mod2 Rate B',
+    type: ui.TYPE_SLIDER,
+    label: 'Frequency',
     min: '-2',
     step: '0.01',
     max: '4',
@@ -316,7 +364,8 @@ export const getInitialSlidersState = () => [
   },
   {
     id: ui.SLIDER_MOD2_IDX_B,
-    label: 'Mod2 Index B',
+    type: ui.TYPE_SLIDER,
+    label: 'Index',
     min: '0',
     step: '1',
     max: '2000',
