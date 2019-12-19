@@ -7,6 +7,14 @@ import { getSliderByName, getSliderDisplayValue } from '../getters/slider'
 import * as map from '../general/mappings'
 import { scaleFromLabel } from '../constants/scales'
 import * as ui from '../constants/uiNames'
+import * as gen from '../constants/general'
+
+
+export const updateSynthDistortCurve = (objStore, state, isInitial) => {
+  const type = getPicklistValue(state, ui.PICK_DISTORT_FN)
+  const synthNodes = objStore.synth.nodes
+  if (synthNodes) synthNodes.limiterWaveShape.curve = gen.getDistortionCurveFromType(type)
+}
 
 export const updateSynthDistortion = (objStore, state, isInitial) => {
   const value = getSliderDisplayValue(state, ui.SLIDER_DISTORTION)
@@ -191,6 +199,9 @@ export const synthUpdate = (data, getState, objStore) => {
       case ui.SLIDER_MIXER_GAIN:
         updateMixerGain(objStore, reduxState)
         break
+      case ui.PICK_DISTORT_FN:
+        updateSynthDistortCurve(objStore, reduxState)
+        break
       case ui.SLIDER_DISTORTION:
       case ui.TOGGLE_DISTORT_MODE:
         updateSynthDistortion(objStore, reduxState)
@@ -271,6 +282,7 @@ export const synthUpdate = (data, getState, objStore) => {
 
 export const synthInitialiseValues = (objStore, reduxStore) => {
   const reduxState = reduxStore.getState()
+  updateSynthDistortCurve(objStore, reduxState, true)
   updateSynthDistortion(objStore, reduxState, true)
   updateMainWaveShape(objStore, reduxState, true)
   updateMainScale(objStore, reduxState, true)

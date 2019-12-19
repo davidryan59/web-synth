@@ -20,7 +20,6 @@ const synthMakeNodes = (objStore, reduxStore) => {
 
   sNs.limiterPreGain = new Tone.Gain()
   sNs.limiterWaveShape = new Tone.WaveShaper()
-  sNs.limiterWaveShape.curve = new Float32Array([-1, 1])
   sNs.limiterPostGain = new Tone.Gain()
 
   const maxDelayS = 2

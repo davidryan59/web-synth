@@ -1,7 +1,7 @@
 import * as map from '../general/mappings'
 import * as ui from '../constants/uiNames'
 import { scaleLabels } from '../constants/scales'
-import { waveShapes } from '../constants/general'
+import * as cst from '../constants/general'
 
 export const getInitialButtonsState = () => ([
   {
@@ -47,41 +47,48 @@ export const getInitialPicklistsState = () => [
     value: scaleLabels[0]
   },
   {
+    id: ui.PICK_DISTORT_FN,
+    type: ui.TYPE_PICKLIST,
+    label: 'Type',
+    values: [...cst.distortionTypes],
+    value: cst.distortionTypes[0]
+  },
+  {
     id: ui.PICK_MAIN_SHAPE,
     type: ui.TYPE_PICKLIST,
     label: 'Shape',
-    values: [...waveShapes],
-    value: waveShapes[0]
+    values: [...cst.waveShapes],
+    value: cst.waveShapes[0]
   },
 
   {
     id: ui.PICK_MOD_SHAPE_A,
     type: ui.TYPE_PICKLIST,
     label: 'Shape',
-    values: [...waveShapes],
-    value: waveShapes[0]
+    values: [...cst.waveShapes],
+    value: cst.waveShapes[0]
   },
   {
     id: ui.PICK_MOD2_SHAPE_A,
     type: ui.TYPE_PICKLIST,
     label: 'Shape',
-    values: [...waveShapes],
-    value: waveShapes[0]
+    values: [...cst.waveShapes],
+    value: cst.waveShapes[0]
   },
 
   {
     id: ui.PICK_MOD_SHAPE_B,
     type: ui.TYPE_PICKLIST,
     label: 'Shape',
-    values: [...waveShapes],
-    value: waveShapes[0]
+    values: [...cst.waveShapes],
+    value: cst.waveShapes[0]
   },
   {
     id: ui.PICK_MOD2_SHAPE_B,
     type: ui.TYPE_PICKLIST,
     label: 'Shape',
-    values: [...waveShapes],
-    value: waveShapes[0]
+    values: [...cst.waveShapes],
+    value: cst.waveShapes[0]
   }
 ]
 

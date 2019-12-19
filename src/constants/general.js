@@ -13,6 +13,26 @@ export const delayBeforeStartingMs = 50
 // List of wave shapes in picklists
 export const waveShapes = ['sine', 'triangle', 'sawtooth', 'square']
 
+// Distortion setup
+export const distortionTypes = ['hard', 'sigmoid']
+export const sigmoidArraySize = 1024
+const getHardArray = () => new Float32Array([-1, 1])
+const getSigmoidArray = () => {
+  const sigFactor = 1 / (sigmoidArraySize - 1)
+  const resultArray = new Float32Array(sigmoidArraySize)
+  for (let i=0; i<sigmoidArraySize; i++) {
+    const x = sigFactor * i
+    resultArray[i] = 6 * x ** 2 - 4 * x ** 3 - 1
+    // Maps [0, 1] to [-1, 1]
+    // with smooth turning points at (0, -1) and (1, 1)
+  }
+  return resultArray
+}
+export const getDistortionCurveFromType = type =>
+  (type === 'hard') ? getHardArray() :
+    (type === 'sigmoid') ? getSigmoidArray() :
+      getHardArray()
+
 // Control the analyser output and display
 export const analyserParameters = {
   sampleRate: 44100, // IMPROVE: Can this be calculated from context?
