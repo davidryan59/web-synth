@@ -20,7 +20,7 @@ const getHardArray = () => new Float32Array([-1, 1])
 const getSigmoidArray = () => {
   const sigFactor = 1 / (sigmoidArraySize - 1)
   const resultArray = new Float32Array(sigmoidArraySize)
-  for (let i=0; i<sigmoidArraySize; i++) {
+  for (let i = 0; i < sigmoidArraySize; i++) {
     const x = sigFactor * i
     resultArray[i] = 6 * x ** 2 - 4 * x ** 3 - 1
     // Maps [0, 1] to [-1, 1]
@@ -29,9 +29,9 @@ const getSigmoidArray = () => {
   return resultArray
 }
 export const getDistortionCurveFromType = type =>
-  (type === 'hard') ? getHardArray() :
-    (type === 'sigmoid') ? getSigmoidArray() :
-      getHardArray()
+  (type === 'hard') ? getHardArray()
+    : (type === 'sigmoid') ? getSigmoidArray()
+      : getHardArray()
 
 // Control the analyser output and display
 export const analyserParameters = {

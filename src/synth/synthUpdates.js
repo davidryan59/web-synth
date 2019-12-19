@@ -9,7 +9,6 @@ import { scaleFromLabel } from '../constants/scales'
 import * as ui from '../constants/uiNames'
 import * as gen from '../constants/general'
 
-
 export const updateSynthDistortCurve = (objStore, state, isInitial) => {
   const type = getPicklistValue(state, ui.PICK_DISTORT_FN)
   const synthNodes = objStore.synth.nodes
