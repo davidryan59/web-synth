@@ -61,9 +61,13 @@ select {
   cursor: pointer;
 }
 
-input {
-  cursor: pointer;
+input[type=range] {
+  background-color: rgba(0, 0, 0, 0);
 }
+/* Rest of input range stylings generated from online app
+and put in styles.inputrange.css
+See: https://github.com/danielstern/range.css/ */
+
 
 .labelColour {
   color: #FEA;
