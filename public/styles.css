@@ -20,6 +20,17 @@ body {
   font-size: 14px;
 }
 
+a {
+  text-decoration: none;
+  color: #F3F;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #D6F;
+}
+
+
 div {
   margin: 2px;
   padding: 2px;

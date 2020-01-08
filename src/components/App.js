@@ -9,8 +9,12 @@ import * as ui from '../constants/uiNames'
 const App = () => (
   <div className='appDiv'>
     <div className='appTopLine'>
-      <b>Web Synth</b> -
-      View a waveform created using Tone.JS and Web Audio API, in both time and frequency domains
+      <b style={{ fontSize: '120%' }}>Web Synth</b> -
+      See, hear and control a synth waveform
+      - Press A, S to turn on animation and sound
+      - Use the MAIN FREQUENCY slider to play different notes
+      - Zoom browser out to see more controls
+      - Have fun!
       - <i>by David Ryan, 2020</i>
     </div>
     <PanelC id={ui.PANEL_GRAPHS} innerClassNames='flex greyBack justifyStart' />
@@ -26,6 +30,7 @@ const App = () => (
       <PanelC id={ui.PANEL_MOD_A} innerClassNames='greyBack' />
       <PanelC id={ui.PANEL_MOD_B} innerClassNames='greyBack' />
     </div>
+    <div><p>Technologies used: HTML, CSS, JavaScript, Jest, Flexbox, React, Redux, Web Audio API, Tone.js, Web Canvas API, Firebase hosting. <a href='https://github.com/davidryan59/web-synth'>GitHub repo here</a>.</p></div>
     <StateViewerC />
   </div>
 )
