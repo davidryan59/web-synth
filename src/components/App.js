@@ -30,7 +30,12 @@ const App = () => (
       <PanelC id={ui.PANEL_MOD_A} innerClassNames='greyBack' />
       <PanelC id={ui.PANEL_MOD_B} innerClassNames='greyBack' />
     </div>
-    <div><p>Technologies used: HTML, CSS, Flexbox, JavaScript, Jest, React, Redux, Web Audio API, Tone.js, Web Canvas API, GitHub, Travis CI, Firebase. <a href='https://github.com/davidryan59/web-synth'>GitHub repo here</a>.</p></div>
+    <div>
+      <p>
+        View the code in the <a href='https://github.com/davidryan59/web-synth'>GitHub repo</a>.
+        Please consider making a <a href='https://blockchain.com/btc/payment_request?address=19L98Wj3DwRtWEpQxi5PhWSC5FhqXbnyDG&amount=0.001&message=Please consider making a small donation, to help support development of Web Synth.' target='_blank' rel='noopener noreferrer'>small donation of Bitcoin</a> to help support development of Web Synth.
+      </p>
+    </div>
     <StateViewerC />
   </div>
 )
